@@ -1,5 +1,5 @@
 import React from 'react'
-import LinkButton from '../../../../../../components/LinkButton/LinkButton'
+import Button from '../../../../../../components/Button/Button'
 import Span100 from './components/Span100'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTags,faClock,faCalendarDays,faMedal } from '@fortawesome/free-solid-svg-icons'
@@ -17,7 +17,8 @@ export default function Card(props)
     inicio,
     sesiones,
     precio,
-    etiqueta
+    etiqueta,
+    setShow
   }=props
 
 
@@ -33,14 +34,14 @@ export default function Card(props)
         </h3>
         <CertificacionDisponible icon={faMedal} />
         <div className="flex flex-col flex-1 justify-end">
-          <LinkButton
+          <Button
             label="más información"
-            path={`/${tipo}/${etiqueta}`}
             styles={{
               button:
                 "!w-[100%] !bg-myPurpleBg !py-[.5rem] !font-medium !mb-[1.2rem]",
               span: "!text-[1.1rem]",
             }}
+            onClick={()=>setShow(true)}
           />
           <div className="flex justify-between">
             <section>

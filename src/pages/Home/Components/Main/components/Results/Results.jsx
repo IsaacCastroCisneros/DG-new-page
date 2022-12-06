@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMedal,faBook, faGraduationCap,faMousePointer } from '@fortawesome/free-solid-svg-icons'
 import Spinner from '../../../../../../components/Spinner/Spinner'
 
-export default function Results() 
+export default function Results({show,setShow}) 
 {
   const[type,setType]=useState('cursos')
   const{data,isFetching}= useMyQuery({type,limit:'limit=6'})
@@ -46,7 +46,14 @@ export default function Results()
         !isFetching&&
         <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0]">
           {data?.map((card) => {
-            return <Card key={card.id} type={type} {...card} />;
+            return (
+              <Card
+                setShow={setShow}
+                key={card.id}
+                type={type}
+                {...card}
+              />
+            );
           })}
         </div>
       }
