@@ -16,8 +16,8 @@ export default function Home() {
        <NuestrosBeneficios/>
        <MasDe10/>
        <ProgramaElaborado/>
-       <Footer/>
       </main>
+      <Footer/>
     </>
   );
 }

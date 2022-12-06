@@ -11,28 +11,12 @@ export default function Navbar() {
           <Link to="/" className="block w-[12rem] mr-[5rem]">
             <img src={img} className="w-[100%]" />
           </Link>
-          <li>
-            <NavLink to="/" className="uppercase">
-              inicio
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/" className="uppercase">
-              cursos
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/" className="uppercase">
-              diplomas
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/" className="uppercase">
-              packs
-            </NavLink>
-          </li>
+          <NavOption  label={'inicio'} path={'/'}/>
+          <NavOption  label={'cursos'} path={'/'}/>
+          <NavOption  label={'diplomas'} path={'/'}/>
+          <NavOption  label={'packs'} path={'/'}/>
         </ul>
-        <div className="flex gap-[1rem]">
+        <div className="flex gap-[1rem] mobNav:hidden">
           <Button label="aula virtual" />
           <Button
             label="registrarse"
@@ -46,3 +30,15 @@ export default function Navbar() {
     </header>
   );
 }
+
+function NavOption({label,path}) 
+{
+  return (
+    <li className='mobNav:hidden'>
+      <NavLink to={path} className="uppercase">
+        {label}
+      </NavLink>
+    </li>
+  );
+}
+  

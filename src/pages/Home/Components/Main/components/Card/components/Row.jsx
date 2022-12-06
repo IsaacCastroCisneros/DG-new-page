@@ -9,7 +9,7 @@ export default function Row({icon, text,label=''})
         <FontAwesomeIcon icon={icon} />
       </p>
       &nbsp;
-      <p>
+      <p className='phone:text-[12px]'>
         {label}
         {text}
       </p>

@@ -6,7 +6,7 @@ export default function useMyQuery({type,tag='',id='',limit=''})
 {
   const url = gettingUrl(type,tag,id,limit)
 
-  const{data,isFetching}=useQuery(['query',url],query,
+  let{data,isFetching}=useQuery(['query',url],query,
   {
     keepPreviousData:true
   })
@@ -17,8 +17,20 @@ export default function useMyQuery({type,tag='',id='',limit=''})
     return res
   }
 
+  if(tag==='')
+  {
+    if(data!==undefined)
+    {
+      const {grabado}=data.data
+      console.log(data.data)
+  
+      return {data:grabado,isFetching}
+    }
+  }
+
   return {data:data?.data,isFetching}
 }
+
 
 function gettingUrl(type,tag,id,limit)
 {

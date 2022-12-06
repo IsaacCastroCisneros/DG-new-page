@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import useMyQuery from '../../../../../../customHooks/useMyQuery/useMyQuery'
-import {MoonLoader} from 'react-spinners'
 import Card from '../Card/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMedal,faBook, faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+import { faMedal,faBook, faGraduationCap,faMousePointer } from '@fortawesome/free-solid-svg-icons'
+import Spinner from '../../../../../../components/Spinner/Spinner'
 
 export default function Results() 
 {
@@ -12,7 +12,13 @@ export default function Results()
 
   return (
     <>
-      <div className="flex justify-center gap-[1rem] mb-[4rem]">
+      <div className="flex justify-center gap-[1rem] mb-[4rem] phone:mb-[1.3rem] elige:grid elige:grid-cols-[repeat(2,50%)] elige:gap-[.5rem]">
+        <ButtonType 
+          setType={setType} 
+          selected={type} 
+          label={"todos"}
+          icon={<FontAwesomeIcon icon={faMousePointer}/>} 
+          />
         <ButtonType 
           setType={setType} 
           selected={type} 
@@ -33,16 +39,13 @@ export default function Results()
           />
       </div>
       {
-        <div className="flex justify-center text-blue-400 mb-[1rem]">
-          {isFetching && (
-            <MoonLoader size={100} color={"rgb(96,165,250)"} />
-          )}
-        </div>
+        isFetching&&
+        <Spinner/>
       }
       {
         !isFetching&&
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-[2.5rem] px-[3rem]">
-          {data?.envivo.map((card) => {
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0]">
+          {data?.map((card) => {
             return <Card key={card.id} type={type} {...card} />;
           })}
         </div>
@@ -65,13 +68,16 @@ function ButtonType(props)
 
   return (
     <button
-      className={`bg-myGrey block px-[1rem] py-[.4rem] rounded-md shadow-lg ${
+      className={`bg-myGrey block px-[1rem] phone:px-[.8rem] py-[.4rem] rounded-md shadow-lg ${
         isSelected ? "!bg-myBlack" : ""
       } transition-all duration-200`}
-      onClick={() => setType(label)}
+      onClick={() => {
+        if(label==='todos')return
+        setType(label)
+      } }
     >
       <p
-        className={`text-myBlack text-[1.3rem] flex gap-[1rem] leading-relaxed uppercase transition-all duration-200 ${
+        className={`text-myBlack text-[1.3rem] flex gap-[1rem] phone:text-[.9rem] phone:gap-[.5rem] leading-relaxed uppercase transition-all duration-200 ${
           isSelected ? "!text-[#fff]" : ""
         }`}
       >

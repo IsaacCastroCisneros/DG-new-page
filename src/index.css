@@ -30,7 +30,9 @@ h1,h2,h3,h4
   font-weight:bold;
 }
 
-.custom-container,.custom-container2
+.custom-container,
+.custom-container2,
+.custom-container3
 {
   width: 120rem;
   max-width: 100%;
@@ -42,4 +44,9 @@ h1,h2,h3,h4
 .custom-container2
 {
   width: 86rem;
+}
+
+.custom-container3
+{
+  width: 1230px;
 }
