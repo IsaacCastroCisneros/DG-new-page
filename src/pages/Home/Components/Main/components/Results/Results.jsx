@@ -49,6 +49,7 @@ export default function Results({show,setShow})
             return (
               <Card
                 setShow={setShow}
+                show={show}
                 key={card.id}
                 type={type}
                 {...card}

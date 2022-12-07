@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from 'react';
-import PopUp from '../../../../components/PopUp/PopUp';
-import Preview from './components/Preview/Preview';
 import Results from './components/Results/Results'
 
 export default function EligeElPrograma() 
@@ -10,7 +8,6 @@ export default function EligeElPrograma()
   
   return (
     <>
-      <PopUp show={show} setShow={setShow} popUp={<Preview/>} />
       <section className="custom-container2 text-[#000] pb-[7rem] phone:pb-[4rem]">
         <h1 className="block text-center text-[2.5rem] mt-[4.5rem] phone:font-normal phone:text-[2.4remrem] phone:mt-[2rem]">
           Elige el Programa de tu Interés y Certificate

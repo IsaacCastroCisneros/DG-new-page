@@ -3,8 +3,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 
-export default function PopUp({popUp,show,setShow}) 
+export default function PopUp(props) 
 {
+  const
+  {
+    popUp,
+    show,
+    setShow,
+    overflow=false
+  }=props
+
+  useEffect(()=>
+  {
+    const body= document.querySelector('body')
+
+    if(show&&!overflow)
+    {
+      
+      body?.setAttribute('style','overflow:hidden');
+      return
+    }
+
+    body?.setAttribute('style','overflow:auto');
+  })
 
    return (
      <>
@@ -20,11 +41,11 @@ export default function PopUp({popUp,show,setShow})
            ></div>
 
            <div
-             className={`fixed h-[100vh] w-[100vw] flex justify-center items-center mob2:items-start mob2:pt-[4rem] mob2:pb-[2rem] z-[99999999999] top-0 left-0 ${
+             className={`fixed h-[calc(100vh)] w-[100vw] flex justify-center items-center previewMob:items-start previewMob:pt-[4rem] previewMob:pb-[2rem] z-[99999999999] top-0 left-0 ${
                show ? "pointer-events-auto" : "pointer-events-none"
              } ${show?'overflow-y-auto':''}`}
            >
-             <div className='flex gap-[1rem] bg-[#fff] relative transition-all duration-[200ms] mob:w-[90%] mob:gap-[.5rem] justify-center items-center mob2:flex-col'
+             <div className='flex gap-[1rem] relative transition-all duration-[200ms] mob:w-[90%] mob:gap-[.5rem] justify-center items-center mob2:flex-col'
                style={{
                 opacity: `${show ? "1" : "0"}`,
                 transform: `translateY(${show ? "0" : "5rem"})`,

@@ -27,7 +27,8 @@ module.exports = {
         'phone':{'max':'500px'},
         'elige':{'max':'745px'},
         'nuestro':{'max':'1396px'},
-        'gridPurple':{'max':'1051px'}
+        'gridPurple':{'max':'1051px'},
+        'previewMob':{'max':'871px'},
       }
     },
   },
