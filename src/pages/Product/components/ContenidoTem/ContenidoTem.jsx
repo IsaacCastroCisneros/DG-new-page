@@ -16,7 +16,7 @@ export default function ContenidoTem(props)
 
   return (
     <div className=' overflow-hidden rounded-[1rem] shadow-xl mb-[1.5rem]'>
-      <strong className='block px-[2.5rem] py-[1.3rem] bg-myPurple text-[#fff] text-[26px]'>Contenido Temático</strong>
+      <strong className='block px-[2.5rem] py-[1.3rem] bg-myPurple text-[#fff] text-[26px] product:text-[20px]'>Contenido Temático</strong>
       {
         tipo==='curso'&&
         <div className='pt-[1.5rem] pb-[1.2rem] px-[1rem] flex flex-col gap-[.5rem]' >
@@ -61,21 +61,21 @@ function CursoTem(props)
   const icon = show ? "/img/minus.png" : "/img/plus.png"
 
   return (
-    <div className="bg-[#fafafa] px-[2.3rem] py-[1rem] shadow-lg">
+    <div className="bg-[#fafafa] px-[2.3rem] product:px-[1.8rem] py-[1rem] shadow-lg">
       <button className="flex items-center gap-[2rem] text-left w-[100%] justify-between"
        onClick={()=>setShow(prev=>!prev)}
        >
-        <div className="h-[97px]">
+        <div className="h-[97px] product:hidden">
           <img src={icono} className="h-[100%]" alt="" />
         </div>
         <section className="flex-1 flex flex-col text-[20px] font-medium">
           <span className=" underline">Curso:</span>
-          <p>{titulo}</p>
+          <p title={titulo} >{titulo}</p>
           <span className="text-[16px]">{sesiones.length} clases en vivo</span>
         </section>
         <img src={icon} className="w-[15px]" alt="" />
       </button>
-      <div className='pl-[8rem]'>
+      <div className='pl-[8rem] product:pl-[0rem]'>
          {
            show&&sesiones?.map(sesion=>
                 {
@@ -103,9 +103,9 @@ function AccordionTem(props)
           <span className="flex items-center gap-[1rem]">
             <div className='flex gap-[1rem] items-center justify-between'>
               <FontAwesomeIcon icon={faBars} />
-              <p>{titulo}:</p>
+              <p className='product:hidden'>{titulo}:</p>
             </div>
-            <p className="overflow-hidden whitespace-nowrap text-ellipsis max-w-[353px]"
+            <p className="overflow-hidden whitespace-nowrap text-ellipsis max-w-[353px] product:max-w-[auto] product:whitespace-normal product:text-left product:mr-[.5rem]"
               title={sub_titulo}
              >
               {sub_titulo}

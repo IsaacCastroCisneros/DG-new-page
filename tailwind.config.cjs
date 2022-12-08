@@ -31,6 +31,9 @@ module.exports = {
         'gridPurple':{'max':'1051px'},
         'previewMob':{'max':'871px'},
         'previewMob':{'max':'871px'},
+        '1221px':{'max':'1221px'},
+        'heroProduct':{'max':'849px'},
+        'product':{'max':'1168px'},
       }
     },
   },

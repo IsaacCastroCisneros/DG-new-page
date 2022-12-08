@@ -13,7 +13,7 @@ export default function Prices({precio,gap=''})
           <strong className="text-[#fff] text-[1.5rem] previewMob:text-[1rem] previewMob:w-[1.8rem] previewMob:h-[1.8rem] flex justify-center items-center bg-myPurple w-[2.5rem] h-[2.5rem] rounded-[100%]">
             S/
           </strong>
-          <strong className="text-[36px] font-medium previewMob:text-[25px]">
+          <strong className="text-[36px] font-medium ">
             {Number(precio.final).toFixed(2)}
           </strong>
         </div>

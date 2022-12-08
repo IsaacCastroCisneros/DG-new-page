@@ -5,10 +5,10 @@ export default function PorQueParticipar({tipo})
   return (
     <div className="shadow-xl bg-bgCard px-[2.2rem] py-[2rem] rounded-[.5rem] mb-[1.5rem]">
       <section className="block w-[100%]">
-        <h1 className="text-[26px]">¿Porque Participar en este {tipo}?</h1>
+        <h1 className="text-[26px] product:text-[22px]">¿Porque Participar en este {tipo}?</h1>
         <span className="border-b-[3px] border-blue-500 w-[20%] block my-[1rem]"></span>
       </section>
-      <p className="text-[20px]">
+      <p className="text-[20px] product:text-[16px]">
         Este Diploma busca potenciar tus conocimientos y habilidades para
         afrontar el Proceso de Certificación y renovación de Certificación ante
         el OSCE, desarrollando las competencias requeridas en la matriz

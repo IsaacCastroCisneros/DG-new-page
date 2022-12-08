@@ -12,6 +12,7 @@ import Inversion from './components/Inversion/Inversion';
 import PorQueParticipar from './components/PorQueParticipar/PorQueParticipar';
 import RiteCardPrice from './components/RiteCardPrice/RiteCardPrice';
 import Section from './components/Section/Section';
+import Footer from '../../components/Footer/Footer'
 
 export default function Product({type}) 
 {
@@ -32,19 +33,23 @@ export default function Product({type})
       {!isFetching && (
         <>
           <HeroProduct {...data} />
-          <main className="custom-container3 flex pt-[5rem] gap-[1rem] text-[#000]">
-            <section className='flex-[3]'>
+          <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
+            <section className="flex-[3]">
               <PorQueParticipar tipo={data.tipo} />
               <ContenidoTem {...data} />
-              <Section title={"Beneficios"} body={<Beneficios/>} />
-              <Section title={"Certificado"} body={<Certificado/>} />
-              <Section title={"Inversión"} body={<Inversion {...data}/>} />
-              <Formas/>
+              <Section title={"Beneficios"} body={<Beneficios />} />
+              <Section title={"Certificado"} body={<Certificado />} />
+              <Section title={"Inversión"} body={<Inversion {...data} />} />
+              <Formas />
             </section>
-            <aside className='flex-[1]'>
-                <RiteCardPrice {...data} />
+            <aside className="flex-[1]">
+              <span className="text-[16px] text-center text-[#fd0000] hidden heroProduct:block">
+                FECHA DE INICIO: {data.inicio}
+              </span>
+              <RiteCardPrice {...data} />
             </aside>
           </main>
+          <Footer />
         </>
       )}
     </>

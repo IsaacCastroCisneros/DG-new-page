@@ -5,21 +5,21 @@ import FormInput from './components/FormInput';
 export default function HeroForm() 
 {
   return (
-    <div className="bg-myPurple px-[3rem] py-[1.5rem] rounded-[.5rem] w-[370px]">
-      <h1 className="text-myGreen2 text-[32px] mb-[.5rem] text-center">
+    <div className="bg-myPurple px-[3rem] heroProduct:px-[2.5rem] py-[1.5rem] rounded-[.5rem] heroProduct:translate-y-[2rem]">
+      <h1 className="text-myGreen2 text-[32px] mb-[.5rem] text-center heroProduct:text-[23px]">
         INSCRÍBETE AQUÍ
       </h1>
-      <p className="text-[16px] block text-[#fff] font-medium mb-[1rem] text-center">
+      <p className="text-[16px] block text-[#fff] font-medium mb-[1rem] text-center heroProduct:text-[16px]">
         Déjanos tus datos y nos contactaremos contigo
       </p>
-      <form className="w-fit text-[#fff]">
-        <div className="flex flex-col gap-[.8rem] w-fit mb-[1rem]">
+      <form className="w-[100%] text-[#fff]">
+        <div className="flex flex-col gap-[.8rem] w-[100%] mb-[1rem]">
           <FormInput
             icon={"/img/icons/user.png"}
             placeHolder={"Ingresar Primer Nombre"}
           />
           <FormInput
-            icon={"/img/icons/tel.png"}
+            icon={"/img/icons/carta.png"}
             placeHolder={"Ingresar Correo Electrónico"}
           />
           <FormInput
@@ -34,8 +34,8 @@ export default function HeroForm()
         <Button
           label={"SOLICITAR INFORMACIÓN"}
           styles={{
-            button: "!bg-myRed !px-0 w-[100%] py-[.7rem]",
-            span: "!text-[18px] font-medium",
+            button: "!bg-myRed !px-0 w-[100%] py-[.7rem] heroProduct:!px-[.7rem]",
+            span: "!text-[18px] !font-medium heroProduct:!text-[15px]",
           }}
         />
       </form>

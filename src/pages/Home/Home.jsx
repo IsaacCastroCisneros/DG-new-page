@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from './Components/Footer/Footer';
+import Footer from '../../Components/Footer/Footer';
 import HeroHome from './Components/HeroHome/HeroHome'
 import EligeElPrograma from './Components/Main/EligeElPrograma';
 import MasDe10 from './Components/MasDe10/MasDe10';

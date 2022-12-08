@@ -11,7 +11,7 @@ export default function Inversion(props)
   }=props
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between product:flex-col">
       <div className="flex flex-col gap-[1rem] flex-[1]">
         <section>
           <p className="text-[20px]">Inversión Promocional</p>
@@ -27,15 +27,11 @@ export default function Inversion(props)
         </section>
       </div>
       <section className='flex-[.9]'>
-        <h1 className="text-[26px] font-normal mb-[2rem] text-right">Estamos para ayudarte</h1>
+        <h1 className="text-[26px] font-normal mb-[2rem] text-right product:text-[22px]">Estamos para ayudarte</h1>
         <div className="flex flex-col gap-[.5rem]">
-          <PriceLink icon={faCreditCard} label={"Pagar en Línea"} />
-          <PriceLink icon={faShare} label={"Mas Información"} />
-          <PriceLink
-            icon={faWhatsapp}
-            label={"Mas Información"}
-            styles={"!text-[#2cb742] !border-[#2cb742]"}
-          />
+          <PriceLink type={'pagar'} />
+          <PriceLink type={'mas'} />
+          <PriceLink type={'chat'} />
         </div>
       </section>
     </div>

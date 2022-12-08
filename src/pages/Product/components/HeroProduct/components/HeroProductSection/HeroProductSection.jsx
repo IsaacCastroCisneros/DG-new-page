@@ -14,7 +14,7 @@ export default function HeroProductSection(props)
 
   return (
    <section className="text-[#fff]">
-      <div className="bg-[#fff] text-myBlack inline-flex items-center gap-[.5rem] px-[1rem] py-[.2rem] rounded-[1rem] mb-[1.8rem]">
+      <div className="bg-[#fff] heroProduct:bg-myGreen text-myBlack inline-flex items-center gap-[.5rem] px-[1rem] py-[.2rem] rounded-[1rem] mb-[1.8rem]">
         {
           getIcon(tipo)
         }
@@ -24,10 +24,10 @@ export default function HeroProductSection(props)
           <span>GRABADO</span>
         </p>
       </div>
-      <h1 className="text-[40px] mb-[1rem]">{titulo}</h1>
-      <p className="font-medium text-[18px] block mb-[2.5rem]">{descripcion}</p>
-      <div className="flex gap-[1rem]">
-        <BoxItem label={"Capacítate, desde donde estés y CERTIFICATE AHORA MISMO"} color={"myGreen"} img={<img className="w-[53px] h-[47px]" src={"/img/icons/dip.png"} />} />
+      <h1 className="text-[40px] mb-[1rem] heroProduct:text-[31px]">{titulo}</h1>
+      <p className="font-medium text-[18px] block mb-[2.5rem] heroProduct:hidden">{descripcion}</p>
+      <div className="flex gap-[1rem] 1221px:hidden">
+        <BoxItem label={"Capacítate, desde donde estés y CERTIFICATE AHORA MISMO"} color={"myGreen"} img={<img className="w-[53px] h-[47px]" src={"/img/icons/blackdip.png"} />} />
         <BoxItem label={"Empresa con Certificación ISO 9001-2015"} color={"myPurple"} text={"#fff"} img={<img className="w-[38px] h-[43px]" src={"/img/icons/med.png"} />} />
       </div>
    </section>);

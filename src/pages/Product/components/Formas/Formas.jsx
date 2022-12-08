@@ -1,17 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCcMastercard,faCcVisa,faCcAmex,faCcDinersClub } from '@fortawesome/free-brands-svg-icons';
 import React from 'react'
-import { Link } from 'react-router-dom';
+import FormasBox from './components/FormasBox';
 
 export default function Formas() 
 {
   return (
     <div>
-      <h1 className="text-[26px]">
+      <h1 className="text-[26px] px-[3rem] mb-[4rem] product:px-[1rem]">
         Formas de Pago Disponibles
         <span className="border-b-[3px] border-myPurple block w-[20%] mt-[.8rem]"></span>
       </h1>
-      <div className="flex gap-[1rem] items-stretch">
+      <div className="flex gap-[1rem] items-stretch product:flex-col product:gap-[2rem]">
         <FormasBox
           img={"/img/icons/hands.png"}
           title={"Pago en Efectivo"}
@@ -66,29 +66,3 @@ export default function Formas()
   );
 }
 
-function FormasBox(props)
-{
-  const
-  {
-     img,
-     title,
-     body,
-     label='',
-     path
-  }=props
-
-   return (
-     <div className="relative rounded-[.7rem] flex-1 border-[2px] border-gray-300 flex flex-col justify-between px-[1.5rem] pb-[.8rem] pt-[3.4rem] text-center">
-       <div className="w-[5rem] bg-[#fff] h-[5rem] absolute border-[4px] flex justify-center items-center border-myPurple rounded-[100%] top-0 left-[50%] translate-x-[-50%] translate-y-[-50%]">
-         <img src={img} className="w-[60%]" alt="" />
-       </div>
-       <h3 className="text-[16px] block">{title}</h3>
-       {body}
-       <Link to={path} className="text-[#0088e3] font-bold mt-[1rem] hover:underline" >
-         {
-            label
-         }
-       </Link>
-     </div>
-   );
-}

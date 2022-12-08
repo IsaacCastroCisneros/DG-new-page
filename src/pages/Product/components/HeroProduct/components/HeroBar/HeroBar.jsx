@@ -13,7 +13,7 @@ export default function HeroBar(props)
   console.log(props)
 
   return (
-    <div className="custom-container3 flex absolute left-0 w-[100%] bottom-0 justify-between translate-y-[50%]">
+    <div className="custom-container3 flex absolute left-0 w-[100%] bottom-0 justify-between translate-y-[50%] heroProduct:hidden">
       <div className='flex w-[100%] justify-between bg-[#fff] rounded-[.7rem] shadow-lg px-[2rem] py-[1rem]'>
         <HeroBarBox
           title={"inicio"}

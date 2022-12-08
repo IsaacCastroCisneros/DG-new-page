@@ -11,9 +11,9 @@ export default function RiteSection({imagen,url})
         <img className="w-[100%] rounded-[.5rem]" src={imagen} alt="" />
       </div>
       <div className="flex flex-col gap-[.6rem]">
-        <PriceLink icon={faCreditCard} label={"Pagar en Línea"} />
-        <PriceLink icon={faShare} label={"Mas Información"} path={url} />
-        <PriceLink  icon={faWhatsapp} label={"Mas Información"} styles={'!text-[#2cb742] !border-[#2cb742]'} />
+        <PriceLink type={'pagar'} />
+        <PriceLink type={'mas'}  tag={url} />
+        <PriceLink type={'chat'} />
       </div>
     </div>
   );

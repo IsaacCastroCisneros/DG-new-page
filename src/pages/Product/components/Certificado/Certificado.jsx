@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Certificado() {
   return (
-    <div className="flex gap-[1rem]">
+    <div className="flex gap-[1rem] product:flex-col">
       <section className="flex-1">
         Al concluir el programa y aprobar las evaluaciones, de manera opcional
         puede obtener la certificación a nombre del Centro de Capacitación y
