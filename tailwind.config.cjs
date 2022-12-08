@@ -16,7 +16,8 @@ module.exports = {
         myBlack:'#232323',
         myOpacity:'#14063F',
         myGreen2:'#0BD2B7',
-        placeHolder:'#aeaeae'
+        placeHolder:'#aeaeae',
+        bgCard:'#fafafa'
       },
       screens:
       {
@@ -28,6 +29,7 @@ module.exports = {
         'elige':{'max':'745px'},
         'nuestro':{'max':'1396px'},
         'gridPurple':{'max':'1051px'},
+        'previewMob':{'max':'871px'},
         'previewMob':{'max':'871px'},
       }
     },

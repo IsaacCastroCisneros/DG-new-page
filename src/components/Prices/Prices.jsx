@@ -2,11 +2,13 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDot } from '@fortawesome/free-regular-svg-icons';
 
-export default function Prices({precio}) 
+export default function Prices({precio,gap=''}) 
 {
   return (
     <>
-      <section className="flex items-center gap-[2rem] mb-[.5rem] previewMob:gap-[.5rem] previewMob:justify-between previewMob:flex-col previewMob:items-start previewMob:mb-[1rem]">
+      <section
+        className={`flex items-center gap-[2rem] mb-[.5rem] previewMob:gap-[.5rem] previewMob:justify-between previewMob:flex-col previewMob:items-start previewMob:mb-[1rem] ${gap}`}
+      >
         <div className="flex items-center gap-[.5rem]">
           <strong className="text-[#fff] text-[1.5rem] previewMob:text-[1rem] previewMob:w-[1.8rem] previewMob:h-[1.8rem] flex justify-center items-center bg-myPurple w-[2.5rem] h-[2.5rem] rounded-[100%]">
             S/

@@ -1,4 +1,5 @@
 import React from 'react'
+import BeniBox from '../../../../components/BeniBox/BeniBox';
 
 export default function NuestrosBeneficios() 
 {
@@ -19,12 +20,12 @@ export default function NuestrosBeneficios()
               internet.
             </p>
             <div className='grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-x-[10rem] gap-y-[4rem]'>
-              <NuestroBox  title={'Videoclases 100% online'} subTitle={'Disponibles 24/7.'} img={"/img/beni-icons/play.png"} />
-              <NuestroBox  title={'Profesores Expertos'} subTitle={'Especialistas con amplia experiencia en cada tema.'} img={"/img/beni-icons/presentation.png"} />
-              <NuestroBox  title={'Certificación (*)'} subTitle={'Certificado digital válida para concursos.'} img={"/img/beni-icons/dip.png"} />
-              <NuestroBox  title={'Materiales y evaluaciones'} subTitle={'Desde plataforma'} img={"/img/beni-icons/exam.png"} />
-              <NuestroBox  title={'Plataforma Premium'} subTitle={'Acceso por 1 año a las clases compradas.'} img={"/img/beni-icons/lap.png"} />
-              <NuestroBox  title={'Soporte'} subTitle={'Atención personalizada para acceder a tus clases.'} img={"/img/beni-icons/support (1).png"} />
+              <BeniBox  title={'Videoclases 100% online'} subTitle={'Disponibles 24/7.'} img={"/img/beni-icons/play.png"} />
+              <BeniBox  title={'Profesores Expertos'} subTitle={'Especialistas con amplia experiencia en cada tema.'} img={"/img/beni-icons/presentation.png"} />
+              <BeniBox  title={'Certificación (*)'} subTitle={'Certificado digital válida para concursos.'} img={"/img/beni-icons/dip.png"} />
+              <BeniBox  title={'Materiales y evaluaciones'} subTitle={'Desde plataforma'} img={"/img/beni-icons/exam.png"} />
+              <BeniBox  title={'Plataforma Premium'} subTitle={'Acceso por 1 año a las clases compradas.'} img={"/img/beni-icons/lap.png"} />
+              <BeniBox title={'Soporte'} subTitle={'Atención personalizada para acceder a tus clases.'} img={"/img/beni-icons/support (1).png"} />
             </div>
           </section>
         </div>
@@ -33,18 +34,5 @@ export default function NuestrosBeneficios()
   );
 }
 
-function NuestroBox({title,subTitle,img}) 
-{
-    return (
-      <div className='flex gap-[1rem] items-center'>
-        <div className='w-[43px]'>
-          <img src={img} className='w-[100%]' alt="" />
-        </div>
-        <p className="flex-1 flex-col text-[20px]">
-          <strong>{title}</strong>
-          <span>{subTitle}</span>
-        </p>
-      </div>
-    );
-}
+
   

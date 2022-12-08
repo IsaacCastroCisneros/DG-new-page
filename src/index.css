@@ -50,3 +50,8 @@ h1,h2,h3,h4
 {
   width: 1230px;
 }
+
+.session-list p,.session-list strong 
+{
+  display: none;
+}
