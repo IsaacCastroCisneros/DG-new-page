@@ -1,6 +1,4 @@
 import React from 'react'
-import { faCreditCard,faShare } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import PriceLink from '../../../../components/PriceLink/PriceLink';
 
 export default function Inversion(props) 
