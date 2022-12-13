@@ -18,7 +18,7 @@ export default function Preview(props)
         faCircleCheck={faCircleCheck}
         imagen={imagen}
       />
-      <RiteSection imagen={imagen} url={url} />
+      <RiteSection imagen={imagen} url={url} {...props} />
     </div>
   );
 
