@@ -4,8 +4,7 @@ import Results from './components/Results/Results'
 
 export default function EligeElPrograma() 
 {
-  const[show,setShow]=useState(false)
-  
+ 
   return (
     <>
       <section className="custom-container2 text-[#000] pb-[7rem] phone:pb-[4rem]">
@@ -18,7 +17,7 @@ export default function EligeElPrograma()
         <p className="capitalize text-center text-[22px] mt-[1rem] mb-[3rem] hidden phone:block phone:mb-[1.3rem]">
           Modalidad "Virtual Asincronica"
         </p>
-        <Results show={show} setShow={setShow} />
+        <Results />
       </section>
     </>
   );

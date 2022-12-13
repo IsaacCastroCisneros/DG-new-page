@@ -1,37 +1,28 @@
-import { useEffect } from 'react'
-import React,{ useState } from 'react'
+import React from 'react'
 import {Routes,Route,Outlet} from 'react-router-dom'
 import Navbar from './components/NavBar/Navbar'
 import Home from './pages/Home/Home'
 import Product from './pages/Product/Product'
-
-export const appContext=React.createContext();
+import Notification from './components/Notification/Notification'
+import MobMenu from './components/NavBar/components/MobMenu/MobMenu'
 
 function App() 
 {
-
-
   function Layout()
   {
     return(
       <>
         <Navbar/>
+        <Notification/>
+        <MobMenu/>
         <Outlet/>
       </>
     )
   }
 
-
-  const contextValues=
-  {
-    
-  }
-
-
   return (
-    <appContext.Provider value={contextValues}>
      <Routes>
-        <Route path='/' element={<Layout/>} >
+        <Route path='/' element={<Layout/>}>
            <Route index element={<Home/>}/>
            <Route path='/curso' >
              <Route path=':id' element={<Product type={'cursos'} />}/>
@@ -45,7 +36,6 @@ function App()
            <Route path='/pasarela-pago'/>
         </Route>
      </Routes>
-    </appContext.Provider>
   )
 }
 

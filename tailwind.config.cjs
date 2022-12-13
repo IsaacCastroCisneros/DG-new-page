@@ -23,7 +23,7 @@ module.exports = {
       {
         'noImgHero':{'max':'1310px'},
         'topText':{'max':'1346px'},
-        'mobNav':{'max':'1167px'},
+        'mobNav':{'max':'1200px'},
         'mob':{'max':'1080px'},
         'phone':{'max':'500px'},
         'elige':{'max':'745px'},

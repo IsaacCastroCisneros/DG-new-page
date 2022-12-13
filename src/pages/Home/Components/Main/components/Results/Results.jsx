@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMedal,faBook, faGraduationCap,faMousePointer } from '@fortawesome/free-solid-svg-icons'
 import Spinner from '../../../../../../components/Spinner/Spinner'
 
-export default function Results({show,setShow}) 
+export default function Results() 
 {
   const[type,setType]=useState('cursos')
   const{data,isFetching}= useMyQuery({type,limit:'limit=6'})
@@ -48,8 +48,6 @@ export default function Results({show,setShow})
           {data?.map((card) => {
             return (
               <Card
-                setShow={setShow}
-                show={show}
                 key={card.id}
                 type={type}
                 {...card}

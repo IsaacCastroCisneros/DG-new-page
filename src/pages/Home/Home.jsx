@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <HeroHome />
-      <main>
+      <main className='relative z-[99]'>
        <EligeElPrograma/>
        <NuestrosBeneficios/>
        <MasDe10/>

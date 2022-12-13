@@ -8,9 +8,13 @@ import CertificacionDisponible from './components/CertificacionDsiponible'
 import Precio from './components/Precio'
 import PopUp from '../../../../../../components/PopUp/PopUp'
 import Preview from '../Preview/Preview'
+import { useContext } from 'react'
+import { appContext } from '../../../../../../context/AppContext'
 
 export default function Card(props) 
 {
+  const{showPopUp,setShowPopUp}=useContext(appContext)
+
   const
   {
     imagen,
@@ -19,13 +23,11 @@ export default function Card(props)
     inicio,
     sesiones,
     precio,
-    setShow,
-    show
   }=props
 
   return (
     <>
-      <PopUp show={show} setShow={setShow} popUp={<Preview {...props}/>} overflow={false} />
+      <PopUp show={showPopUp} setShow={setShowPopUp} popUp={<Preview {...props}/>} overflow={false} />
       <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col">
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />
@@ -44,7 +46,7 @@ export default function Card(props)
                   "!w-[100%] !bg-myPurpleBg !py-[.5rem] !font-medium !mb-[1.2rem]",
                 span: "!text-[1.1rem]",
               }}
-              onClick={() => setShow(true)}
+              onClick={() => setShowPopUp(true)}
             />
             <div className="flex justify-between">
               <section>

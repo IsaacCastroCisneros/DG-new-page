@@ -1,14 +1,23 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import Button from '../Button/Button'
+import Cart from './components/Cart/Cart'
 import img from '/img/logo-DG-nuevo.webp'
+import { useContext } from 'react'
+import { appContext } from '../../context/AppContext'
 
-export default function Navbar() {
+export default function Navbar() 
+{
+
+  const{setShowMobMenu}=useContext(appContext)
+
   return (
     <header className="flex">
       <nav className="flex custom-container py-[.4rem] justify-between items-center">
         <ul className="flex gap-[3rem] font-medium text-myBlack items-center">
-          <Link to="/" className="block w-[12rem] mr-[5rem]">
+          <Link to="/" className="block w-[12rem] mr-[5rem] mobNav:w-[10rem]">
             <img src={img} className="w-[100%]" />
           </Link>
           <NavOption  label={'inicio'} path={'/'}/>
@@ -17,6 +26,7 @@ export default function Navbar() {
           <NavOption  label={'packs'} path={'/'}/>
         </ul>
         <div className="flex gap-[1rem] mobNav:hidden">
+          <Cart/>
           <Button label="aula virtual" />
           <Button
             label="registrarse"
@@ -26,6 +36,11 @@ export default function Navbar() {
             }}
           />
         </div>
+        <button className='hidden mobNav:block text-[2rem] text-[#000]'
+         onClick={()=>setShowMobMenu(true)}
+         >
+            <FontAwesomeIcon icon={faBars}/>
+        </button>
       </nav>
     </header>
   );
