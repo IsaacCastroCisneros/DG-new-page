@@ -5,6 +5,7 @@ import Home from './pages/Home/Home'
 import Product from './pages/Product/Product'
 import Notification from './components/Notification/Notification'
 import MobMenu from './components/NavBar/components/MobMenu/MobMenu'
+import Layer from './components/NavBar/components/Layer/Layer'
 
 function App() 
 {
@@ -14,6 +15,7 @@ function App()
       <>
         <Navbar/>
         <Notification/>
+        <Layer/>
         <MobMenu/>
         <Outlet/>
       </>

@@ -13,7 +13,8 @@ export default function CartItem(props)
     id,
     imagen,
     name,
-    price
+    price,
+    mob
   }=props
 
   function updatingCart(id)
@@ -29,10 +30,14 @@ export default function CartItem(props)
         <FontAwesomeIcon icon={faXmark}/>
        </button>
       <section className="flex-1">
-        <img src={imagen} className="w-[100%]" alt="" />
+        <img src={imagen} className="w-[100%]"/>
       </section>
-      <section className="flex-[2] px-[1rem] flex flex-col">
-        <h3 className="text-left">{name}</h3>
+      <section className="flex-[2] px-[1rem] flex flex-col"
+       style={mob?{flex:'1'}:{}}
+       >
+        <h3 className="text-left"
+         style={mob?{fontSize:'.7rem'}:{}}
+         >{name}</h3>
         <strong className="text-left text-red-500 text-[1.5rem] flex">
           <span>S/.</span>
           <span>{price}</span>

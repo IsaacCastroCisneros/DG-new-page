@@ -1,9 +1,23 @@
 import React from 'react'
 import CartItem from './component/CartItem';
 
-export default function Menu({cart,tot,showCart}) 
+export default function Menu(props) 
 {
+  const 
+  {
+    cart,
+    tot,
+    showCart,
+    mob
+  }=props
+
   const showing = showCart ? {opacity:1,pointerEvents:'auto',top:'135%'} : {}
+
+  if(mob)
+  {
+    showing.position='relative'
+    showing.minWidth='0'
+  }
 
   return (
     <div className="cartButton absolute bg-[#fff] px-[1.8rem] py-[1rem] min-w-[27rem] top-[50%] opacity-0 pointer-events-none shadow-2xl rounded-[.5rem] left-[50%] translate-x-[-50%] transition-all duration-200"
@@ -25,7 +39,7 @@ export default function Menu({cart,tot,showCart})
       </section>
       <section>
         {cart.map((item) => {
-          return <CartItem key={item.id} {...item} />;
+          return <CartItem key={item.id} mob={mob} {...item} />;
         })}
       </section>
       <section className='border-gray-300 border-t-[1px]'>
