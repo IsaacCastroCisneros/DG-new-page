@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroHome from './Components/HeroHome/HeroHome'
-/* import Footer from '../../Components/Footer/Footer'; */
+import Footer from '../../components/Footer/Footer';
 import EligeElPrograma from './Components/Main/EligeElPrograma';
 import MasDe10 from './Components/MasDe10/MasDe10';
 import NuestrosBeneficios from './Components/NuestrosBeneficios/NuestrosBeneficios';
@@ -17,7 +17,7 @@ export default function Home() {
        <MasDe10/>
        <ProgramaElaborado/>
       </main>
-{/*       <Footer/> */}
+      <Footer/>
     </>
   );
 }
