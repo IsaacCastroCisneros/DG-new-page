@@ -10,10 +10,12 @@ import PopUp from '../../../../../../components/PopUp/PopUp'
 import Preview from '../Preview/Preview'
 import { useContext } from 'react'
 import { appContext } from '../../../../../../context/AppContext'
+import { useState } from 'react'
 
 export default function Card(props) 
 {
-  const{showPopUp,setShowPopUp}=useContext(appContext)
+  /* const{showPopUp,setShowPopUp}=useContext(appContext) */
+  const[show,setShow]=useState(false)
 
   const
   {
@@ -27,7 +29,7 @@ export default function Card(props)
 
   return (
     <>
-      <PopUp show={showPopUp} setShow={setShowPopUp} popUp={<Preview {...props}/>} overflow={false} />
+      <PopUp show={show} setShow={setShow} popUp={<Preview {...props}/>} overflow={false} />
       <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col">
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />
@@ -46,7 +48,7 @@ export default function Card(props)
                   "!w-[100%] !bg-myPurpleBg !py-[.5rem] !font-medium !mb-[1.2rem]",
                 span: "!text-[1.1rem]",
               }}
-              onClick={() => setShowPopUp(true)}
+              onClick={() => setShow(true)}
             />
             <div className="flex justify-between">
               <section>

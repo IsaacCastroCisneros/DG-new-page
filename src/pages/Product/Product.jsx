@@ -27,6 +27,8 @@ export default function Product({type})
     body?.setAttribute('style','overflow:auto');
   },[])
 
+  console.log(data)
+
   return (
     <>
       {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}

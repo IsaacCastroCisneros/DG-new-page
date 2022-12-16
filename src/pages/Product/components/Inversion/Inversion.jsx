@@ -7,7 +7,8 @@ export default function Inversion(props)
   {
     precio,
     titulo,
-    imagen
+    imagen,
+    asesores
   }=props
 
   return (
@@ -31,7 +32,7 @@ export default function Inversion(props)
         <div className="flex flex-col gap-[.5rem]">
           <PriceLink type={'cart'} price={precio.final} name={titulo} imagen={imagen}/>
           <PriceLink type={'mas'} />
-          <PriceLink type={'chat'} />
+          <PriceLink type={'chat'} name={titulo} asesores={asesores} />
         </div>
       </section>
     </div>

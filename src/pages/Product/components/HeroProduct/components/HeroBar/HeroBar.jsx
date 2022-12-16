@@ -17,7 +17,7 @@ export default function HeroBar(props)
       <div className='flex w-[100%] justify-between bg-[#fff] rounded-[.7rem] shadow-lg px-[2rem] py-[1rem]'>
         <HeroBarBox
           title={"inicio"}
-          data={inicio}
+          data={"AHORA MISMO"}
           img={"/img/icons/calendar.png"}
         />
         <HeroBarBox
