@@ -10,7 +10,8 @@ export default function PopUp(props)
     popUp,
     show,
     setShow,
-    overflow=false
+    overflow=false,
+    closeButton=true
   }=props
 
   useEffect(()=>
@@ -51,12 +52,14 @@ export default function PopUp(props)
            }}
          >
            {popUp}
-           <button
-             className="text-[#fff] border-[2px] border-[#fff] bg-[#000] w-[3rem] h-[3rem] flex justify-center items-center rounded-[100%] absolute text-[1.5rem] right-[-.5rem] top-[-.5rem]"
-             onClick={() => setShow(false)}
-           >
-             {<FontAwesomeIcon icon={faXmark} />}
-           </button>
+           {closeButton && (
+             <button
+               className="text-[#fff] border-[2px] border-[#fff] bg-[#000] w-[3rem] h-[3rem] flex justify-center items-center rounded-[100%] absolute text-[1.5rem] right-[-.5rem] top-[-.5rem]"
+               onClick={() => setShow(false)}
+             >
+               {<FontAwesomeIcon icon={faXmark} />}
+             </button>
+           )}
          </div>
        </div>
      </>

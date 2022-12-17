@@ -46,6 +46,10 @@ function gettingUrl(type,tag,id,limit)
         {
             return `${url}cursos/${tag}?offset=0&${limit}`  
         }
+        case 'geo':
+        {
+            return 'https://ipgeolocation.abstractapi.com/v1/?api_key=5439d75ced19410c865a3d67a41f04d6'
+        }
         case 'diplomados':
         {
             return `${url}diplomados/${tag}?offset=0&${limit}`

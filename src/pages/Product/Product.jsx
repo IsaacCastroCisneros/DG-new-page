@@ -14,11 +14,19 @@ import RiteCardPrice from './components/RiteCardPrice/RiteCardPrice';
 import Section from './components/Section/Section';
 import Footer from '../../components/Footer/Footer'
 
+export const productContext = React.createContext()
+
 export default function Product({type}) 
 {
   const{id:tag}=useParams();
   
   const{data,isFetching}=useMyQuery({type,tag});
+
+  const contextValues=
+  {
+    ...data,
+    lol:'lol'
+  }
 
   useEffect(()=>
   {
@@ -27,10 +35,10 @@ export default function Product({type})
     body?.setAttribute('style','overflow:auto');
   },[])
 
-  console.log(data)
+
 
   return (
-    <>
+    <productContext.Provider value={contextValues}>
       {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
       {!isFetching && (
         <>
@@ -54,6 +62,6 @@ export default function Product({type})
           <Footer />
         </>
       )}
-    </>
+    </productContext.Provider>
   );
 }
