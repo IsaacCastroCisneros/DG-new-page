@@ -9,19 +9,28 @@ import useMyQuery from '../../../../../../../../PageDesarrolloGlobal/src/hooks/u
 import postRequest from '../../../../../../helpers/postRequest';
 import PopUp from '../../../../../../components/PopUp/PopUp';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
+import useMyErrList from '../../../../../../customHooks/useMyErrList';
+import { requestInformation } from '../../../../../../helpers/validations';
 
 export default function HeroForm() 
 {
   const {tipo,titulo,id} = useContext(productContext);
   const {data:ciudad}=useMyQuery({type:'geo'})
-  const[formData,setFormData]=useState('')
-  const[showPopUp,setShowPopUp]=useState({show:false,status:'success'} )
+  const[formData,setFormData]=useState({})
+  const[showPopUp,setShowPopUp]=useState({show:false,status:'success'})
+
+  const[errList]=useMyErrList(formData,requestInformation)
   
   const location = useLocation()
 
   function submitForm(e)
   {
     e.preventDefault();
+
+    if(errList!=='ok')
+    {
+      return setShowPopUp({show:true,status:'failed'})
+    }
 
     const form = new FormData()
     form.append('nombres',formData.name)
@@ -36,7 +45,7 @@ export default function HeroForm()
     postRequest({type:'curso',data:form,request:'setProspecto'})
     .then(res=>
       {
-        if(res&&formData!=='')
+        if(res)
         {
           return setShowPopUp({show:true,status:'success'})
         }
@@ -69,24 +78,49 @@ export default function HeroForm()
                   return { ...prev, name: e.target.value };
                 })
               }
+              onKeyPress={(e)=>
+              {
+                if(e.code.includes('Key'))return
+                e.preventDefault()         
+              }}
+              errLabel={errList?.name}
             />
             <FormInput
               icon={"/img/icons/carta.png"}
               placeHolder={"Ingresar Correo Electrónico"}
               onChange={(e) =>
-                setFormData((prev) => {
-                  return { ...prev, email: e.target.value };
-                })
+                {
+                  if(e.target.value.length>50)
+                  {
+                    e.target.value=e.target.value.substr(0,e.target.value.length-1)
+                  }
+                  setFormData((prev) => {
+                    return { ...prev, email: e.target.value };
+                  })
+                }
               }
+              errLabel={errList?.email}
             />
             <FormInput
               icon={"/img/icons/tel.png"}
               placeHolder={"Ingresar Celular"}
               onChange={(e) =>
-                setFormData((prev) => {
-                  return { ...prev, phone: e.target.value };
-                })
+                {
+                  if(e.target.value.length>9)
+                  {
+                    e.target.value=e.target.value.substr(0,e.target.value.length-1)
+                  }
+                  setFormData((prev) => {
+                    return { ...prev, phone: e.target.value };
+                  })
+                }
               }
+              onKeyPress={(e)=>
+              {
+                if(e.code.length===7) return
+                e.preventDefault()
+              }}
+              errLabel={errList?.phone}
             />
           </div>
           <div className="flex mb-[1rem] gap-[.5rem]">

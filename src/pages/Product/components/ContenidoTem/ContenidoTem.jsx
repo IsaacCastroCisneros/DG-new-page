@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown,faBars } from '@fortawesome/free-solid-svg-icons';
 import React from 'react'
 import { useState } from 'react';
-import useMyQuery from '../../../../customHooks/useMyQuery/useMyQuery';
+import useMyQuery from '../../../../customHooks/useMyQuery';
 
 export default function ContenidoTem(props) 
 {

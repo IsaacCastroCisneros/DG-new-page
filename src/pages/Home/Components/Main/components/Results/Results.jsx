@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useMyQuery from '../../../../../../customHooks/useMyQuery/useMyQuery'
+import useMyQuery from '../../../../../../customHooks/useMyQuery'
 import Card from '../Card/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMedal,faBook, faGraduationCap,faMousePointer } from '@fortawesome/free-solid-svg-icons'

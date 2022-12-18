@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner';
-import useMyQuery from '../../customHooks/useMyQuery/useMyQuery';
+import useMyQuery from '../../customHooks/useMyQuery';
 import Beneficios from './components/Beneficios/Beneficios';
 import Certificado from './components/Certificado/Certificado';
 import ContenidoTem from './components/ContenidoTem/ContenidoTem';
