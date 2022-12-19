@@ -23,7 +23,7 @@ export default function Inversion(props)
         <section>
           <p className="text-[20px]">Inversión Promocional</p>
           <span className="text-[40px] line-through text-[#fd0000]">
-            {Number(precio.normal).toFixed(2)}
+            S/ {Number(precio.normal).toFixed(2)}
           </span>
         </section>
       </div>
@@ -31,7 +31,7 @@ export default function Inversion(props)
         <h1 className="text-[26px] font-normal mb-[2rem] text-right product:text-[22px]">Estamos para ayudarte</h1>
         <div className="flex flex-col gap-[.5rem]">
           <PriceLink type={'cart'} price={precio.final} name={titulo} imagen={imagen}/>
-          <PriceLink type={'mas'} />
+          <PriceLink type={'mas'} isPopUp={true} />
           <PriceLink type={'chat'} name={titulo} asesores={asesores} />
         </div>
       </section>

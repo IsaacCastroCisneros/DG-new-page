@@ -38,14 +38,24 @@ export default function Notification()
         style={showingOk||hide}
       >
         <FontAwesomeIcon icon={faCheckCircle} />
-        Producto añadido
+        {
+          showNoti.msgOk===undefined&&<p>Producto añadido</p>
+        }
+        {
+          showNoti.msgOk&&<p>{showNoti.msgOk}</p>
+        }
       </div>
       <div
         className={`${styles} bg-yellow-500`}
         style={showingSame||hide}
       >
         <FontAwesomeIcon icon={faCircleExclamation} />
-        Ya en el carro
+        {
+          showNoti.msgFail===undefined&&<p>Ya en el carro</p>
+        }
+        {
+          showNoti.msgFail&&<p>{showNoti.msgFail}</p>
+        }
       </div>
     </>
   );

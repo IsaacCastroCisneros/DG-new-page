@@ -1,22 +1,26 @@
 import React,{useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { faCreditCard } from '@fortawesome/free-regular-svg-icons'
 import { faShare,faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
+import HeroForm from '../../pages/Product/components/HeroProduct/components/HeroForm/HeroForm';
+import PopUp from '../PopUp/PopUp';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
 export default function PriceLink(props) 
 {
+/*     const[show,setShow]=useState(false) */
+
     const
     {
       type,
       tag,
       asesores,
-      name
+      name,
+      isPopUp=false
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -26,14 +30,25 @@ export default function PriceLink(props)
 
     return (
       <>
-        {type === "mas" && (
+        {type === "mas" && isPopUp === false && (
           <Link
-            onClick={()=>setShowPopUp(false)}
+            onClick={() => setShowPopUp(false)}
             to={path}
             className={myStyles}
           >
             {type === "mas" && <Mas />}
           </Link>
+        )}
+        {type === "mas" && isPopUp && (
+          <>
+            <button
+              onClick={() => setShowPopUp({show:true,popUp:<HeroForm isPopUp={true} closeButton={true}/>})}
+              to={path}
+              className={myStyles}
+            >
+              {type === "mas" && <Mas/>}
+            </button>
+          </>
         )}
         {type === "chat" && <Chat asesores={asesores} name={name} />}
         {type === "cart" && <Cart {...props} />}

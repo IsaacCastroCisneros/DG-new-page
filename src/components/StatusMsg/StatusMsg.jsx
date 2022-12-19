@@ -30,7 +30,7 @@ function Success({setShow})
         Se han enviado los datos con exito!!
       </p>
       <button className='bg-green-500 px-[1rem] py-[.5rem] text-[#fff] uppercase font-bold rounded-[.5rem]' 
-       onClick={() => setShow({show:false,status:'success'})}>
+       onClick={() => setShow(prev=>{return {...prev,show:false}})}>
          aceptar
       </button>
     </>
@@ -48,7 +48,7 @@ function Failed({setShow})
         A ocurrido un error por favor valida los datos ingresados
       </p>
       <button className='bg-red-500 px-[1rem] py-[.5rem] text-[#fff] uppercase font-bold rounded-[.5rem]' 
-       onClick={() => setShow({show:false,status:'failed'})}>
+       onClick={() => setShow(prev=>{return {...prev,show:false}})}>
          OK
       </button>
     </>

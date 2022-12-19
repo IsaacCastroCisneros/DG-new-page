@@ -6,8 +6,8 @@ export default function AppContext({children})
 {
     const[cart,setCart]=useState([])
     const[showCart,setShowCart]=useState(false)
-    const[showNoti,setShowNoti]=useState({show:false,status:'ok'})
-    const[showPopUp,setShowPopUp]=useState(false)
+    const[showNoti,setShowNoti]=useState({show:false,status:'ok',msgOk:undefined,msgFail:undefined})
+    const[showPopUp,setShowPopUp]=useState({popUp:'',show:false,})
     const[showMobMenu,setShowMobMenu]=useState(false)
 
     useEffect(()=>

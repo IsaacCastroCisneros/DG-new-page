@@ -13,11 +13,16 @@ import PorQueParticipar from './components/PorQueParticipar/PorQueParticipar';
 import RiteCardPrice from './components/RiteCardPrice/RiteCardPrice';
 import Section from './components/Section/Section';
 import Footer from '../../components/Footer/Footer'
+import PopUp from '../../components/PopUp/PopUp';
+import { useContext } from 'react';
+import { appContext } from '../../context/AppContext';
 
 export const productContext = React.createContext()
 
 export default function Product({type}) 
 {
+  const{showPopUp,setShowPopUp}=useContext(appContext)
+
   const{id:tag}=useParams();
   
   const{data,isFetching}=useMyQuery({type,tag});
@@ -42,6 +47,12 @@ export default function Product({type})
       {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
       {!isFetching && (
         <>
+          <PopUp 
+           show={showPopUp.show} 
+           setShow={setShowPopUp} 
+           popUp={showPopUp.popUp}
+           closeButton={false}
+           />
           <HeroProduct {...data} />
           <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
             <section className="flex-[3]">
