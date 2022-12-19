@@ -42,7 +42,7 @@ export default function HeroForm()
     form.append(`contenido`,`Hola deseo informacion del ${tipo} ${titulo}`)
     form.append(`pagina`,"https://www.desarrolloglobal.pe" + location.pathname)
 
-    postRequest({type:'curso',data:form,request:'setProspecto'})
+    postRequest({type:tipo,data:form,request:'setProspecto'})
     .then(res=>
       {
         if(res)

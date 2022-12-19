@@ -22,7 +22,6 @@ export default function useMyQuery({type,tag='',id='',limit=''})
     if(data!==undefined)
     {
       const {grabado}=data.data
-      console.log(data.data)
   
       return {data:grabado,isFetching}
     }

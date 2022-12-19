@@ -1,6 +1,6 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import ErrFormMsg from './ErrFormMsg';
+import OkFormMsg from './OkFormMsg';
 
 export default function Regular(props) 
 {
@@ -28,14 +28,10 @@ export default function Regular(props)
         />
       </div>
       {errLabel && (
-        <span className="absolute bottom-0 bg-red-500 px-[.5rem] rounded-[.5rem] text-[.9rem] translate-y-[50%] right-0 block whitespace-nowrap">
-          {errLabel}
-        </span>
+       <ErrFormMsg errLabel={errLabel}/>
       )}
       {!errLabel && (
-        <span className="absolute right-0 text-green-500 text-[2rem] translate-x-[120%]">
-          <FontAwesomeIcon icon={faCheckCircle} />
-        </span>
+        <OkFormMsg/>
       )}
     </div>
   );
