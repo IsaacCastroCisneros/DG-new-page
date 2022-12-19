@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import Button from '../../../../../../components/Button/Button';
-import FormInput from './components/FormInput';
+import FormInput from '../../../../../../components/FormInput/FormInput';
 import { useContext } from 'react';
 import { productContext } from '../../../../Product';
 import { useLocation } from "react-router-dom";
-import useMyQuery from '../../../../../../../../PageDesarrolloGlobal/src/hooks/useMyQuery';
+import useMyQuery from '../../../../../../customHooks/useMyQuery';
 import postRequest from '../../../../../../helpers/postRequest';
 import PopUp from '../../../../../../components/PopUp/PopUp';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
@@ -124,7 +124,7 @@ export default function HeroForm()
             />
           </div>
           <div className="flex mb-[1rem] gap-[.5rem]">
-            <input type={"checkbox"} />
+            <input checked type={"checkbox"} />
             <label className="text-center text-[12px]">
               Acepto política de privacidad de datos personales
             </label>
