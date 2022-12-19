@@ -27,11 +27,11 @@ export default function FormCard()
   {
     e.preventDefault();
 
-    console.log(errList)
     if(errList!=='ok')
     {
       return setShowPopUp({show:true,status:'failed'})
     }
+
 
     const form = new FormData()
     form.append('nombres',formData.name)
