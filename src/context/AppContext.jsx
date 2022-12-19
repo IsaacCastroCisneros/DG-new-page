@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react'
+import postRequest from '../helpers/postRequest'
 
 export const appContext = React.createContext()
 
@@ -9,6 +10,8 @@ export default function AppContext({children})
     const[showNoti,setShowNoti]=useState({show:false,status:'ok',msgOk:undefined,msgFail:undefined})
     const[showPopUp,setShowPopUp]=useState({popUp:'',show:false,})
     const[showMobMenu,setShowMobMenu]=useState(false)
+    const[user,setUser]=useState(false)
+
 
     useEffect(()=>
     {
@@ -20,6 +23,24 @@ export default function AppContext({children})
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
+
+    useEffect(()=>
+    {
+       const currentUser = localStorage.getItem('userDG')
+       if(currentUser===null)return
+
+       console.log(JSON.parse(currentUser).token)
+       const form = new FormData()
+       form.append('token',JSON.parse(currentUser).token)
+
+       postRequest({type:'validation',data:form})
+       .then(res=>
+        {
+          if(res===false)return
+          setUser(res)
+        })
+      
+    },[])
   
   return (
     <appContext.Provider 
@@ -35,7 +56,9 @@ export default function AppContext({children})
             setShowPopUp,
             showPopUp,
             showMobMenu,
-            setShowMobMenu
+            setShowMobMenu,
+            setUser,
+            user
         }
      }
      >

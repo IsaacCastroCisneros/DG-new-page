@@ -25,8 +25,6 @@ export default function FormCard()
 
   const programs = cursos&&diplomas&&diplomados ? [...cursos,...diplomas,...diplomados] : []
 
-  console.log(errList)
-
   function submitting(e)
   {
     e.preventDefault();
@@ -58,8 +56,6 @@ export default function FormCard()
       })
   }
 
-  console.log(formData)
-
   return (
     <>
       <PopUp 
@@ -76,7 +72,6 @@ export default function FormCard()
           dejanos tus datos y te llamamos
         </h1>
         <form
-          action=""
           className="flex flex-col gap-[1rem] phone:justify-between"
         >
           <FormInput
@@ -144,6 +139,7 @@ export default function FormCard()
           />
           <Button
             label="Solicitar Informacion"
+            type={'submit'}
             styles={{
               button: "!bg-myRed !py-[.7rem] !mt-[.3rem] phone:px-[1rem]",
               span: "!text-[1.2rem]",

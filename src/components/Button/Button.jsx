@@ -6,7 +6,8 @@ export default function Button(props)
   {
     label,
     styles,
-    onClick
+    onClick,
+    type
   }=props
 
   const{button='',span=''} = styles || {}
@@ -14,6 +15,7 @@ export default function Button(props)
   return (
     <button className={`bg-myPurple rounded-[.3rem] px-[2.1rem] py-[.2rem] ${button}`}
      onClick={onClick}
+     type={type}
      >
       <span className={`capitalize text-[#fff] text-[1.3rem] ${span}`}>
         {

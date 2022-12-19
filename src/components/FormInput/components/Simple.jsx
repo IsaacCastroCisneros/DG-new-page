@@ -10,6 +10,7 @@ export default function Simple(props)
       onChange,
       errLabel = undefined,
       onKeyPress,
+      preventKey=undefined
     } = props;
 
     return (

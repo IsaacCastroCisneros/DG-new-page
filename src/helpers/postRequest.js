@@ -29,6 +29,14 @@ function gettingUrl(type,request)
         {
            return `${url}diplomados/${tag}?offset=0&${limit}`
         }
+        case 'login':
+        {
+           return `${url}sesiones/login`
+        }
+        case 'validation':
+        {
+           return `${url}sesiones/verificar`
+        }
   
         default: return ''
     }

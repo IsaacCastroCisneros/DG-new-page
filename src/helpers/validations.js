@@ -45,3 +45,17 @@ export const requestInformation2 = Joi.object(
     }),
   }
 )
+
+export const login = Joi.object(
+  {
+    email: Joi.string().email({ tlds: { allow: false } }).required().messages({
+      "string.empty": `Este campo no puede estar vacio`,
+      "any.required": `El email es requerido`,
+      "string.email": `El email debe tener el formato user@mail.com`,
+    }),
+    password: Joi.string().required().messages({
+      "string.empty": `Este campo no puede estar vacio`,
+      "any.required": `La contraseña es requerida`,
+    }),
+  }
+)

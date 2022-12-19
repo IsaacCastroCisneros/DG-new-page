@@ -1,8 +1,6 @@
 import React from 'react'
 import Regular from './components/Regular';
 import Simple from './components/Simple';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 
 export default function FormInput(props) 
 {
@@ -14,13 +12,14 @@ export default function FormInput(props)
   return (
     <>
       {type === "regular" && (
-         <Regular {...props}/>
+         <Regular {...props} />
       )}
       {
         type==='simple'&&
-        <Simple {...props}/>
+        <Simple {...props} />
       }
     </>
   );
 }
+
 
