@@ -4,7 +4,7 @@ import FormInput from '../../../../../../components/FormInput/FormInput';
 import useMyErrList from '../../../../../../customHooks/useMyErrList';
 import useMyQuery from '../../../../../../customHooks/useMyQuery';
 import Selector from './Components/Selector';
-import {requestInformation} from '../../../../../../helpers/validations'
+import {requestInformation2} from '../../../../../../helpers/validations'
 import PopUp from '../../../../../../components/PopUp/PopUp';
 import postRequest from '../../../../../../helpers/postRequest';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
@@ -18,20 +18,23 @@ export default function FormCard()
 
   const {data:ciudad}=useMyQuery({type:'geo'})
 
-  const[formData,setFormData]=useState({})
+  const[formData,setFormData]=useState({program:'no-value'})
   const[showPopUp,setShowPopUp]=useState({show:false,status:'success'})
 
-  const[errList]=useMyErrList(formData,requestInformation)
+  const[errList]=useMyErrList(formData,requestInformation2)
+
+  const programs = cursos&&diplomas&&diplomados ? [...cursos,...diplomas,...diplomados] : []
+
+  console.log(errList)
 
   function submitting(e)
   {
     e.preventDefault();
 
-    if(errList!=='ok')
+    if(errList!=='ok'||formData.program==='no-value')
     {
       return setShowPopUp({show:true,status:'failed'})
     }
-
 
     const form = new FormData()
     form.append('nombres',formData.name)
@@ -130,10 +133,13 @@ export default function FormCard()
             cursos={cursos}
             diplomas={diplomas}
             diplomados={diplomados}
+            errLabel={errList?.program}
             onChange={(e) =>
-              setFormData((prev) => {
-                return { ...prev, program: e.target.value };
-              })
+              {
+                setFormData((prev) => {
+                  return { ...prev, program:programs.find(pro=>pro.id===e.target.value)||'no-value' };
+                })
+              }
             }
           />
           <Button
