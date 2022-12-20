@@ -37,7 +37,7 @@ export default function Cart({mob=false})
 
   return (
     <cartContext.Provider value={contextValues}>
-      <div className="relative z-[999] text-[#000] flex flex-col justify-center w-fit">
+      <div className="relative z-[999] text-[#000] flex flex-col justify-center max-w-[100%]">
         <button
           onClick={() => setShowCart((prev) => !prev)}
           className="cartButton inline-block"
@@ -55,10 +55,10 @@ export default function Cart({mob=false})
           </p>
         </button>
         {
-         !mob&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart} />
+         !mob&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart}  setShowCart={setShowCart} />
         }
         {
-          mob&&showCart&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart} />
+          mob&&showCart&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart}  setShowCart={setShowCart} />
         }
       </div>
     </cartContext.Provider>

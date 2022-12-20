@@ -8,8 +8,6 @@ import CertificacionDisponible from './components/CertificacionDsiponible'
 import Precio from './components/Precio'
 import PopUp from '../../../../../../components/PopUp/PopUp'
 import Preview from '../Preview/Preview'
-import { useContext } from 'react'
-import { appContext } from '../../../../../../context/AppContext'
 import { useState } from 'react'
 
 export default function Card(props) 

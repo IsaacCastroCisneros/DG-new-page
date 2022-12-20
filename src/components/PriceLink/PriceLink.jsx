@@ -86,7 +86,7 @@ function Chat({asesores,name})
 
 function Cart(props)
 {
-  const { id, price, name,imagen } = props;
+  const { id, price, name,imagen,tipo } = props;
 
   const
    {
@@ -99,8 +99,10 @@ function Cart(props)
   const product = {
       id,
       name,
-      price,
-      imagen
+      price:price.final,
+      normalPrice:price.normal,
+      imagen,
+      tipo
   };
 
   function addingToCart()

@@ -6,6 +6,7 @@ import Product from './pages/Product/Product'
 import Notification from './components/Notification/Notification'
 import MobMenu from './components/NavBar/components/MobMenu/MobMenu'
 import Layer from './components/NavBar/components/Layer/Layer'
+import Pasarela from './pages/Pasarela/Pasarela'
 
 function App() 
 {
@@ -35,7 +36,7 @@ function App()
            <Route path='/diplomado'>
              <Route path=':id' element={<Product type={'diplomados'} />}/>
            </Route>
-           <Route path='/pasarela-pago'/>
+           <Route path='/pasarela-pago' element={<Pasarela/>} />
         </Route>
      </Routes>
   )

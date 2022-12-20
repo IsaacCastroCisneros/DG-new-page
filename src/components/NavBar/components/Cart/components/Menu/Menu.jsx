@@ -1,14 +1,19 @@
 import React from 'react'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { appContext } from '../../../../../../context/AppContext';
 import CartItem from './component/CartItem';
 
 export default function Menu(props) 
 {
+  const{setShowMobMenu}=useContext(appContext)
   const 
   {
     cart,
     tot,
     showCart,
-    mob
+    mob,
+    setShowCart,
   }=props
 
   const showing = showCart ? {opacity:1,pointerEvents:'auto',top:'135%'} : {}
@@ -33,20 +38,34 @@ export default function Menu(props)
         </div>
       </section>
       {!mob && (
-        <section className="max-h-[25rem] block overflow-y-auto">
+        <section className="max-h-[25rem] block overflow-y-auto pr-[.5rem]">
           {cart.map((item) => {
             return <CartItem key={item.id} mob={mob} {...item} />;
           })}
         </section>
       )}
-      <section className="border-gray-300 border-t-[1px]">
-        <strong className="flex gap-[.5rem] text-[2rem]">
+      <section className="border-gray-300 border-t-[1px] flex justify-between pt-[1rem] items-center">
+        <strong className="flex gap-[.5rem] text-[2rem] mobNav:text-[1.4rem]">
           Total:
           <p className="text-red-500">
             <span>S/.</span>
             <span>{tot}</span>
           </p>
         </strong>
+        <button
+         onClick={()=>
+         {
+           if(mob)return setShowMobMenu(false)
+           setShowCart(false)
+         }}
+         >
+          <Link
+            to={"/pasarela-pago"}
+            className="block uppercase px-[1rem] py-[.6rem] bg-green-500 font-bold text-[#fff] rounded-[.5rem]"
+          >
+            comprar
+          </Link>
+        </button>
       </section>
     </div>
   );

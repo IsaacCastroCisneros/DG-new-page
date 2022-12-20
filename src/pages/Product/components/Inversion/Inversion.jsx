@@ -1,15 +1,8 @@
 import React from 'react'
 import PriceLink from '../../../../components/PriceLink/PriceLink';
 
-export default function Inversion(props) 
-{
-  const
-  {
-    precio,
-    titulo,
-    imagen,
-    asesores
-  }=props
+export default function Inversion(props) {
+  const { precio, titulo, imagen, asesores, tipo, id } = props;
 
   return (
     <div className="flex items-center justify-between product:flex-col">
@@ -27,12 +20,21 @@ export default function Inversion(props)
           </span>
         </section>
       </div>
-      <section className='flex-[.9]'>
-        <h1 className="text-[26px] font-normal mb-[2rem] text-right product:text-[22px]">Estamos para ayudarte</h1>
+      <section className="flex-[.9]">
+        <h1 className="text-[26px] font-normal mb-[2rem] text-right product:text-[22px]">
+          Estamos para ayudarte
+        </h1>
         <div className="flex flex-col gap-[.5rem]">
-          <PriceLink type={'cart'} price={precio.final} name={titulo} imagen={imagen}/>
-          <PriceLink type={'mas'} isPopUp={true} />
-          <PriceLink type={'chat'} name={titulo} asesores={asesores} />
+          <PriceLink
+            type={"cart"}
+            price={precio}
+            name={titulo}
+            imagen={imagen}
+            tipo={tipo}
+            id={id}
+          />
+          <PriceLink type={"mas"} isPopUp={true} />
+          <PriceLink type={"chat"} name={titulo} asesores={asesores} />
         </div>
       </section>
     </div>

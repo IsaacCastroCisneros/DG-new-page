@@ -8,7 +8,6 @@ import postRequest from '../../../../../../helpers/postRequest';
 export default function UserMenu()
 {
   const[show,setShow]=useState({show:false,isConfirm:false})
-  const[isConfirm,setIsConfirm]=useState(false)
   const{setUser,user}=useContext(appContext)
 
   function clossingSession()
