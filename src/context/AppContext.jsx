@@ -12,7 +12,6 @@ export default function AppContext({children})
     const[showMobMenu,setShowMobMenu]=useState(false)
     const[user,setUser]=useState(false)
 
-
     useEffect(()=>
     {
         const cart = localStorage.getItem('cart');
@@ -29,7 +28,6 @@ export default function AppContext({children})
        const currentUser = localStorage.getItem('userDG')
        if(currentUser===null)return
 
-       console.log(JSON.parse(currentUser).token)
        const form = new FormData()
        form.append('token',JSON.parse(currentUser).token)
 

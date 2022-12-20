@@ -37,6 +37,10 @@ function gettingUrl(type,request)
         {
            return `${url}sesiones/verificar`
         }
+        case 'logout':
+        {
+           return `${url}sesiones/logout`
+        }
   
         default: return ''
     }

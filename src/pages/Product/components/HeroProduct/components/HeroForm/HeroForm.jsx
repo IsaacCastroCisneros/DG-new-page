@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../../../../../../components/Button/Button';
 import FormInput from '../../../../../../components/FormInput/FormInput';
 import { useContext } from 'react';
@@ -11,10 +12,10 @@ import PopUp from '../../../../../../components/PopUp/PopUp';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
 import useMyErrList from '../../../../../../customHooks/useMyErrList';
 import { requestInformation } from '../../../../../../helpers/validations';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle,faXmarkCircle } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { appContext } from '../../../../../../context/AppContext';
+import MyMsg from '../../../../../../components/MyMsg/MyMsg';
 
 export default function HeroForm({isPopUp=false,closeButton=false}) 
 {
@@ -174,17 +175,5 @@ export default function HeroForm({isPopUp=false,closeButton=false})
 
 
 
-function MyMsg({ icon,styles,label }) 
-{
-  return (
-    <p
-      className={`flex gap-[.5rem] px-[.5rem] py-[.2rem] rounded-[.5rem] left-[50%] translate-x-[-50%] translate-y-[-50%] items-center text-[#fff] absolute top-0 ${styles}`}
-    >
-      <span>
-        <FontAwesomeIcon size="xl" icon={icon} />
-      </span>
-      <span className=' whitespace-nowrap' >{label}</span>
-    </p>
-  );
-}
+
     

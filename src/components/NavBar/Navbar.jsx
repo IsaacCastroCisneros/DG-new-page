@@ -9,21 +9,36 @@ import img from '/img/logo-DG-nuevo.webp'
 import { useContext } from 'react'
 import { appContext } from '../../context/AppContext'
 import PopUp from '../PopUp/PopUp'
-import SignUp from './components/Login/Login'
+import Login from './components/Login/Login'
+import UserButton from './components/UserButton/UserButton'
+import { useEffect } from 'react'
 
 export default function Navbar() 
 {
   const[show,setShow]=useState(false)
-  const{setShowMobMenu,user}=useContext(appContext)
+  const{setShowMobMenu,user,showMobMenu}=useContext(appContext)
+
+  useEffect(()=>
+  {
+    if(showMobMenu)
+    {
+      console.log('fddddddd')
+      document.body.style.overflow='hidden'
+    }
+  },[showMobMenu])
+/*   if(setShowMobMenu===false)
+  {
+    document.body.style.overflow='auto'
+  } */
 
   return (
     <>
-      <PopUp show={show} setShow={setShow} popUp={<SignUp />} />
+      <PopUp show={show} setShow={setShow} popUp={<Login setShow={setShow} />} />
       <header className="flex">
-        <nav className="flex custom-container py-[.4rem] justify-between items-center">
+        <nav className="flex custom-container py-[.4rem] justify-between items-center mobNav:!px-[.7rem]">
           <ul className="flex gap-[3rem] font-medium text-myBlack items-center">
-            <Link to="/" className="block w-[12rem] mr-[5rem] mobNav:w-[10rem]">
-              <img src={img} className="w-[100%]" />
+            <Link to="/" className="block w-[12rem] mr-[5rem] mobNav:w-[8rem] mobNav:mr-0">
+              <img src={img} className="w-[100%] mobNav:w-[200%]" />
             </Link>
             <NavOption label={"inicio"} path={"/"} />
             <NavOption label={"cursos"} path={"/"} />
@@ -35,7 +50,10 @@ export default function Navbar()
             {!user && (
               <Button label="iniciar sesion" onClick={() => setShow(true)} />
             )}
-            <LinkButton label="Aula Virtual" />
+            {
+              user&&
+              <LinkButton label="Aula Virtual" />
+            }
             {!user && (
               <Button
                 label="registrarse"
@@ -47,9 +65,16 @@ export default function Navbar()
               />
             )}
           </div>
+            {
+              user&&
+              <UserButton {...user} />
+            }
           <button
             className="hidden mobNav:block text-[2rem] text-[#000]"
-            onClick={() => setShowMobMenu(true)}
+            onClick={() => 
+              {
+                setShowMobMenu(true)
+              } }
           >
             <FontAwesomeIcon icon={faBars} />
           </button>
@@ -70,8 +95,7 @@ function NavOption({label,path})
   );
 }
 
-function UserButton()
-{
-  
-}
+
+
+
   

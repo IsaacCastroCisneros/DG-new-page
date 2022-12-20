@@ -10,13 +10,13 @@ export default function Simple(props)
       onChange,
       errLabel = undefined,
       onKeyPress,
-      preventKey=undefined
+      inputType='text'
     } = props;
 
     return (
       <div className="relative">
         <input
-          type="text"
+          type={inputType}
           className="block w-[100%] border-[1px] border-gray-300 rounded-[.2rem] px-[.7rem] py-[.8rem] focus:border-myPurple focus:outline-none"
           placeholder={placeHolder}
           onKeyPress={onKeyPress}

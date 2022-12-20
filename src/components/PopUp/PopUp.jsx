@@ -20,7 +20,7 @@ export default function PopUp(props)
 
     if(show&&!overflow)
     {
-      
+      console.log('hyeerer')
       body?.setAttribute('style','overflow:hidden');
       return
     }

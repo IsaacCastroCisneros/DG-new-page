@@ -22,7 +22,7 @@ export default function Cart({mob=false})
     }
 
     window.addEventListener('click',removingMenu)
-
+    return ()=> window.removeEventListener('click',removingMenu)
   })
 
   const tot = cart.reduce((sum,current)=>
@@ -54,7 +54,12 @@ export default function Cart({mob=false})
             <FontAwesomeIcon size={mob?'xl':'2xl'}  icon={faCartShopping} />
           </p>
         </button>
-        <Menu cart={cart} mob={mob} tot={tot} showCart={showCart} />
+        {
+         !mob&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart} />
+        }
+        {
+          mob&&showCart&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart} />
+        }
       </div>
     </cartContext.Provider>
   );

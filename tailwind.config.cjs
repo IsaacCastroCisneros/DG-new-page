@@ -34,6 +34,7 @@ module.exports = {
         '1221px':{'max':'1221px'},
         'heroProduct':{'max':'849px'},
         'product':{'max':'1168px'},
+        '826px':{'max':'826px'},
       }
     },
   },
