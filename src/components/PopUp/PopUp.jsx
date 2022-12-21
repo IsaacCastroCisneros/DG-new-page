@@ -14,17 +14,15 @@ export default function PopUp(props)
     closeButton=true
   }=props
 
+  const body= document.querySelector('body')
+
   useEffect(()=>
   {
-    const body= document.querySelector('body')
-
     if(show&&!overflow)
     {
-      console.log('hyeerer')
       body?.setAttribute('style','overflow:hidden');
       return
     }
-
     body?.setAttribute('style','overflow:auto');
   })
 
@@ -55,7 +53,10 @@ export default function PopUp(props)
            {closeButton && (
              <button
                className="text-[#fff] border-[2px] border-[#fff] bg-[#000] w-[3rem] h-[3rem] flex justify-center items-center rounded-[100%] absolute text-[1.5rem] right-[-.5rem] top-[-.5rem]"
-               onClick={() => setShow(false)}
+               onClick={() =>
+                {
+                  setShow(false)
+                } }
              >
                {<FontAwesomeIcon icon={faXmark} />}
              </button>

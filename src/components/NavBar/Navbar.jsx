@@ -11,25 +11,11 @@ import { appContext } from '../../context/AppContext'
 import PopUp from '../PopUp/PopUp'
 import Login from './components/Login/Login'
 import UserButton from './components/UserButton/UserButton'
-import { useEffect } from 'react'
 
 export default function Navbar() 
 {
   const[show,setShow]=useState(false)
   const{setShowMobMenu,user,showMobMenu}=useContext(appContext)
-
-  useEffect(()=>
-  {
-    if(showMobMenu)
-    {
-      console.log('fddddddd')
-      document.body.style.overflow='hidden'
-    }
-  },[showMobMenu])
-/*   if(setShowMobMenu===false)
-  {
-    document.body.style.overflow='auto'
-  } */
 
   return (
     <>
