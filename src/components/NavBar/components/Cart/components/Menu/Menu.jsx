@@ -37,13 +37,11 @@ export default function Menu(props)
           {cart.length <= 1 && <span>Programa</span>}
         </div>
       </section>
-      {!mob && (
         <section className="max-h-[25rem] block overflow-y-auto pr-[.5rem]">
           {cart.map((item) => {
             return <CartItem key={item.id} mob={mob} {...item} />;
           })}
         </section>
-      )}
       <section className="border-gray-300 border-t-[1px] flex justify-between pt-[1rem] items-center">
         <strong className="flex gap-[.5rem] text-[2rem] mobNav:text-[1.4rem]">
           Total:
