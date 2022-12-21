@@ -5,13 +5,23 @@ import { useContext } from 'react'
 import { appContext } from '../../../../../context/AppContext'
 import axios from 'axios'
 import Izi from './Izi'
+import Success from './Success'
+import PayTypes from './PayTypes'
+import DepositoForm from './DepositoForm'
+import LoadFormMsg from './LoadFormMsg'
 
 export default function IziForm() 
 {
   const{cart,user,setCart}=useContext(appContext)
+  const[payType,setPayType]=useState('card')
   const[alert,setAlert]=useState(undefined)
 
   useEffect(()=>
+  {
+    izi()
+  },[payType])
+
+  function izi()
   {
     const formData = new FormData()
   
@@ -61,8 +71,8 @@ export default function IziForm()
                 if (response.status)
                 {
                   setAlert('success')
-                  console.log('hey xd')
-                  localStorage.removeItem('cart')
+/*                   console.log('hey xd')
+                  localStorage.removeItem('cart') */
                 }
               });
             return false; 
@@ -75,10 +85,29 @@ export default function IziForm()
           KR.showForm(result.formId)
         ) /* show the payment form */
         .catch((error) => setAlert(error));
-
-  })
+  }
 
   return (
-    <Izi/>
+    <>
+      <PayTypes setPayType={setPayType} payType={payType}/>
+      <div className="flex justify-between items-center mob2:flex-col mob2:items-start">
+        <span className="block mt-[1rem] text-[14px]">
+          Recuerda activar tu tarjeta para compras por internet
+        </span>
+        <LoadFormMsg/>
+      </div>
+      {
+        payType==='card'&&alert!=='success'&&
+        <Izi/>
+      }
+      {
+        alert==='success'&&
+        <Success/>
+      }
+      {
+        payType==='deposito'&&alert!=='success'&&
+        <DepositoForm products={cart} />
+      }
+    </>
   );
 }

@@ -9,6 +9,7 @@ export default function Preview(props)
 
   const url = `/${tipo}/${etiqueta}`
 
+
   return (
     <div className="text-[#000] flex gap-[2rem] px-[3rem] py-[2.9rem] rounded-[1rem] bg-[#fff] max-w-[960px] previewMob:flex-col previewMob:px-[2rem]">
       <LeftSection
@@ -18,7 +19,7 @@ export default function Preview(props)
         faCircleCheck={faCircleCheck}
         imagen={imagen}
       />
-      <RiteSection imagen={imagen} url={url} {...props} />
+      <RiteSection imagen={imagen} url={url} productData={props} />
     </div>
   );
 

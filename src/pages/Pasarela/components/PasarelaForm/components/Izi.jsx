@@ -39,13 +39,13 @@ export default function Izi() {
               <input type="checkbox" checked />
               <label>
                 Aceptar Términos, Condiciones y Política de{" "}
-                <Link
-                  to={"/politicas-de-privacidad/proteccion-datos"}
+                <a
+                  href={"https://www.desarrolloglobal.pe/politicas-de-privacidad/proteccion-datos"}
                   target="_blank"
                   className="text-[#3F8DFD] hover:underline"
                 >
                   Protección de Datos.
-                </Link>
+                </a>
               </label>
             </div>
             <div className="kr-form-error w-[100%] text-center border-[1px] border-red-500"></div>

@@ -12,14 +12,12 @@ const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] prod
 
 export default function PriceLink(props) 
 {
-
     const
     {
       type,
       tag,
-      asesores,
-      name,
-      isPopUp=false
+      isPopUp=false,
+      productData
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -49,8 +47,8 @@ export default function PriceLink(props)
             </button>
           </>
         )}
-        {type === "chat" && <Chat asesores={asesores} name={name} />}
-        {type === "cart" && <Cart {...props} />}
+        {type === "chat" && <Chat asesores={productData?.asesores} name={productData?.titulo}/>}
+        {type === "cart" && <Cart {...productData} />}
       </>
     );
 }
@@ -68,7 +66,7 @@ function Mas()
   );
 }
 
-function Chat({asesores,name})
+function Chat({asesores,name,productData})
 {
   return (
     <>
@@ -86,8 +84,8 @@ function Chat({asesores,name})
 
 function Cart(props)
 {
-  const { id, price, name,imagen,tipo } = props;
-
+  const { id, precio, titulo,imagen,tipo,cursos,sesiones:curSesiones } = props;
+  
   const
    {
     setCart,
@@ -96,12 +94,25 @@ function Cart(props)
     setShowPopUp
    }=useContext(appContext)
 
+   function isSesiones()
+   {
+      if(tipo!=='curso')
+      {
+        let sesiones=[]
+        cursos?.forEach(cur=>sesiones=[...sesiones,...cur.sesiones])
+        return sesiones
+      }
+      return curSesiones
+   }
+
   const product = {
       id,
-      name,
-      price:price.final,
-      normalPrice:price.normal,
+      name:titulo,
+      price:precio?.final,
+      normalPrice:precio?.normal,
       imagen,
+      sesiones:isSesiones(),
+      cursos,
       tipo
   };
 

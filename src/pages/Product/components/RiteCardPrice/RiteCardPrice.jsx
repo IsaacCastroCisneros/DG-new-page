@@ -7,12 +7,7 @@ export default function RiteCardPrice(props)
 {
   const
   {
-    precio,
-    titulo,
-    imagen,
-    asesores,
-    tipo,
-    id
+    precio
   }=props
 
   return (
@@ -20,15 +15,11 @@ export default function RiteCardPrice(props)
       <Prices precio={precio} gap={"!gap-[.5rem]"} />
       <div className="flex flex-col gap-[.6rem] mt-[1rem] mb-[1rem]">
         <PriceLink
-          id={id}
-          type={"cart"}
-          price={precio}
-          name={titulo}
-          imagen={imagen}
-          tipo={tipo}
+         type={"cart"}
+         productData={props}
         />
         <PriceLink type={"mas"} isPopUp={true} />
-        <PriceLink type={"chat"} asesores={asesores} name={titulo} />
+        <PriceLink type={"chat"} productData={props} />
       </div>
       <RiteBeneficios />
     </div>

@@ -9,11 +9,9 @@ export default function RiteSection(props)
   {
     imagen,
     url,
-    id,
-    precio,
-    titulo,
-    tipo
+    productData
   }=props
+
 
   return (
     <div className="max-w-[310px] previewMob:max-w-[100%]">
@@ -23,14 +21,10 @@ export default function RiteSection(props)
       <div className="flex flex-col gap-[.6rem]">
         <PriceLink
           type={"cart"}
-          id={id}
-          price={precio}
-          name={titulo}
-          imagen={imagen}
-          tipo={tipo}
+          productData={productData}
         />
-        <PriceLink type={"mas"} tag={url} />
-        <PriceLink type={"chat"} />
+        <PriceLink type={"mas"} tag={url} productData={productData} />
+        <PriceLink type={"chat"} productData={productData} />
       </div>
     </div>
   );

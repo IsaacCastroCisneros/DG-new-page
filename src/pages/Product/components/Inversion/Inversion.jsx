@@ -2,7 +2,7 @@ import React from 'react'
 import PriceLink from '../../../../components/PriceLink/PriceLink';
 
 export default function Inversion(props) {
-  const { precio, titulo, imagen, asesores, tipo, id } = props;
+  const { precio} = props;
 
   return (
     <div className="flex items-center justify-between product:flex-col">
@@ -27,14 +27,10 @@ export default function Inversion(props) {
         <div className="flex flex-col gap-[.5rem]">
           <PriceLink
             type={"cart"}
-            price={precio}
-            name={titulo}
-            imagen={imagen}
-            tipo={tipo}
-            id={id}
+            productData={props}
           />
           <PriceLink type={"mas"} isPopUp={true} />
-          <PriceLink type={"chat"} name={titulo} asesores={asesores} />
+          <PriceLink type={"chat"} productData={props} />
         </div>
       </section>
     </div>
