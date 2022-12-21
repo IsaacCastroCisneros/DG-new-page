@@ -6,7 +6,7 @@ export default function PayTypes({setPayType,payType})
   
   return (
     <>
-        <h3 className="fw-bolder mob2:text-[1.5rem] text-[1.8rem] mob:text-center">
+        <h3 className="fw-bolder 926px:text-[1.3rem] text-[1.8rem] 926px:text-center">
           {
             title
           }

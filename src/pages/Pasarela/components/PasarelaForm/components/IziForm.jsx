@@ -5,16 +5,15 @@ import { useContext } from 'react'
 import { appContext } from '../../../../../context/AppContext'
 import axios from 'axios'
 import Izi from './Izi'
-import Success from './Success'
 import PayTypes from './PayTypes'
 import DepositoForm from './DepositoForm'
 import LoadFormMsg from './LoadFormMsg'
 
-export default function IziForm() 
+export default function IziForm({setShowSuccess}) 
 {
   const{cart,user,setCart}=useContext(appContext)
+  const[load,setLoad]=useState(false)
   const[payType,setPayType]=useState('card')
-  const[alert,setAlert]=useState(undefined)
 
   useEffect(()=>
   {
@@ -35,9 +34,7 @@ export default function IziForm()
     formData.append("amount",amount)
     formData.append("idUser",user.id)
     formData.append("productsArr", JSON.stringify(productsArr));
-    console.log(productsArr)
 
-    /* 97649007:testpublickey_UTZAMW5mLnK026AEknrEn6L7WODbX2AllfyAycTISdiUX  */
     const endpoint = 'https://api.micuentaweb.pe'
     const publicKey = '97649007:testpublickey_UTZAMW5mLnK026AEknrEn6L7WODbX2AllfyAycTISdiUX'
     let formToken = ''
@@ -49,6 +46,7 @@ export default function IziForm()
         )
         .then((resp) => {
           formToken = resp.data.token;
+          setLoad(true)
           return KRGlue.loadLibrary(
             endpoint,
             publicKey
@@ -70,9 +68,9 @@ export default function IziForm()
               .then((response) => {
                 if (response.status)
                 {
-                  setAlert('success')
-/*                   console.log('hey xd')
-                  localStorage.removeItem('cart') */
+                  setShowSuccess('success')
+                  setCart([])
+                  localStorage.removeItem('cart')
                 }
               });
             return false; 
@@ -84,28 +82,30 @@ export default function IziForm()
         .then(({ KR, result }) =>
           KR.showForm(result.formId)
         ) /* show the payment form */
-        .catch((error) => setAlert(error));
+        .catch((error) =>console.log(error));
   }
 
   return (
     <>
       <PayTypes setPayType={setPayType} payType={payType}/>
-      <div className="flex justify-between items-center mob2:flex-col mob2:items-start">
-        <span className="block mt-[1rem] text-[14px]">
+      <div className="flex justify-between items-center 926px:flex-col 926px:items-start">
+        <span className="block mt-[1rem] text-[12.5px]">
           Recuerda activar tu tarjeta para compras por internet
         </span>
         <LoadFormMsg/>
       </div>
       {
-        payType==='card'&&alert!=='success'&&
+        !load&&
+        <strong className='block text-center mt-[1rem]'>
+           Cargando..
+        </strong>
+      }
+      {
+        payType==='card'&&load&&
         <Izi/>
       }
       {
-        alert==='success'&&
-        <Success/>
-      }
-      {
-        payType==='deposito'&&alert!=='success'&&
+        payType==='deposito'&&
         <DepositoForm products={cart} />
       }
     </>
