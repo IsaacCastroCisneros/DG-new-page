@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { faShare,faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { useContext } from 'react';
@@ -86,12 +86,13 @@ function Cart(props)
 {
   const { id, precio, titulo,imagen,tipo,cursos,sesiones:curSesiones } = props;
   
+  const navigate= useNavigate();
+
   const
    {
     setCart,
     cart,
     setShowNoti,
-    setShowPopUp
    }=useContext(appContext)
 
    function isSesiones()
@@ -127,7 +128,7 @@ function Cart(props)
     
     setShowNoti({show:true,status:'ok'})
     setCart([...cart,product])
-    setShowPopUp(false)
+    navigate('/pasarela-pago')
   }
 
   return (
