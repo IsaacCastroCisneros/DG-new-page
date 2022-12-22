@@ -7,7 +7,7 @@ export default function Preview(props)
 {
   const { titulo ,precio,imagen,tipo,etiqueta } = props;
 
-  const url = `/${tipo}/${etiqueta}`
+  const url = `/${tipo}s/${etiqueta}`
 
 
   return (

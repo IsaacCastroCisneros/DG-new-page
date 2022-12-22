@@ -61,6 +61,11 @@ h1,h2,h3,h4
   list-style: disc;
 }
 
+.active
+{
+  border-color:#6440FB;
+}
+
 .kr-installment-number,.kr-first-installment-delay
 {
   display: none;

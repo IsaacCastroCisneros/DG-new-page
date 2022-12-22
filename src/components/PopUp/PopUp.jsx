@@ -25,8 +25,7 @@ export default function PopUp(props)
     }
     body?.setAttribute('style','overflow:auto');
   })
-  /* fdfdd */
-/* dfsfdf */
+
    return (
      <>
        <div

@@ -7,6 +7,7 @@ import Notification from './components/Notification/Notification'
 import MobMenu from './components/NavBar/components/MobMenu/MobMenu'
 import Layer from './components/NavBar/components/Layer/Layer'
 import Pasarela from './pages/Pasarela/Pasarela'
+import Programas from './pages/Programas/Programas'
 
 function App() 
 {
@@ -24,22 +25,25 @@ function App()
   }
 
   return (
-     <Routes>
-        <Route path='/' element={<Layout/>}>
-           <Route index element={<Home/>}/>
-           <Route path='/curso' >
-             <Route path=':id' element={<Product type={'cursos'} />}/>
-           </Route>
-           <Route path='/diploma'>
-             <Route path=':id' element={<Product type={'diplomas'} />}/>
-           </Route>
-           <Route path='/diplomado'>
-             <Route path=':id' element={<Product type={'diplomados'} />}/>
-           </Route>
-           <Route path='/pasarela-pago' element={<Pasarela/>} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/cursos">
+          <Route index element={<Programas type={"cursos"} />} />
+          <Route path=":id" element={<Product type={"cursos"} />} />
         </Route>
-     </Routes>
-  )
+        <Route path="/diplomas">
+          <Route index element={<Programas type={"diplomas"} />} />
+          <Route path=":id" element={<Product type={"diplomas"} />} />
+        </Route>
+        <Route path="/diplomados">
+          <Route index element={<Programas type={"diplomados"} />} />
+          <Route path=":id" element={<Product type={"diplomados"} />} />
+        </Route>
+        <Route path="/pasarela-pago" element={<Pasarela />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App

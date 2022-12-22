@@ -25,18 +25,19 @@ export default function Navbar()
         popUp={<Login setShow={setShow} />}
       />
       <header className="flex">
-        <nav className="flex custom-container py-[.4rem] justify-between items-center mobNav:!px-[.7rem]">
-          <ul className="flex gap-[3rem] font-medium text-myBlack items-center">
+        <nav className="flex custom-container justify-between items-center mobNav:!px-[.7rem]">
+          <ul className="flex gap-[3rem] font-medium text-myBlack items-stretch min-h-[4rem]">
             <Link
               to="/"
-              className="block w-[12rem] mr-[5rem] mobNav:w-[8rem] mobNav:mr-0"
+              className="flex items-center w-[12rem] mr-[5rem] mobNav:w-[8rem] mobNav:mr-0"
             >
               <img src={img} className="w-[100%] mobNav:w-[200%]" />
             </Link>
             <NavOption label={"inicio"} path={"/"} />
-            <NavOption label={"cursos"} path={"/"} />
-            <NavOption label={"diplomas"} path={"/"} />
-            <NavOption label={"packs"} path={"/"} />
+            <NavOption label={"cursos"} path={"/cursos"} />
+            <NavOption label={"diplomas"} path={"/diplomas"} />
+            <NavOption label={"diplomados"} path={"/diplomados"} />
+           {/*  <NavOption label={"packs"} path={"/"} /> */}
           </ul>
           <div className='flex gap-[1rem] items-center'>
             <div className="flex gap-[1rem] mobNav:hidden">
@@ -75,9 +76,9 @@ export default function Navbar()
 function NavOption({label,path}) 
 {
   return (
-    <li className='mobNav:hidden'>
-      <NavLink to={path} className="uppercase">
-        {label}
+    <li className="mobNav:hidden">
+      <NavLink to={path} className="uppercase flex items-center h-[100%] border-b-[3px] border-[transparent] ">
+        <span>{label}</span>
       </NavLink>
     </li>
   );

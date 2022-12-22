@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { faShare,faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +6,6 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import HeroForm from '../../pages/Product/components/HeroProduct/components/HeroForm/HeroForm';
-import PopUp from '../PopUp/PopUp';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
