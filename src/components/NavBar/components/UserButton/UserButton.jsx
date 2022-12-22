@@ -24,7 +24,7 @@ export default function UserButton(props)
   })
 
   return (
-    <div className='relative user-menu'>
+    <div className='relative user-menu z-[999999]'>
       <button className="flex items-center gap-[.6rem] justify-between"
        onClick={()=>setShow(prev=> !prev)}
        >

@@ -37,15 +37,22 @@ export default function Navbar()
             <NavOption label={"cursos"} path={"/cursos"} />
             <NavOption label={"diplomas"} path={"/diplomas"} />
             <NavOption label={"diplomados"} path={"/diplomados"} />
-           {/*  <NavOption label={"packs"} path={"/"} /> */}
+            {/*  <NavOption label={"packs"} path={"/"} /> */}
           </ul>
-          <div className='flex gap-[1rem] items-center'>
+          <div className="flex gap-[1rem] items-center">
             <div className="flex gap-[1rem] mobNav:hidden">
               <Cart />
               {!user && (
                 <Button label="iniciar sesion" onClick={() => setShow(true)} />
               )}
-              {user && <LinkButton label="Aula Virtual" />}
+              {user && (
+                <LinkButton
+                  label="Aula Virtual"
+                  path={"https://aula.desarrolloglobal.pe/aula/#tab_tablero"}
+                  target={'_blank'}
+                  toOutside={true}
+                />
+              )}
               {!user && (
                 <Button
                   label="registrarse"

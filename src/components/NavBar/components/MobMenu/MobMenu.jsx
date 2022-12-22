@@ -33,9 +33,18 @@ export default function MobMenu()
           <img src="/img/logo-DG-nuevo.webp" className="w-[100%]" alt="" />
         </Link>
         <ul className="flex flex-col mt-[1.3rem] gap-[1rem]">
-          <MobMenuOption path={"/"} label={"Inicio"} />
-          <MobMenuOption path={"/"} label={"Cursos"} />
-          <MobMenuOption path={"/"} label={"Diplomas"} />
+          <MobMenuOption path={"/"} label={"Inicio"} 
+           onClick={()=>setShowMobMenu(false)}
+           />
+          <MobMenuOption path={"/cursos"} label={"Cursos"} 
+           onClick={()=>setShowMobMenu(false)}
+           />
+          <MobMenuOption path={"/diplomas"} label={"Diplomas"} 
+           onClick={()=>setShowMobMenu(false)}
+           />
+          <MobMenuOption path={"/diplomados"} label={"Diplomados"} 
+           onClick={()=>setShowMobMenu(false)}
+           />
           <Cart mob={true} />
           {!user && (
             <Button
@@ -64,11 +73,15 @@ export default function MobMenu()
   );
 }
 
-function MobMenuOption({path,label}) 
+function MobMenuOption({path,label,onClick}) 
 {
   return (
     <li className="text-[#000] font-bold">
+      <button
+       onClick={onClick}
+       >
       <Link to={path}>{label}</Link>
+      </button>
     </li>
   );
 }
