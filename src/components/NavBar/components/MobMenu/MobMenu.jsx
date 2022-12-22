@@ -9,7 +9,7 @@ import Button from '../../../Button/Button';
 import LinkButton from '../../../LinkButton/LinkButton';
 import PopUp from '../../../PopUp/PopUp';
 import { useState } from 'react';
-import Login from '../Login/Login';
+import Login from '../../../Login/Login';
 
 export default function MobMenu() 
 {
@@ -19,7 +19,12 @@ export default function MobMenu()
 
   return (
     <>
-      <PopUp show={show} setShow={setShow} popUp={<Login setShow={setShow}/>} />
+      <PopUp
+       show={show.show}
+       setShow={setShow}
+       popUp={show.popUp}
+       closeButton={false}
+      />
       <div
         className={`fixed transition-all duration-200 w-[355px] border-r-[1px] border-gray-300 py-[1rem] px-[1.2rem] bg-[#fff] h-[100%] top-0 left-0 z-[99999] ${active}`}
       >
@@ -33,25 +38,33 @@ export default function MobMenu()
           <img src="/img/logo-DG-nuevo.webp" className="w-[100%]" alt="" />
         </Link>
         <ul className="flex flex-col mt-[1.3rem] gap-[1rem]">
-          <MobMenuOption path={"/"} label={"Inicio"} 
-           onClick={()=>setShowMobMenu(false)}
-           />
-          <MobMenuOption path={"/cursos"} label={"Cursos"} 
-           onClick={()=>setShowMobMenu(false)}
-           />
-          <MobMenuOption path={"/diplomas"} label={"Diplomas"} 
-           onClick={()=>setShowMobMenu(false)}
-           />
-          <MobMenuOption path={"/diplomados"} label={"Diplomados"} 
-           onClick={()=>setShowMobMenu(false)}
-           />
+          <MobMenuOption
+            path={"/"}
+            label={"Inicio"}
+            onClick={() => setShowMobMenu(false)}
+          />
+          <MobMenuOption
+            path={"/cursos"}
+            label={"Cursos"}
+            onClick={() => setShowMobMenu(false)}
+          />
+          <MobMenuOption
+            path={"/diplomas"}
+            label={"Diplomas"}
+            onClick={() => setShowMobMenu(false)}
+          />
+          <MobMenuOption
+            path={"/diplomados"}
+            label={"Diplomados"}
+            onClick={() => setShowMobMenu(false)}
+          />
           <Cart mob={true} />
           {!user && (
             <Button
               label="iniciar sesion"
               onClick={() => {
-                setShowMobMenu(false)
-                setShow(true)
+                setShowMobMenu(false);
+                setShow({show:true,popUp:<Login setShow={setShow}/>});
               }}
               styles={{ button: "!border-[3px] !border-myPurple" }}
             />

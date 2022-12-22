@@ -7,7 +7,10 @@ export default function RiteCardPrice(props)
 {
   const
   {
-    precio
+    precio,
+    sesiones,
+    tipo,
+    cursos
   }=props
 
   return (
@@ -21,7 +24,7 @@ export default function RiteCardPrice(props)
         <PriceLink type={"mas"} isPopUp={true} />
         <PriceLink type={"chat"} productData={props} />
       </div>
-      <RiteBeneficios />
+      <RiteBeneficios sesiones={sesiones} tipo={tipo} cursos={cursos}/>
     </div>
   );
 }

@@ -41,6 +41,10 @@ function gettingUrl(type,request)
         {
            return `${url}sesiones/logout`
         }
+        case 'signUp':
+        {
+          return `${url}sesiones/registrar`;
+        }
   
         default: return ''
     }

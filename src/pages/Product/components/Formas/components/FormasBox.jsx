@@ -1,15 +1,21 @@
 import React from 'react'
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import PriceLink from '../../../../../components/PriceLink/PriceLink';
+import { productContext } from '../../../Product';
 
 export default function FormasBox(props)
 {
+  const data =useContext(productContext)
+
   const
   {
      img,
      title,
      body,
      label='',
-     path
+     path,
+     linkLike
   }=props
 
    return (
@@ -19,11 +25,15 @@ export default function FormasBox(props)
        </div>
        <h3 className="text-[16px] block">{title}</h3>
        {body}
-       <Link to={path} className="text-[#0088e3] font-bold mt-[1rem] hover:underline" >
-         {
-            label
-         }
-       </Link>
+       {linkLike && <PriceLink type={"cart"} productData={data} isLinkLike={true}/>}
+       {!linkLike && (
+         <Link
+           to={path}
+           className="text-[#0088e3] font-bold mt-[1rem] hover:underline"
+         >
+           {label}
+         </Link>
+       )}
      </div>
    );
 }

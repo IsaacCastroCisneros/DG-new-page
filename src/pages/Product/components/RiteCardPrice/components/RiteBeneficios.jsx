@@ -1,6 +1,16 @@
 import React from 'react'
 
-export default function RiteBeneficios() {
+export default function RiteBeneficios({sesiones,tipo,cursos}) 
+{
+  let mySessions = 0;
+  mySessions=sesiones?.length
+
+  if(tipo!=='curso')
+  {
+    let sessions =[]
+    cursos.forEach(cur=> sessions=[...sessions,...cur.sesiones])
+    mySessions=sessions?.length
+  }
   return (
     <div>
       <h3 className='text-[18px] mb-[1rem]'>BENEFICIOS</h3>
@@ -11,7 +21,7 @@ export default function RiteBeneficios() {
          />
         <RiteItem 
          img={<img src="/img/icons/clockPurple.png" className='w-[100%]'/>} 
-         label={"10 sesiones en video"}
+         label={`${mySessions} sesiones en video`}
          />
         <RiteItem 
          img={<img src="/img/icons/lapPurple.png" className='w-[100%]'/>} 

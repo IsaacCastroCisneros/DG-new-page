@@ -44,6 +44,8 @@ module.exports = {
         'question6':{'max':'925px'},
         'question7':{'max':'435px'},
         'question8':{'max':'413px'},
+        'signUp':{'max':'1179px'},
+
       }
     },
   },

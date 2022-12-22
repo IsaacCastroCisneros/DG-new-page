@@ -1,0 +1,47 @@
+import React from 'react'
+import MyMsg from '../MyMsg/MyMsg'
+import CloseButton from '../CloseButton/CloseButton'
+import { faXmarkCircle } from '@fortawesome/free-regular-svg-icons'
+
+export default function MyForm(props) 
+{
+  const
+  {
+    setShow, 
+    showStatus,
+    form,
+    hiddenEarly=''
+  }=props
+  
+  return (
+    <div className="relative w-[100%] max-w-[90rem]">
+      {showStatus.show && (
+        <MyMsg
+          icon={faXmarkCircle}
+          styles={"!bg-red-500"}
+          label={showStatus.label}
+        />
+      )}
+      <CloseButton
+        closeFunc={() =>
+          setShow((prev) => {
+            return { ...prev, show: false };
+          })
+        }
+      />
+      <div className="w-[100%] flex items-stretch bg-[#fff] rounded-[.5rem] overflow-hidden">
+        <section className={`flex-1 bg-myPurple py-[4rem] px-[2.5rem] rounded-[.5rem] 826px:hidden ${hiddenEarly}`}>
+          <div className="flex justify-start mb-[2rem]">
+            <img src="/img/nuevo_logo_blanco.png" className="w-[10rem]" />
+          </div>
+          <img src="/img/LoginRegistro.webp" className="w-[100%]" />
+        </section>
+        <section className="flex-1 bg-[#fff] text-[#000] py-[3rem] px-[4.8rem] 826px:px-[2rem]">
+          {
+            form
+          }
+        </section>
+      </div>
+    </div>
+  );
+}

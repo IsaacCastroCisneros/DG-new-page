@@ -10,14 +10,15 @@ export default function Simple(props)
       onChange,
       errLabel = undefined,
       onKeyPress,
-      inputType='text'
+      inputType='text',
+      okBorder=false
     } = props;
 
     return (
       <div className="relative">
         <input
           type={inputType}
-          className="block w-[100%] border-[1px] border-gray-300 rounded-[.2rem] px-[.7rem] py-[.8rem] focus:border-myPurple focus:outline-none"
+          className={`block w-[100%] border-[1px] border-gray-300 rounded-[.2rem] px-[.7rem] py-[.8rem] focus:border-myPurple focus:outline-none ${errLabel ? '!border-red-500': '!border-green-500'}`}
           placeholder={placeHolder}
           onKeyPress={onKeyPress}
           onChange={onChange}
@@ -25,11 +26,11 @@ export default function Simple(props)
         {errLabel && (
           <ErrFormMsg errLabel={errLabel} />
         )}
-        {!errLabel && (
+        {!errLabel&&!okBorder&&(
           <OkFormMsg 
            styles=
            {
-            "!top-0 !right-[.4rem]"
+            '!top-0 !right-[.4rem]'
            }
            />
         )}

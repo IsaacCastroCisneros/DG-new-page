@@ -33,6 +33,7 @@ export default function Formas()
             </div>
           }
           label={"Pagar con Tarjeta"}
+          linkLike={true}
           path={"/"}
         />
         <FormasBox

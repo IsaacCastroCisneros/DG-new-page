@@ -9,21 +9,36 @@ import img from '/img/logo-DG-nuevo.webp'
 import { useContext } from 'react'
 import { appContext } from '../../context/AppContext'
 import PopUp from '../PopUp/PopUp'
-import Login from './components/Login/Login'
+import Login from '../Login/Login'
 import UserButton from './components/UserButton/UserButton'
+import SiginUp from '../SiginUp/SignUp'
+import StatusMsg from '../StatusMsg/StatusMsg'
 
 export default function Navbar() 
 {
   const[show,setShow]=useState(false)
+  const[showOkPopUp,setShowOkPopUp]=useState({show:false})
   const{setShowMobMenu,user,showMobMenu}=useContext(appContext)
 
   return (
     <>
       <PopUp
-        show={show}
+        show={show.show}
         setShow={setShow}
-        popUp={<Login setShow={setShow} />}
+        popUp={show.popUp}
+        closeButton={false}
       />
+      <PopUp
+       closeButton={false}
+       show={showOkPopUp.show}
+       popUp={
+        <StatusMsg
+          setShow={setShowOkPopUp}
+          status={"success"}
+          okMsg={"Te haz registrado con exito!!"}
+        />
+       }
+       />
       <header className="flex">
         <nav className="flex custom-container justify-between items-center mobNav:!px-[.7rem]">
           <ul className="flex gap-[3rem] font-medium text-myBlack items-stretch min-h-[4rem]">
@@ -43,13 +58,18 @@ export default function Navbar()
             <div className="flex gap-[1rem] mobNav:hidden">
               <Cart />
               {!user && (
-                <Button label="iniciar sesion" onClick={() => setShow(true)} />
+                <Button
+                  label="iniciar sesion"
+                  onClick={() =>
+                    setShow({ show: true, popUp: <Login setShow={setShow}/> })
+                  }
+                />
               )}
               {user && (
                 <LinkButton
                   label="Aula Virtual"
                   path={"https://aula.desarrolloglobal.pe/aula/#tab_tablero"}
-                  target={'_blank'}
+                  target={"_blank"}
                   toOutside={true}
                 />
               )}
@@ -61,6 +81,7 @@ export default function Navbar()
                       "!bg-[transparent] !border-[3px] !border-myPurple !box-border",
                     span: "!text-myPurple",
                   }}
+                  onClick={() => setShow({show:true,popUp:<SiginUp setShow={setShow} setShowOkPopUp={setShowOkPopUp} />})}
                 />
               )}
             </div>

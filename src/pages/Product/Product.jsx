@@ -30,7 +30,6 @@ export default function Product({type})
   const contextValues=
   {
     ...data,
-    lol:'lol'
   }
 
   useEffect(()=>
@@ -61,7 +60,7 @@ export default function Product({type})
               <Section title={"Beneficios"} body={<Beneficios />} />
               <Section title={"Certificado"} body={<Certificado />} />
               <Section title={"Inversión"} body={<Inversion {...data} />} />
-              <Formas />
+              <Formas data={data} />
             </section>
             <aside className="flex-[1]">
               <span className="text-[16px] text-center text-[#fd0000] hidden heroProduct:block">

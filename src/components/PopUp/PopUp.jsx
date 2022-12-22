@@ -38,7 +38,7 @@ export default function PopUp(props)
        ></div>
 
        <div
-         className={`fixed h-[calc(100vh)] w-[100vw] flex justify-center items-center previewMob:items-start previewMob:pt-[4rem] previewMob:pb-[2rem] z-[99999999999] top-0 left-0 ${
+         className={`fixed h-[calc(100vh)] w-[100vw] flex justify-center items-center previewMob:items-start previewMob:pt-[4rem] previewMob:pb-[2rem] z-[99999999999] top-0 left-0 px-[.5rem] ${
            show ? "pointer-events-auto" : "pointer-events-none"
          } ${show ? "overflow-y-auto" : ""}`}
        >

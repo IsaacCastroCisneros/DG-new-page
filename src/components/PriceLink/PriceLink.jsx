@@ -16,7 +16,8 @@ export default function PriceLink(props)
       type,
       tag,
       isPopUp=false,
-      productData
+      productData,
+      isLinkLike=false
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -47,7 +48,7 @@ export default function PriceLink(props)
           </>
         )}
         {type === "chat" && <Chat asesores={productData?.asesores} name={productData?.titulo}/>}
-        {type === "cart" && <Cart {...productData} />}
+        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} />}
       </>
     );
 }
@@ -83,7 +84,7 @@ function Chat({asesores,name,productData})
 
 function Cart(props)
 {
-  const { id, precio, titulo,imagen,tipo,cursos,sesiones:curSesiones } = props;
+  const { id, precio, titulo,imagen,tipo,cursos,sesiones:curSesiones ,isLinkLike } = props;
   
   const navigate= useNavigate();
 
@@ -131,15 +132,26 @@ function Cart(props)
   }
 
   return (
-    <button className="border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]"
-     onClick={
-       addingToCart
-     }
-     >
-      <span className="text-[2rem] previewMob:text-[1.5rem]">
-        <FontAwesomeIcon icon={faShoppingCart} />
-      </span>
-      <span className="font-medium">Añadir al carrito</span>
-    </button>
+    <>
+      {!isLinkLike && (
+        <button
+          className="border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]"
+          onClick={addingToCart}
+        >
+          <span className="text-[2rem] previewMob:text-[1.5rem]">
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </span>
+          <span className="font-medium">Añadir al carrito</span>
+        </button>
+      )}
+      {isLinkLike && (
+        <button
+          className="text-[#0088e3] font-bold mt-[1rem] hover:underline"
+          onClick={addingToCart}
+        >
+          <span className="font-medium">Añadir al carrito</span>
+        </button>
+      )}
+    </>
   );
 }

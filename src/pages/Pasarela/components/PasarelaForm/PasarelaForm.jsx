@@ -1,7 +1,7 @@
 import React,{useState}  from 'react'
 import { useContext } from 'react';
 import LinkButton from '../../../../components/LinkButton/LinkButton';
-import Login from '../../../../components/NavBar/components/Login/Login';
+import Login from '../../../../components/Login/Login';
 import PopUp from '../../../../components/PopUp/PopUp';
 import { appContext } from '../../../../context/AppContext';
 import CartItems from './components/CartItems/CartItems';

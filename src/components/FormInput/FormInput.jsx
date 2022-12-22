@@ -6,7 +6,8 @@ export default function FormInput(props)
 {
   const
   {
-    type='regular'
+    type='regular',
+    okBorder=false
   }=props
 
   return (
@@ -16,7 +17,7 @@ export default function FormInput(props)
       )}
       {
         type==='simple'&&
-        <Simple {...props} />
+        <Simple {...props} okBorder={okBorder} />
       }
     </>
   );
