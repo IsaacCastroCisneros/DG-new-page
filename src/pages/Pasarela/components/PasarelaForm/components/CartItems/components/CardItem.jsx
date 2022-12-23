@@ -17,13 +17,13 @@ export default function CardItem(props)
       </div>
       <section className='flex-[1]'>
          <p className='text-red-500 font-medium'>
-           <span className='capitalize'>{tipo}</span> en vivo
+           <span className='capitalize'>{tipo}</span> Grabado
          </p>
          <strong title={name} className="whitespace-nowrap overflow-hidden text-ellipsis block max-w-[239.4px] mb-[.2rem]" >
           {name}
          </strong>
          <span>
-           S/.{price}
+           S/.{price.toFixed(2)}
          </span>
       </section>
     </div>

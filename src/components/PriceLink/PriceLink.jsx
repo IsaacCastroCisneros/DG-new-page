@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
-import { faShare,faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faShare,faShoppingCart,faCreditCard } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
@@ -17,7 +17,8 @@ export default function PriceLink(props)
       tag,
       isPopUp=false,
       productData,
-      isLinkLike=false
+      isLinkLike=false,
+      conTarjeta,
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -48,7 +49,7 @@ export default function PriceLink(props)
           </>
         )}
         {type === "chat" && <Chat asesores={productData?.asesores} name={productData?.titulo}/>}
-        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} />}
+        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} conTarjeta={conTarjeta} />}
       </>
     );
 }
@@ -84,7 +85,18 @@ function Chat({asesores,name,productData})
 
 function Cart(props)
 {
-  const { id, precio, titulo,imagen,tipo,cursos,sesiones:curSesiones ,isLinkLike } = props;
+  const 
+  { 
+    id, 
+    precio, 
+    titulo,
+    imagen,
+    tipo,
+    cursos,
+    sesiones:curSesiones ,
+    isLinkLike,
+    conTarjeta=false 
+  } = props;
   
   const navigate= useNavigate();
 
@@ -128,7 +140,10 @@ function Cart(props)
     
     setShowNoti({show:true,status:'ok'})
     setCart([...cart,product])
-    navigate('/pasarela-pago')
+    if(conTarjeta)
+    {
+      navigate('/pasarela-pago')
+    }
   }
 
   return (
@@ -139,9 +154,9 @@ function Cart(props)
           onClick={addingToCart}
         >
           <span className="text-[2rem] previewMob:text-[1.5rem]">
-            <FontAwesomeIcon icon={faShoppingCart} />
+            <FontAwesomeIcon icon={conTarjeta ? faCreditCard : faShoppingCart} />
           </span>
-          <span className="font-medium">Añadir al carrito</span>
+          <span className="font-medium">{conTarjeta ? 'Pagar Con Tarjeta' : 'Añadir al carrito'} </span>
         </button>
       )}
       {isLinkLike && (
@@ -149,7 +164,7 @@ function Cart(props)
           className="text-[#0088e3] font-bold mt-[1rem] hover:underline"
           onClick={addingToCart}
         >
-          <span className="font-medium">Añadir al carrito</span>
+          <span className="font-bold">Pagar Con Tarjeta</span>
         </button>
       )}
     </>

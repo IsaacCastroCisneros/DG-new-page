@@ -27,7 +27,7 @@ export default function Card(props)
 
   return (
     <>
-      <PopUp show={show} setShow={setShow} popUp={<Preview {...props}/>} overflow={false} />
+      <PopUp show={show} setShow={setShow} popUp={<Preview {...props} setShow={setShow} />} overflow={false} />
       <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col">
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />

@@ -5,14 +5,17 @@ import MyIziInput from './MyIziInput'
 import PopUp from '../../../../../components/PopUp/PopUp'
 import CVV from './CVV'
 
-export default function Izi() 
+export default function Izi({payType,load}) 
 {
   const[show,setShow]=useState(false)
+
+  const isLoad= load ? '' : '!opacity-0 !pointer-events-none'
+  const hidden =  payType==='card' ? '' : '!opacity-0 !pointers-events-none !hidden'
 
   return (
     <>
       <PopUp closeButton={false} show={show} popUp={<CVV setShow={setShow}/>}/>
-      <div className="flex justify-center pt-[1rem]">
+      <div className={`flex justify-center pt-[1rem] ${hidden} ${isLoad}`}>
         <div id="myPaymentForm" className="w-[100%] relative">
           <button
             className="absolute top-[5.5rem] left-[28rem] z-[999] question1:left-[26rem] question2:left-[26.5rem] question3:left-[24.5rem] question4:left-[22.5rem] question5:left-[0rem] question5:top-[11.5rem] question6:top-[8.6rem] question6:left-[9rem] question7:left-[8.2rem] question8:left-[4.3rem]"

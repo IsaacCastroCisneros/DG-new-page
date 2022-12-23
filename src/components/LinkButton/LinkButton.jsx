@@ -16,7 +16,7 @@ export default function LinkButton(props)
           target={target}
         >
           <span
-            className={`capitalize text-[#fff] text-center block text-[1.3rem] ${span}`}
+            className={`capitalize text-[#fff] text-center block text-[1rem] ${span}`}
           >
             {label}
           </span>
@@ -29,7 +29,7 @@ export default function LinkButton(props)
           target={target}
         >
           <span
-            className={`capitalize text-[#fff] text-center block text-[1.3rem] ${span}`}
+            className={`capitalize text-[#fff] text-center block text-[1rem] ${span}`}
           >
             {label}
           </span>

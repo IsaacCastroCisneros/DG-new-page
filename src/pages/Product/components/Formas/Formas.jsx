@@ -32,7 +32,6 @@ export default function Formas()
               <FontAwesomeIcon icon={faCcDinersClub} />
             </div>
           }
-          label={"Pagar con Tarjeta"}
           linkLike={true}
           path={"/"}
         />

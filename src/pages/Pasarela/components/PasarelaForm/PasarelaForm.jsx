@@ -45,7 +45,7 @@ export default function PasarelaForm()
           </h1>
           <CartItems />
         </section>
-        <section className="flex-[2.5] bg-[#fff] px-[4rem] py-[3rem] 926px:px-[1.5rem] 926px:py-[2rem]">
+        <section className="flex-[2.5] bg-[#fff] px-[4rem] py-[3rem] 926px:px-[1.5rem] 926px:py-[2rem] relative">
           {!isCart &&!showSuccess &&<EmptyCart/>}
           {isCart && (
             <>

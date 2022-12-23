@@ -9,7 +9,6 @@ import ContenidoTem from './components/ContenidoTem/ContenidoTem';
 import Formas from './components/Formas/Formas';
 import HeroProduct from './components/HeroProduct/HeroProduct';
 import Inversion from './components/Inversion/Inversion';
-import PorQueParticipar from './components/PorQueParticipar/PorQueParticipar';
 import RiteCardPrice from './components/RiteCardPrice/RiteCardPrice';
 import Section from './components/Section/Section';
 import Footer from '../../components/Footer/Footer'
@@ -55,7 +54,7 @@ export default function Product({type})
           <HeroProduct {...data} />
           <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
             <section className="flex-[3]">
-              <PorQueParticipar tipo={data.tipo} />
+              {/* <PorQueParticipar tipo={data.tipo} /> */}
               <ContenidoTem {...data} />
               <Section title={"Beneficios"} body={<Beneficios />} />
               <Section title={"Certificado"} body={<Certificado />} />

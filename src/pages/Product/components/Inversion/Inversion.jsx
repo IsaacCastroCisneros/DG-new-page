@@ -25,10 +25,8 @@ export default function Inversion(props) {
           Estamos para ayudarte
         </h1>
         <div className="flex flex-col gap-[.5rem]">
-          <PriceLink
-            type={"cart"}
-            productData={props}
-          />
+          <PriceLink type={"cart"} productData={props} conTarjeta={true} />
+          <PriceLink type={"cart"} productData={props} />
           <PriceLink type={"mas"} isPopUp={true} />
           <PriceLink type={"chat"} productData={props} />
         </div>

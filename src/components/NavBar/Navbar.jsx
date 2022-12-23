@@ -55,7 +55,7 @@ export default function Navbar()
             {/*  <NavOption label={"packs"} path={"/"} /> */}
           </ul>
           <div className="flex gap-[1rem] items-center">
-            <div className="flex gap-[1rem] mobNav:hidden">
+            <div className="flex gap-[1.3rem] mobNav:hidden">
               <Cart />
               {!user && (
                 <Button

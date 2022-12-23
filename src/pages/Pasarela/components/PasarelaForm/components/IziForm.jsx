@@ -8,12 +8,21 @@ import Izi from './Izi'
 import PayTypes from './PayTypes'
 import DepositoForm from './DepositoForm'
 import LoadFormMsg from './LoadFormMsg'
+import Spinner from '../../../../../components/Spinner/Spinner'
 
 export default function IziForm({setShowSuccess}) 
 {
   const{cart,user,setCart}=useContext(appContext)
   const[load,setLoad]=useState(false)
   const[payType,setPayType]=useState('card')
+
+  useEffect(()=>
+  {
+    setTimeout(()=>
+    {
+       setLoad(true)
+    },5000)
+  },[])
 
   useEffect(()=>
   {
@@ -36,7 +45,7 @@ export default function IziForm({setShowSuccess})
     formData.append("productsArr", JSON.stringify(productsArr));
 
     const endpoint = 'https://api.micuentaweb.pe'
-    const publicKey = '97649007:publickey_7BLQcvuVTHjNDjzzSmiyJM8VnfXpfQX9Li995qHar6NyA'
+    const publicKey = '97649007:testpublickey_UTZAMW5mLnK026AEknrEn6L7WODbX2AllfyAycTISdiUX'
     let formToken = ''
 
       axios
@@ -46,7 +55,6 @@ export default function IziForm({setShowSuccess})
         )
         .then((resp) => {
           formToken = resp.data.token;
-          setLoad(true)
           return KRGlue.loadLibrary(
             endpoint,
             publicKey
@@ -87,27 +95,20 @@ export default function IziForm({setShowSuccess})
 
   return (
     <>
-      <PayTypes setPayType={setPayType} payType={payType}/>
+      <PayTypes setPayType={setPayType} payType={payType} />
       <div className="flex justify-between items-center 926px:flex-col 926px:items-start">
         <span className="block mt-[1rem] text-[12.5px]">
           Recuerda activar tu tarjeta para compras por internet
         </span>
-        <LoadFormMsg/>
+        <LoadFormMsg />
       </div>
-      {
-        !load&&
-        <strong className='block text-center mt-[1rem]'>
-           Cargando..
-        </strong>
-      }
-      {
-        payType==='card'&&load&&
-        <Izi/>
-      }
-      {
-        payType==='deposito'&&
-        <DepositoForm products={cart} />
-      }
+      {!load && (
+        <div className="w-[100%] top-[15rem] absolute flex justify-center left-0 926px:top-[20rem]">
+          <Spinner />
+        </div>
+      )}
+      {<Izi payType={payType} load={load} />}
+      {payType === "deposito" && <DepositoForm products={cart} />}
     </>
   );
 }

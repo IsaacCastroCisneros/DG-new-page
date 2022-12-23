@@ -5,13 +5,13 @@ export default function DepositoForm({products})
   const productsArr = products.map((entry) => {
     return entry.name;
   });
-  const productsStr = productsArr.join("|");
+  const productsStr = productsArr.join(" | ");
 
   function WpButton() {
     return (
       <a
         className="bg-[#16c121] inline-flex px-[2rem] py-[.8rem] mob:px-[1rem] items-center rounded-[.5rem] gap-[1rem] mob:gap-[.5rem]"
-        href={`https://api.whatsapp.com/send?phone=51987756735&text=Hola quisiera comprar los programas: ${productsStr}`}
+        href={`https://api.whatsapp.com/send?phone=51987756735&text=Hola quisiera comprar los programas:${productsStr}`}
         target={"_blank"}
       >
         <img
@@ -42,7 +42,7 @@ export default function DepositoForm({products})
   }
 
   return (
-    <div className="mt-[2.5rem]">
+    <div className="mt-[2.5rem] relative z-[999]">
       <h3 className="text-[18px] font-medium mb-[1rem]">
         Tarjeta de Crédito / Débito
       </h3>

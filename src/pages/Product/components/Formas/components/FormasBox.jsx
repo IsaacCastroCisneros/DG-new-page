@@ -25,7 +25,14 @@ export default function FormasBox(props)
        </div>
        <h3 className="text-[16px] block">{title}</h3>
        {body}
-       {linkLike && <PriceLink type={"cart"} productData={data} isLinkLike={true}/>}
+       {linkLike && (
+         <PriceLink
+           type={"cart"}
+           productData={data}
+           isLinkLike={true}
+           conTarjeta={true}
+         />
+       )}
        {!linkLike && (
          <Link
            to={path}
