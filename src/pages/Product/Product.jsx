@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/Footer'
 import PopUp from '../../components/PopUp/PopUp';
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
+import MyHelmetProduct from '../../components/Helmet/MyHelmetProduct';
 
 export const productContext = React.createContext()
 
@@ -38,10 +39,16 @@ export default function Product({type})
     body?.setAttribute('style','overflow:auto');
   },[])
 
-
+  console.log(data)
 
   return (
     <productContext.Provider value={contextValues}>
+      <MyHelmetProduct
+          titulo={data?.titulo}
+          descripcion={data?.descripcion}
+          imagen={data?.imagen}
+          seo={data?.seo}
+        />
       {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
       {!isFetching && (
         <>

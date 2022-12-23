@@ -17,7 +17,7 @@ export default function Button(props)
      onClick={onClick}
      type={type}
      >
-      <span className={`capitalize text-[#fff] text-[1.3rem] ${span}`}>
+      <span className={`capitalize text-[#fff] ${span}`}>
         {
           label
         }

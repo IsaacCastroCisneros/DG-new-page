@@ -44,6 +44,8 @@ export default function IziForm({setShowSuccess})
     formData.append("idUser",user.id)
     formData.append("productsArr", JSON.stringify(productsArr));
 
+    /* 97649007:publickey_7BLQcvuVTHjNDjzzSmiyJM8VnfXpfQX9Li995qHar6NyA */
+
     const endpoint = 'https://api.micuentaweb.pe'
     const publicKey = '97649007:testpublickey_UTZAMW5mLnK026AEknrEn6L7WODbX2AllfyAycTISdiUX'
     let formToken = ''

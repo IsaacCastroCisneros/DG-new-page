@@ -32,7 +32,7 @@ export default function SignUp({setShow,setShowOkPopUp})
         postRequest({type:'signUp',data:form})
         .then(res=>
         {
-            if(res===false)return setShowStatus({show:true,label:"Email o contraseña incorrectos"})
+            if(res===false)return setShowStatus({show:true,label:"El email o contraseña ya esta registrado"})
 
             const form = new FormData()
             form.append('correo',formData.userEmail)

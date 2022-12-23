@@ -18,7 +18,7 @@ export default function Home()
   return (
     <>
       <MyHelmet
-        title={"Desarrollo Global | Grabados"}
+        title={"Desarrollo Global | cursos, diplomas y diplomados en gestion publica"}
         content={
           "Desarrollo Global con mas de 11 años mejorando las competencias y capacidades de los servidores públicos y privados. Contamos con la Certificación de calidad ISO 9001-2015."
         }
