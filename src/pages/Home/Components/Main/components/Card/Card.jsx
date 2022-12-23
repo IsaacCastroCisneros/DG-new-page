@@ -54,7 +54,7 @@ export default function Card(props)
                 {tipo === "curso" && (
                   <Row
                     icon={faClock}
-                    text={`${sesiones?.length} sesionens en video`}
+                    text={`${sesiones?.length} sesiones en video`}
                   />
                 )}
               </section>
