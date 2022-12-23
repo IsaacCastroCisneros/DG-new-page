@@ -39,17 +39,19 @@ export default function Login({setShow})
   }
 
   return (
-    <MyForm
-      showStatus={showStatus}
-      setShow={setShow}
-      form={
-        <MyLogin
-          submitting={submitting}
-          errList={errList}
-          setFormData={setFormData}
-        />
-      }
-    />
+    <>
+      <MyForm
+        showStatus={showStatus}
+        setShow={setShow}
+        form={
+          <MyLogin
+            submitting={submitting}
+            errList={errList}
+            setFormData={setFormData}
+          />
+        }
+      />
+    </>
   );
 }
 

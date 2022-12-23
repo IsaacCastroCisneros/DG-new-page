@@ -4,6 +4,7 @@ import Card from '../Card/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMedal,faBook, faGraduationCap,faMousePointer } from '@fortawesome/free-solid-svg-icons'
 import Spinner from '../../../../../../components/Spinner/Spinner'
+import LinkButton from '../../../../../../components/LinkButton/LinkButton'
 
 export default function Results() 
 {
@@ -13,49 +14,46 @@ export default function Results()
   return (
     <>
       <div className="flex justify-center gap-[1rem] mb-[4rem] phone:mb-[1.3rem] elige:grid elige:grid-cols-[repeat(2,50%)] elige:gap-[.5rem]">
-        <ButtonType 
-          setType={setType} 
-          selected={type} 
+        <ButtonType
+          setType={setType}
+          selected={type}
           label={"todos"}
-          icon={<FontAwesomeIcon icon={faMousePointer}/>} 
-          />
-        <ButtonType 
-          setType={setType} 
-          selected={type} 
+          icon={<FontAwesomeIcon icon={faMousePointer} />}
+        />
+        <ButtonType
+          setType={setType}
+          selected={type}
           label={"cursos"}
-          icon={<FontAwesomeIcon icon={faBook}/>} 
-          />
-        <ButtonType 
-          setType={setType} 
-          selected={type} 
+          icon={<FontAwesomeIcon icon={faBook} />}
+        />
+        <ButtonType
+          setType={setType}
+          selected={type}
           label={"diplomas"}
-          icon={<FontAwesomeIcon icon={faMedal}/>} 
-          />
-        <ButtonType 
-          setType={setType} 
-          selected={type} 
+          icon={<FontAwesomeIcon icon={faMedal} />}
+        />
+        <ButtonType
+          setType={setType}
+          selected={type}
           label={"diplomados"}
-          icon={<FontAwesomeIcon icon={faGraduationCap}/>} 
-          />
+          icon={<FontAwesomeIcon icon={faGraduationCap} />}
+        />
       </div>
-      {
-        isFetching&&
-        <Spinner/>
-      }
-      {
-        !isFetching&&
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0]">
+      {isFetching && <Spinner />}
+      {!isFetching && (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0] mb-[5rem]">
           {data?.map((card) => {
-            return (
-              <Card
-                key={card.id}
-                type={type}
-                {...card}
-              />
-            );
+            return <Card key={card.id} type={type} {...card} />;
           })}
         </div>
-      }
+      )}
+      <div className="flex justify-center">
+        <LinkButton
+          label={`Ver Mas ${type}`}
+          path={`/${type}`}
+          styles={{ button: "!max-w-[20rem]" }}
+        />
+      </div>
     </>
   );
 }

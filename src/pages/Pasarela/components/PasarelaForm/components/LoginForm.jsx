@@ -1,7 +1,9 @@
 import React from 'react'
 import Button from '../../../../../components/Button/Button';
+import Login from '../../../../../components/Login/Login';
+import SignUp from '../../../../../components/SignUp/SignUp';
 
-export default function LoginForm({setShow}) 
+export default function LoginForm({setShow,setShowOkPopUp}) 
 {
   return (
     <>
@@ -18,11 +20,18 @@ export default function LoginForm({setShow})
           <img src="/img/logo-DG-nuevo.webp" className="w-[15rem]" alt="" />
         </div>
       </div>
-      <Button
-        label={"Ingresa aqui"}
-        styles={{ button: "!w-[100%] !py-[.7rem]" }}
-        onClick={() => setShow(true)}
-      />
+      <div className='flex flex-col gap-[1rem]'>
+        <Button
+          label={"Ingresa aqui"}
+          styles={{ button: "!w-[100%] !py-[.7rem]" }}
+          onClick={() => setShow({ show: true,popUp:<Login setShow={setShow} /> })}
+        />
+        <Button
+          label={"Registrate aqui"}
+          styles={{ button: "!w-[100%] !py-[.7rem]" }}
+          onClick={() => setShow({ show: true,popUp:<SignUp setShow={setShow} setShowOkPopUp={setShowOkPopUp} /> })}
+        />
+      </div>
     </>
   );
 }

@@ -8,7 +8,7 @@ export default function LeftSection(props)
   const { titulo, precio, faMedal, faCircleCheck,imagen } = props;
 
   return (
-    <section className="flex flex-col justify-between">
+    <section className="flex flex-col justify-between max-w-[30rem] gap-[1rem]">
       <div className="w-[100%] mb-[1.5rem] hidden previewMob:block">
         <img className="w-[100%] rounded-[.5rem]" src={imagen} alt="" />
       </div>

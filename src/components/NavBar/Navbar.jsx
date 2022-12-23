@@ -11,7 +11,7 @@ import { appContext } from '../../context/AppContext'
 import PopUp from '../PopUp/PopUp'
 import Login from '../Login/Login'
 import UserButton from './components/UserButton/UserButton'
-import SiginUp from '../SiginUp/SignUp'
+import SignUp from '../SignUp/SignUp'
 import StatusMsg from '../StatusMsg/StatusMsg'
 
 export default function Navbar() 
@@ -81,7 +81,7 @@ export default function Navbar()
                       "!bg-[transparent] !border-[3px] !border-myPurple !box-border",
                     span: "!text-myPurple",
                   }}
-                  onClick={() => setShow({show:true,popUp:<SiginUp setShow={setShow} setShowOkPopUp={setShowOkPopUp} />})}
+                  onClick={() => setShow({show:true,popUp:<SignUp setShow={setShow} setShowOkPopUp={setShowOkPopUp} />})}
                 />
               )}
             </div>

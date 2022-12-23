@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
 import Spinner from '../../components/Spinner/Spinner';
 import useMyQuery from '../../customHooks/useMyQuery';
@@ -9,7 +10,12 @@ import HeroPrograma from './components/HeroPrograma';
 export default function Programas({type}) 
 {
   const{data,isFetching}=useMyQuery({type})
-  
+
+  useEffect(()=>
+  {
+    window.scrollTo(0, 0);
+  },[])
+
   return (
     <>
       <HeroPrograma type={type} />

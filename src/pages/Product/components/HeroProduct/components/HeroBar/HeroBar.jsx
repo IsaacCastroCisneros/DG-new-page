@@ -4,13 +4,10 @@ export default function HeroBar(props)
 {
   const
   {
-    inicio,
     sesiones,
     tipo_clase,
     total_sesiones
   }=props
-
-  console.log(props)
 
   return (
     <div className="custom-container3 flex absolute left-0 w-[100%] bottom-0 justify-between translate-y-[50%] heroProduct:hidden">
@@ -22,7 +19,7 @@ export default function HeroBar(props)
         />
         <HeroBarBox
           title={"modalidad"}
-          data={`Virtual ${tipo_clase}`}
+          data={`CLASES GRABADAS`}
           img={"/img/icons/play.png"}
         />
         <HeroBarBox

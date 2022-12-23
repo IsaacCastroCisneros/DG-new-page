@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import HeroHome from './Components/HeroHome/HeroHome'
 import Footer from '../../components/Footer/Footer';
 import EligeElPrograma from './Components/Main/EligeElPrograma';
@@ -7,7 +7,13 @@ import NuestrosBeneficios from './Components/NuestrosBeneficios/NuestrosBenefici
 import ProgramaElaborado from './Components/ProgramaElaborado/ProgramaElaborado';
 
 
-export default function Home() {
+export default function Home() 
+{
+  useEffect(()=>
+  {
+    window.scrollTo(0, 0);
+  })
+  
   return (
     <>
       <HeroHome />

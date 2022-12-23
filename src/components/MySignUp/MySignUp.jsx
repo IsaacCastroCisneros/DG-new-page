@@ -118,6 +118,7 @@ export default function MySignUp({submitting,errList,setFormData})
               placeHolder={"Repetir Contraseña"}
               type={"simple"}
               errLabel={errList?.userPasswordRetry}
+              inputType={"password"}
               okBorder={true}
               onChange={(e) =>
                 setFormData((prev) => {

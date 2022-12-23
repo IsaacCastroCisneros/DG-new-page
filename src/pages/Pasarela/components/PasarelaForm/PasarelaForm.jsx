@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import LinkButton from '../../../../components/LinkButton/LinkButton';
 import Login from '../../../../components/Login/Login';
 import PopUp from '../../../../components/PopUp/PopUp';
+import StatusMsg from '../../../../components/StatusMsg/StatusMsg';
 import { appContext } from '../../../../context/AppContext';
 import CartItems from './components/CartItems/CartItems';
 import IziForm from './components/IziForm';
@@ -13,6 +14,7 @@ export default function PasarelaForm()
 {
   const[show,setShow]=useState(false)
   const[showSuccess,setShowSuccess]=useState(false)
+  const[showOkPopUp,setShowOkPopUp]=useState(false)
   const{user,cart}=useContext(appContext);
 
   const isCart = cart ? cart.length>0 : false
@@ -20,10 +22,22 @@ export default function PasarelaForm()
   return (
     <>
       <PopUp
-        show={show}
+        show={show.show}
         setShow={setShow}
-        popUp={<Login setShow={setShow} />}
+        closeButton={false}
+        popUp={show.popUp}
       />
+      <PopUp
+       closeButton={false}
+       show={showOkPopUp.show}
+       popUp={
+        <StatusMsg
+          setShow={setShowOkPopUp}
+          status={"success"}
+          okMsg={"Te haz registrado con exito!!"}
+        />
+       }
+       />
       <div className="flex shadow-xl text-[#000] 926px:flex-col-reverse">
         <section className="flex-1 py-[2rem] px-[1.5rem] flex flex-col justify-between">
           <h1 className="font-bold text-[1.2rem] text-blue-500 mb-[1.5rem]">
@@ -37,7 +51,7 @@ export default function PasarelaForm()
             <>
               {!showSuccess && (
                 <>
-                  {!user && <LoginForm setShow={setShow} />}
+                  {!user && <LoginForm setShow={setShow} setShowOkPopUp={setShowOkPopUp} />}
                   {user && <IziForm setShowSuccess={setShowSuccess} />}
                 </>
               )}

@@ -50,7 +50,7 @@ export default function Card(props)
             />
             <div className="flex justify-between">
               <section>
-                <Row icon={faCalendarDays} text={inicio} label="Inicio: " />
+                <Row icon={faCalendarDays} text={"Ahora Mismo"} label="Inicio: " />
                 {tipo === "curso" && (
                   <Row
                     icon={faClock}
