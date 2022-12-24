@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
 import CuentaBox from './components/CuentaBox';
 
-import nacion from '/img/banks/Nacion.webp'
-import bcp from '/img/banks/Bcp.webp'
-import scotio from '/img/banks/Scotiabank.webp'
-import inter from '/img/banks/Interbank.webp'
-import bbva from '/img/banks/Bbva.webp'
+
+import nacion from '../../../../../../../public/img/banks/Nacion.webp'
+import bcp from '../../../../../../../public/img/banks/Bcp.webp'
+import scotio from '../../../../../../../public/img/banks/Scotiabank.webp'
+import inter from '../../../../../../../public/img/banks/Interbank.webp'
+import bbva from '../../../../../../../public/img/banks/Bbva.webp'
 
 export default function Cuentas() 
 {

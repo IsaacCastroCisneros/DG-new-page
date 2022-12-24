@@ -183,8 +183,8 @@ function MyAddToCart(props)
         isIn ? "!bg-myPurple !text-[#fff]" : ""
       }`}
       onClick={addingToCart}
-      onMouseEnter={() => setShowRemove(true)}
-      onMouseLeave={() => setShowRemove(false)}
+      onMouseEnter={ isIn ? () => setShowRemove(true) : ''}
+      onMouseLeave={isIn ? () => setShowRemove(false) : ''}
     >
       <span className="text-[2rem] previewMob:text-[1.5rem] relative">
         <FontAwesomeIcon icon={conTarjeta ? faCreditCard : faShoppingCart} />
