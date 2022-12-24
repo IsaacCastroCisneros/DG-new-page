@@ -21,15 +21,21 @@ export const productContext = React.createContext()
 
 export default function Product({type}) 
 {
-  const{showPopUp,setShowPopUp}=useContext(appContext)
-
+  const{showPopUp,setShowPopUp,cart}=useContext(appContext)
   const{id:tag}=useParams();
-  
   const{data,isFetching}=useMyQuery({type,tag});
+  
+  let isIn = undefined;
+
+  if(data)
+  {
+    isIn = cart.find(item=>item.id===data.id)
+  }
 
   const contextValues=
   {
     ...data,
+    isIn
   }
 
   useEffect(()=>

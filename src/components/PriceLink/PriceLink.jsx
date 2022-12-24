@@ -1,11 +1,12 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
-import { faShare,faShoppingCart,faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { faShare,faShoppingCart,faCreditCard, faCheckCircle, faXmarkCircle } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import HeroForm from '../../pages/Product/components/HeroProduct/components/HeroForm/HeroForm';
+import { useState } from 'react';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
@@ -19,6 +20,7 @@ export default function PriceLink(props)
       productData,
       isLinkLike=false,
       conTarjeta,
+      isIn
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -49,7 +51,7 @@ export default function PriceLink(props)
           </>
         )}
         {type === "chat" && <Chat asesores={productData?.asesores} name={productData?.titulo}/>}
-        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} conTarjeta={conTarjeta} />}
+        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} conTarjeta={conTarjeta} isIn={isIn} />}
       </>
     );
 }
@@ -95,7 +97,8 @@ function Cart(props)
     cursos,
     sesiones:curSesiones ,
     isLinkLike,
-    conTarjeta=false 
+    conTarjeta=false,
+    isIn 
   } = props;
   
   const navigate= useNavigate();
@@ -140,24 +143,13 @@ function Cart(props)
     
     setShowNoti({show:true,status:'ok'})
     setCart([...cart,product])
-    if(conTarjeta)
-    {
-      navigate('/pasarela-pago')
-    }
+    navigate('/pasarela-pago')
   }
 
   return (
     <>
       {!isLinkLike && (
-        <button
-          className="border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]"
-          onClick={addingToCart}
-        >
-          <span className="text-[2rem] previewMob:text-[1.5rem]">
-            <FontAwesomeIcon icon={conTarjeta ? faCreditCard : faShoppingCart} />
-          </span>
-          <span className="font-medium">{conTarjeta ? 'Pagar Con Tarjeta' : 'Añadir al carrito'} </span>
-        </button>
+        <MyAddToCart   isIn={isIn} addingToCart={addingToCart} conTarjeta={conTarjeta} faCreditCard={faCreditCard} faShoppingCart={faShoppingCart} faCheckCircle={faCheckCircle}  />
       )}
       {isLinkLike && (
         <button
@@ -170,3 +162,51 @@ function Cart(props)
     </>
   );
 }
+
+function MyAddToCart(props)
+{
+  const[showRemove,setShowRemove]=useState(false)
+
+  const
+  {
+    isIn, 
+    addingToCart, 
+    conTarjeta, 
+    faCreditCard, 
+    faShoppingCart, 
+    faCheckCircle
+  }=props
+
+  return (
+    <button
+      className={`border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px] ${
+        isIn ? "!bg-myPurple !text-[#fff]" : ""
+      }`}
+      onClick={addingToCart}
+      onMouseEnter={() => setShowRemove(true)}
+      onMouseLeave={() => setShowRemove(false)}
+    >
+      <span className="text-[2rem] previewMob:text-[1.5rem] relative">
+        <FontAwesomeIcon icon={conTarjeta ? faCreditCard : faShoppingCart} />
+        {isIn && (
+          <p className="absolute text-[1.5rem] h-fit right-0 bottom-0 rounded-[100%] translate-x-[50%] bg-[#fff] text-myPurple flex justify-center items-center border-[1px] border-[#fff]">
+            <FontAwesomeIcon
+              icon={showRemove ? faXmarkCircle : faCheckCircle}
+            />
+          </p>
+        )}
+      </span>
+      {!showRemove && (
+        <span className="font-medium">
+          {conTarjeta ? "Pagar Con Tarjeta" : "Añadir al carrito"}{" "}
+        </span>
+      )}
+      {showRemove && (
+        <span className="font-medium">
+          Eliminar
+        </span>
+      )}
+    </button>
+  );
+}
+  

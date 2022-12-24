@@ -1,10 +1,14 @@
 import React from 'react'
+import { useContext } from 'react'
 import PriceLink from '../../../../components/PriceLink/PriceLink'
 import Prices from '../../../../components/Prices/Prices'
+import { productContext } from '../../Product'
 import RiteBeneficios from './components/RiteBeneficios'
 
 export default function RiteCardPrice(props) 
 {
+  const{isIn}=useContext(productContext)
+
   const
   {
     precio,
@@ -18,7 +22,7 @@ export default function RiteCardPrice(props)
       <Prices precio={precio} gap={"!gap-[.5rem]"} />
       <div className="flex flex-col gap-[.6rem] mt-[1rem] mb-[1rem]">
         <PriceLink type={"cart"} productData={props} conTarjeta={true} />
-        <PriceLink type={"cart"} productData={props} />
+        <PriceLink type={"cart"} productData={props} isIn={isIn} />
         <PriceLink type={"mas"} isPopUp={true} />
         <PriceLink type={"chat"} productData={props} />
       </div>
