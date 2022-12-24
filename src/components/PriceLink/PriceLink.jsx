@@ -196,9 +196,14 @@ function MyAddToCart(props)
           </p>
         )}
       </span>
-      {!showRemove && (
+      {!showRemove &&!isIn &&(
         <span className="font-medium">
           {conTarjeta ? "Pagar Con Tarjeta" : "Añadir al carrito"}{" "}
+        </span>
+      )}
+      {!showRemove &&isIn&& (
+        <span className="font-medium">
+          En el Carrito
         </span>
       )}
       {showRemove && (
