@@ -55,7 +55,7 @@ export default function Cuentas()
       <div className="grid grid-cols-[repeat(auto-fill,minmax(15rem,1fr))] gap-[2rem]">
         {okMsg.show && (
           <span className="py-[.5rem] px-[.8rem] font-bold bg-green-500 absolute top-0 translate-y-[-50%] border-[1px] border-[#fff] rounded-[.5rem] text-[#fff] left-[50%] translate-x-[-50%]">
-            Cuenta {okMsg.msg} Copiada con exito!!
+            Cuenta {okMsg.msg} Copiada con exito!! 
           </span>
         )}
         {cuentas.map((cue) => {
