@@ -1,13 +1,6 @@
 import React,{useState} from 'react'
 import CuentaBox from './components/CuentaBox';
 
-
-import nacion from '../../../../../../../public/img/banks/Nacion.webp'
-import bcp from '../../../../../../../public/img/banks/Bcp.webp'
-import scotio from '../../../../../../../public/img/banks/Scotiabank.webp'
-import inter from '../../../../../../../public/img/banks/Interbank.webp'
-import bbva from '../../../../../../../public/img/banks/Bbva.webp'
-
 export default function Cuentas() 
 {
   const[okMsg,setOkMsg]=useState({show:false,msg:''})
@@ -17,37 +10,37 @@ export default function Cuentas()
     {
       title:'BANCO DE LA NACION',
       num:'00-015-013982',
-      img:nacion
+      img:'/img/banks/Nacion.webp'
     },
     {
       title:'BCP',
       num:'193-19452390-77',
-      img:bcp
+      img:'/img/banks/Bcp.webp'
     },
     {
       title:'SCOTIABANK',
       num:'193-19452390-77',
-      img:scotio
+      img:'/img/banks/Scotiabank.webp'
     },
     {
       title:'INTERBANK',
       num:'011-303500069-3',
-      img:inter
+      img:'/img/banks/Interbank.webp'
     },
     {
       title:'BANCO DE LA NACION',
       num:'04-074-875926',
-      img:nacion
+      img:'/img/banks/Nacion.webp'
     },
     {
       title:'BBVA',
       num:'193-94612138-0-14',
-      img:bbva
+      img:'/img/banks/Bbva.webp'
     },
     {
       title:'BCP',
       num:'0011-0153-02-00460394',
-      img:bcp
+      img:'/img/banks/Bcp.webp'
     }
   ]
 
