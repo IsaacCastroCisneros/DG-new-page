@@ -9,6 +9,7 @@ import Precio from './components/Precio'
 import PopUp from '../../../../../../components/PopUp/PopUp'
 import Preview from '../Preview/Preview'
 import { useState } from 'react'
+import titleShorter from '../../../../../../helpers/titleShorter'
 
 export default function Card(props) 
 {
@@ -20,10 +21,11 @@ export default function Card(props)
     imagen,
     titulo,
     tipo,
-    inicio,
     sesiones,
     precio,
   }=props
+
+  console.log(props)
 
   return (
     <>
@@ -34,8 +36,11 @@ export default function Card(props)
         </section>
         <section className="p-[2rem] flex flex-col relative flex-1">
           <Span100 type={tipo} />
-          <h3 className="text-myPurple text-center text-[1.2rem] mb-[1rem] phone:text-[18px]">
-            {titulo}
+          <h3 
+           className="text-myPurple text-center text-[1.2rem] mb-[1rem] phone:text-[18px]" 
+           title={titulo} 
+           >
+            {titleShorter(titulo)}
           </h3>
           <CertificacionDisponible icon={faMedal} />
           <div className="flex flex-col flex-1 justify-end">

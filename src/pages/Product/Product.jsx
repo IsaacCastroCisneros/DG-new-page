@@ -39,8 +39,6 @@ export default function Product({type})
     body?.setAttribute('style','overflow:auto');
   },[])
 
-  console.log(data)
-
   return (
     <productContext.Provider value={contextValues}>
       <MyHelmetProduct

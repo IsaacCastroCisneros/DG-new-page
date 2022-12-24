@@ -60,6 +60,7 @@ export default function Formas()
           label={
             "ver cuentas"
           }
+          onClick={true}
         />
       </div>
     </div>
