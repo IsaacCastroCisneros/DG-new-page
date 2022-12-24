@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PopUp from '../../../../../components/PopUp/PopUp';
 import PriceLink from '../../../../../components/PriceLink/PriceLink';
 import { productContext } from '../../../Product';
-import Cuentas from './cuentas/Cuentas';
+import Cuentas from './Cuentas/Cuentas';
 
 export default function FormasBox(props)
 {
