@@ -3,7 +3,7 @@ import React from 'react'
 export default function Footer() 
 {
   return (
-    <footer className='flex justify-center'>
+    <footer className='flex justify-center px-[1rem]'>
         <p className='text-gray-400 py-[3rem] phone:hidden'>
           Copyright © 2011-2022 CENTRO DE CAPACITAIÓN Y DESARROLLO GLOBAL
         </p>

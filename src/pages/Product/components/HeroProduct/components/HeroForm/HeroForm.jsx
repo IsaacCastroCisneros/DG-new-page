@@ -16,6 +16,7 @@ import { faCheckCircle,faXmarkCircle } from '@fortawesome/free-regular-svg-icons
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { appContext } from '../../../../../../context/AppContext';
 import MyMsg from '../../../../../../components/MyMsg/MyMsg';
+import CloseButton from '../../../../../../components/CloseButton/CloseButton';
 
 export default function HeroForm({isPopUp=false,closeButton=false}) 
 {
@@ -73,11 +74,7 @@ export default function HeroForm({isPopUp=false,closeButton=false})
       )}
       <div className="bg-myPurple relative px-[3rem] heroProduct:px-[2.5rem] py-[1.5rem] rounded-[.5rem] heroProduct:translate-y-[2rem]">
         {closeButton && (
-          <button className="absolute top-[-1rem] right-[-1rem] rounded-[100%] flex justify-center items-center text-[#fff] text-[1.2rem] w-[3rem] h-[3rem] border-[#fff] border-[1px] bg-black"
-           onClick={()=>setShowThisPopUp(prev=>{return {...prev,show:false}})}
-           >
-            <FontAwesomeIcon icon={faXmark} />
-          </button>
+          <CloseButton closeFunc={()=>setShowThisPopUp(prev=>{return {...prev,show:false}})} />
         )}
         {isPopUp && showPopUp.show && showPopUp.status === "success" && (
           <MyMsg

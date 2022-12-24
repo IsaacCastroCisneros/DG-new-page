@@ -14,16 +14,16 @@ export default function PopUp(props)
     closeButton=true
   }=props
 
-  const body= document.querySelector('body')
 
   useEffect(()=>
   {
     if(show&&!overflow)
     {
-      body?.setAttribute('style','overflow:hidden');
+      document.body.style.overflow='hidden'
       return
     }
-    body?.setAttribute('style','overflow:auto');
+    
+    document.body.style.overflow='auto'
   })
 
    return (
@@ -35,6 +35,7 @@ export default function PopUp(props)
          style={{
            opacity: `${show ? ".5" : "0"}`,
          }}
+         onClick={()=>setShow(false)}
        ></div>
 
        <div
@@ -43,7 +44,7 @@ export default function PopUp(props)
          } ${show ? "overflow-y-auto" : ""}`}
        >
          <div
-           className="flex gap-[1rem] relative transition-all duration-[200ms] mob:w-[90%] mob:gap-[.5rem] justify-center items-center mob2:flex-col"
+           className="flex gap-[1rem] relative transition-all duration-[200ms] myPopUp:w-[95%] mob:gap-[.5rem] justify-center items-center mob2:flex-col"
            style={{
              opacity: `${show ? "1" : "0"}`,
              transform: `translateY(${show ? "0" : "5rem"})`,
@@ -55,6 +56,7 @@ export default function PopUp(props)
                className="text-[#fff] border-[2px] border-[#fff] bg-[#000] w-[3rem] h-[3rem] flex justify-center items-center rounded-[100%] absolute text-[1.5rem] right-[-.5rem] top-[-.5rem]"
                onClick={() =>
                 {
+                 /*  document.body.style.overflow='auto' */
                   setShow(false)
                 } }
              >

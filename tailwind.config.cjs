@@ -25,6 +25,7 @@ module.exports = {
         'topText':{'max':'1346px'},
         'mobNav':{'max':'1249px'},
         'mob':{'max':'1080px'},
+        'myPopUp':{'max':'1200px'},
         'phone':{'max':'500px'},
         'elige':{'max':'745px'},
         'nuestro':{'max':'1396px'},
