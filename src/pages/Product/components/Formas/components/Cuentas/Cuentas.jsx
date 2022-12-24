@@ -40,7 +40,7 @@ export default function Cuentas()
     {
       title:'BCP',
       num:'0011-0153-02-00460394',
-      img:'/img/banks/Bcp.webp'
+      img:'/img/banks/bank.png'
     }
   ]
 

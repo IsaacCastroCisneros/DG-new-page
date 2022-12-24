@@ -58,7 +58,7 @@ export default function Product({type})
            />
           <HeroProduct {...data} />
           <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
-            <section className="flex-[3]">
+            <section className="flex-[3] max-w-[832.91px]">
               {/* <PorQueParticipar tipo={data.tipo} /> */}
               <ContenidoTem {...data} />
               <Section title={"Beneficios"} body={<Beneficios />} />

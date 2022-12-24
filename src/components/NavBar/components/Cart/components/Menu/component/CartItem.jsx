@@ -3,6 +3,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import React from 'react'
 import { useContext } from 'react';
 import { appContext } from '../../../../../../../context/AppContext';
+import titleShorter from '../../../../../../../helpers/titleShorter';
 
 export default function CartItem(props) 
 {
@@ -35,9 +36,11 @@ export default function CartItem(props)
       <section className="flex-[2] px-[1rem] flex flex-col"
        style={mob?{flex:'1'}:{}}
        >
-        <h3 className="text-left"
+        <h3 
+         className="text-left"
          style={mob?{fontSize:'.7rem'}:{}}
-         >{name}</h3>
+         title={name}
+         >{titleShorter(name,30)}</h3>
         <strong className="text-left text-red-500 text-[1.5rem] flex">
           <span>S/.</span>
           <span>{price}</span>
