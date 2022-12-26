@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import HeroForm from '../../pages/Product/components/HeroProduct/components/HeroForm/HeroForm';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
@@ -20,7 +21,6 @@ export default function PriceLink(props)
       productData,
       isLinkLike=false,
       conTarjeta,
-      isIn
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -51,7 +51,7 @@ export default function PriceLink(props)
           </>
         )}
         {type === "chat" && <Chat asesores={productData?.asesores} name={productData?.titulo}/>}
-        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} conTarjeta={conTarjeta} isIn={isIn} />}
+        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} conTarjeta={conTarjeta}/>}
       </>
     );
 }
@@ -98,7 +98,6 @@ function Cart(props)
     sesiones:curSesiones ,
     isLinkLike,
     conTarjeta=false,
-    isIn 
   } = props;
   
   const navigate= useNavigate();
@@ -149,7 +148,14 @@ function Cart(props)
   return (
     <>
       {!isLinkLike && (
-        <MyAddToCart   isIn={isIn} addingToCart={addingToCart} conTarjeta={conTarjeta} faCreditCard={faCreditCard} faShoppingCart={faShoppingCart} faCheckCircle={faCheckCircle}  />
+        <MyAddToCart
+          id={id}
+          addingToCart={addingToCart}
+          conTarjeta={conTarjeta}
+          faCreditCard={faCreditCard}
+          faShoppingCart={faShoppingCart}
+          faCheckCircle={faCheckCircle}
+        />
       )}
       {isLinkLike && (
         <button
@@ -165,24 +171,36 @@ function Cart(props)
 
 function MyAddToCart(props)
 {
-  const[showRemove,setShowRemove]=useState(false)
-
+  const{cart,setCart,setShowNoti}=useContext(appContext)
+  
   const
   {
-    isIn, 
+    id,
     addingToCart, 
     conTarjeta, 
     faCreditCard, 
     faShoppingCart, 
     faCheckCircle
   }=props
+  
+  const[showRemove,setShowRemove]=useState(false)
+
+  const isIn = cart.some(item=>item.id===id)
+
+  function removeFromCart()
+  {
+    const newCart= cart.filter(item=>item.id!==id)
+    setCart(newCart)
+    setShowRemove(false)
+    setShowNoti({show:true,status:'ok',msgOk:'Removido con exito!'})
+  }
 
   return (
     <button
       className={`border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px] ${
         isIn ? "!bg-myPurple !text-[#fff]" : ""
       }`}
-      onClick={addingToCart}
+      onClick={isIn ? removeFromCart : addingToCart}
       onMouseEnter={ isIn ? () => setShowRemove(true) : ''}
       onMouseLeave={isIn ? () => setShowRemove(false) : ''}
     >
@@ -206,7 +224,7 @@ function MyAddToCart(props)
           En el Carrito
         </span>
       )}
-      {showRemove && (
+      {showRemove &&isIn&&(
         <span className="font-medium">
           Eliminar
         </span>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle,faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle,faCircleExclamation, } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { appContext } from '../../context/AppContext'
 
@@ -19,6 +19,10 @@ export default function Notification()
      showingOk = {transform:'scale(1)',pointerEvents:'auto'}
   }
   if(showNoti.status==='same'&&showNoti.show)
+  {
+     showingSame ={transform:'scale(1)',pointerEvents:'auto'}
+  }
+  if(showNoti.status==='remove'&&showNoti.show)
   {
      showingSame ={transform:'scale(1)',pointerEvents:'auto'}
   }

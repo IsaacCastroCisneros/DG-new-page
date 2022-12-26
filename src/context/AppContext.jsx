@@ -10,7 +10,7 @@ export default function AppContext({children})
     const[showNoti,setShowNoti]=useState({show:false,status:'ok',msgOk:undefined,msgFail:undefined})
     const[showPopUp,setShowPopUp]=useState({popUp:'',show:false,})
     const[showMobMenu,setShowMobMenu]=useState(false)
-    const[user,setUser]=useState(false)
+    const[user,setUser]=useState(false) 
 
     useEffect(()=>
     {
