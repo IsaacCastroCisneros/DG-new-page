@@ -43,7 +43,7 @@ export default function CartItem(props)
          >{titleShorter(name,30)}</h3>
         <strong className="text-left text-red-500 text-[1.5rem] flex">
           <span>S/.</span>
-          <span>{price}</span>
+          <span>{price.toFixed(2)}</span>
         </strong>
       </section>
     </div>

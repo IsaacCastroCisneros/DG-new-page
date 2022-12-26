@@ -27,7 +27,7 @@ export default function Card(props)
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />
         </section>
-        <section className="flex flex-col relative flex-1">
+        <section className="flex flex-col relative flex-1 justify-between">
           <CardHeader titleShorter={titleShorter} titulo={titulo} />
           <CardPrice precio={precio} />
           <div className="py-[1rem] px-[1.5rem] flex items-stretch justify-between">

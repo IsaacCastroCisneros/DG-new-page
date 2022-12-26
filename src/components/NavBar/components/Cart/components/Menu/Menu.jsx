@@ -47,7 +47,7 @@ export default function Menu(props)
           Total:
           <p className="text-red-500">
             <span>S/.</span>
-            <span>{tot}</span>
+            <span>{tot.toFixed(2)}</span>
           </p>
         </strong>
         <button
