@@ -1,75 +1,70 @@
 import React from 'react'
 import Button from '../../../../../../components/Button/Button'
-import Span100 from './components/Span100'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTags,faClock,faCalendarDays,faMedal } from '@fortawesome/free-solid-svg-icons'
+import {faCalendar,faCheckCircle } from '@fortawesome/free-regular-svg-icons'
+import {faVideoCamera} from '@fortawesome/free-solid-svg-icons'
 import Row from './components/Row'
-import CertificacionDisponible from './components/CertificacionDsiponible'
 import Precio from './components/Precio'
-import PopUp from '../../../../../../components/PopUp/PopUp'
-import Preview from '../Preview/Preview'
-import { useState } from 'react'
 import titleShorter from '../../../../../../helpers/titleShorter'
+import LinkButton from '../../../../../../components/LinkButton/LinkButton'
+import PriceLink from '../../../../../../components/PriceLink/PriceLink'
 
 export default function Card(props) 
 {
-  /* const{showPopUp,setShowPopUp}=useContext(appContext) */
-  const[show,setShow]=useState(false)
-
   const
   {
     imagen,
     titulo,
     tipo,
-    sesiones,
     precio,
+    total_sesiones,
+    etiqueta,
   }=props
-
-  console.log(props)
 
   return (
     <>
-      <PopUp show={show} setShow={setShow} popUp={<Preview {...props} setShow={setShow} />} overflow={false} />
       <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col">
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />
         </section>
-        <section className="p-[2rem] flex flex-col relative flex-1">
-          <Span100 type={tipo} />
-          <h3 
-           className="text-myPurple text-center text-[1.2rem] mb-[1rem] phone:text-[18px]" 
-           title={titulo} 
-           >
-            {titleShorter(titulo)}
-          </h3>
-          <CertificacionDisponible icon={faMedal} />
-          <div className="flex flex-col flex-1 justify-end">
-            <Button
-              label="más información"
+        <section className="flex flex-col relative flex-1">
+          <CardHeader titleShorter={titleShorter} titulo={titulo} />
+          <CardPrice precio={precio} />
+          <div className="py-[1rem] px-[1.5rem] flex items-stretch justify-between">
+            <ul>
+              <CardDetailItem
+                icon={faVideoCamera}
+                text={`${total_sesiones} Clases en video`}
+              />
+              <CardDetailItem icon={faCalendar} text={`Inicio hoy mismo`} />
+              <CardDetailItem
+                text={`Certificación Digital`}
+                isImg={"/img/dip.png"}
+              />
+            </ul>
+            <strong className="flex text-red-500 flex-col justify-center">
+              <span className="text-[45px] leading-[2.3rem]">
+                {precio.descuento}%
+              </span>
+              <span>Descuento</span>
+            </strong>
+          </div>
+          <div className="px-[1.5rem] pb-[1rem] flex flex-col gap-[.4rem]">
+            <LinkButton
+              path={`/${tipo}s/${etiqueta}`}
+              label={"ver detalles"}
               styles={{
                 button:
-                  "!w-[100%] !bg-myPurpleBg !py-[.5rem] !font-medium !mb-[1.2rem]",
-                span: "!text-[1.1rem]",
+                  "!py-[.8rem] !text-[#fff] !flex !items-center gap-[1rem]",
+                span: "!text-[16px] !text-left",
               }}
-              onClick={() => setShow(true)}
+              icon={{ icon: faCheckCircle, size: "xl" }}
             />
-            <div className="flex justify-between">
-              <section>
-                <Row icon={faCalendarDays} text={"Ahora Mismo"} label="Inicio: " />
-                {tipo === "curso" && (
-                  <Row
-                    icon={faClock}
-                    text={`${sesiones?.length} sesiones en video`}
-                  />
-                )}
-              </section>
-              <section className="flex items-start self-end gap-[.5rem]">
-                <span className="text-myPurple scale-x-[-1] text-[1.3rem] phone:text-[21px]">
-                  <FontAwesomeIcon icon={faTags} />
-                </span>
-                <Precio precio={precio} />
-              </section>
-            </div>
+            <PriceLink
+              type="cart"
+              productData={props}
+              label={`Comprar ${tipo}`}
+            />
           </div>
         </section>
       </div>
@@ -77,4 +72,44 @@ export default function Card(props)
   );
 }
 
-        
+
+function CardHeader({titleShorter, titulo}) 
+{
+  return (
+    <div className="pt-[1rem] pb-[3.5rem] px-[1.5rem]">
+      <strong className="text-red-500 text-[18px]">
+        Curso Virtual Grabado
+      </strong>
+      <h1 className="text-rigth text-[29px] text-[#1f1f20] leading-[2rem]">
+        {titleShorter(titulo, 40)}
+      </h1>
+    </div>
+  );
+}
+
+function CardPrice({precio}) 
+{
+  return (
+    <div className="bg-[#FFDD34] flex px-[1.8rem] py-[.4rem] text-[32px] items-center gap-[2rem]">
+      <strong>S/{precio.final.toFixed(2)}</strong>
+      <p className="block text-[16px] font-medium">
+        Precio Normal <span className="line-through">S/{precio.normal}</span>
+      </p>
+    </div>
+  );
+}
+
+
+function CardDetailItem({icon,text,isImg=false}) 
+{
+  return (
+    <li className="flex text-[16px] gap-[.5rem]">
+      <div className='w-[1rem] flex justify-start items-center'>
+        {!isImg && <FontAwesomeIcon icon={icon} />}
+        {isImg && <img className='w-[100%]' src={isImg} />}
+      </div>
+      <span>{text}</span>
+    </li>
+  );
+}
+                

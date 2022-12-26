@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
+const priceLinkContext = React.createContext() 
+
 export default function PriceLink(props) 
 {
     const
@@ -20,7 +22,9 @@ export default function PriceLink(props)
       isPopUp=false,
       productData,
       isLinkLike=false,
+      styles='',
       conTarjeta,
+      label
     }=props
 
     const{setShowPopUp}=useContext(appContext)
@@ -28,8 +32,14 @@ export default function PriceLink(props)
     let path=''
     if(type==='mas')path=tag
 
+    const contextValues=
+    {
+       styles,
+       label
+    }
+
     return (
-      <>
+      <priceLinkContext.Provider value={contextValues}>
         {type === "mas" && isPopUp === false && (
           <Link
             onClick={() => setShowPopUp(false)}
@@ -42,17 +52,31 @@ export default function PriceLink(props)
         {type === "mas" && isPopUp && (
           <>
             <button
-              onClick={() => setShowPopUp({show:true,popUp:<HeroForm isPopUp={true} closeButton={true}/>})}
+              onClick={() =>
+                setShowPopUp({
+                  show: true,
+                  popUp: <HeroForm isPopUp={true} closeButton={true} />,
+                })
+              }
               to={path}
               className={myStyles}
             >
-              {type === "mas" && <Mas/>}
+              {type === "mas" && <Mas />}
             </button>
           </>
         )}
-        {type === "chat" && <Chat asesores={productData?.asesores} name={productData?.titulo}/>}
-        {type === "cart" && <Cart {...productData} isLinkLike={isLinkLike} conTarjeta={conTarjeta}/>}
-      </>
+        {type === "chat" && (
+          <Chat asesores={productData?.asesores} name={productData?.titulo} />
+        )}
+        {type === "cart" && (
+          <Cart
+            {...productData}
+            isLinkLike={isLinkLike}
+            styles={styles}
+            conTarjeta={conTarjeta}
+          />
+        )}
+      </priceLinkContext.Provider>
     );
 }
 
@@ -172,6 +196,7 @@ function Cart(props)
 function MyAddToCart(props)
 {
   const{cart,setCart,setShowNoti}=useContext(appContext)
+  const{styles,label}=useContext(priceLinkContext)
   
   const
   {
@@ -199,12 +224,12 @@ function MyAddToCart(props)
     <button
       className={`border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px] ${
         isIn ? "!bg-myPurple !text-[#fff]" : ""
-      }`}
+      } ${styles.button}`}
       onClick={isIn ? removeFromCart : addingToCart}
-      onMouseEnter={ isIn ? () => setShowRemove(true) : ''}
-      onMouseLeave={isIn ? () => setShowRemove(false) : ''}
+      onMouseEnter={isIn ? () => setShowRemove(true) : ""}
+      onMouseLeave={isIn ? () => setShowRemove(false) : ""}
     >
-      <span className="text-[2rem] previewMob:text-[1.5rem] relative">
+      <span className={`text-[2rem] previewMob:text-[1.5rem] relative ${styles.span}`}>
         <FontAwesomeIcon icon={conTarjeta ? faCreditCard : faShoppingCart} />
         {isIn && (
           <p className="absolute text-[1.5rem] h-fit right-0 bottom-0 rounded-[100%] translate-x-[50%] bg-[#fff] text-myPurple flex justify-center items-center border-[1px] border-[#fff]">
@@ -214,21 +239,18 @@ function MyAddToCart(props)
           </p>
         )}
       </span>
-      {!showRemove &&!isIn &&(
+      {!showRemove && !isIn && (
         <span className="font-medium">
-          {conTarjeta ? "Pagar Con Tarjeta" : "Añadir al carrito"}{" "}
+          {label}
+          {!label && (
+            <>{conTarjeta ? "Pagar Con Tarjeta" : "Añadir al carrito"} </>
+          )}
         </span>
       )}
-      {!showRemove &&isIn&& (
-        <span className="font-medium">
-          En el Carrito
-        </span>
+      {!showRemove && isIn && (
+        <span className="font-medium">En el Carrito</span>
       )}
-      {showRemove &&isIn&&(
-        <span className="font-medium">
-          Eliminar
-        </span>
-      )}
+      {showRemove && isIn && <span className="font-medium">Eliminar</span>}
     </button>
   );
 }

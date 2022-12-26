@@ -41,7 +41,7 @@ export default function Results()
       </div>
       {isFetching && <Spinner />}
       {!isFetching && (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0] mb-[5rem]">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(17.3rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0] mb-[5rem]">
           {data?.map((card) => {
             return <Card key={card.id} type={type} {...card} />;
           })}
