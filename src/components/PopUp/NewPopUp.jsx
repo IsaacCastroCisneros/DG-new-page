@@ -13,11 +13,13 @@ export default function NewPopUp()
   {
     if(showPopUp.show)
     {
+      console.log('fdfd')
       document.body.style.overflow='hidden'
       return
     }
     
     document.body.style.overflow='auto'
+
   },[showPopUp])
 
   let isCloseButton = true

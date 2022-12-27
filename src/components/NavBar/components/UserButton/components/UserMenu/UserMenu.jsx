@@ -9,35 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import React,{useState,useContext} from 'react'
 import { appContext } from '../../../../../../context/AppContext';
-import PopUp from '../../../../../PopUp/PopUp';
 import postRequest from '../../../../../../helpers/postRequest';
 
 export default function UserMenu()
 {
-  const[show,setShow]=useState({show:false,isConfirm:false})
-  const{setUser,user}=useContext(appContext)
-
-  function clossingSession()
-  {
-    setShow(prev=>{return {...prev,show:true}})  
-  }
-
-  if(show.isConfirm&&user!==undefined)
-  {
-    const form = new FormData();
-    form.append('token',user.token)
-
-    postRequest({ type: "logout", data: form }).then((res) => {
-    if (res) {
-        setUser(undefined);
-        localStorage.removeItem("userDG");
-        setShow({show:false,isConfirm:false})  
-        return;
-    }
-    console.log(res + " at closing session");
-    });
-  }
-
+  const{setShowPopUp,user}=useContext(appContext)
 
   return (
     <>
@@ -75,7 +51,7 @@ export default function UserMenu()
           />
         )}
         <UserMenuOption
-          onClick={clossingSession}
+          onClick={()=>setShowPopUp(prev=>{return{...prev,show:true,popUp:<AreYouSure setShow={setShowPopUp} />}})}
           icon={faRightFromBracket}
           label={"cerrar sesion"}
         />
@@ -86,6 +62,25 @@ export default function UserMenu()
 
 function AreYouSure({setShow})
 {
+  const{setUser,user}=useContext(appContext)
+
+  function clossingSession()
+  {
+    const form = new FormData();
+    form.append('token',user.token)
+    
+    postRequest({ type: "logout", data: form }).then((res) => {
+      if (res) {
+        setUser(undefined);
+        localStorage.removeItem("userDG");
+        setShow({show:false,isConfirm:false})  
+        return;
+      }
+    });
+
+    setShow(prev=>{return {...prev,show:false}})
+  }
+
    return (
      <div className="bg-[#fff] px-[3rem] py-[1.5rem] rounded-[.5rem]">
        <h1 className="text-[2rem] mb-[2rem] text-center mobNav:text-[1.5rem]">
@@ -94,21 +89,13 @@ function AreYouSure({setShow})
        <div className="flex">
          <button
            className="bg-myPurple text-[#fff] font-bold px-[1rem] flex-1 py-[.6rem]"
-           onClick={() =>
-             setShow((prev) => {
-               return { ...prev, isConfirm: true };
-             })
-           }
+           onClick={clossingSession}
          >
            ACEPTAR
          </button>
          <button
            className="flex-1 hover:text-blue-500 hover:underline"
-           onClick={() =>
-             setShow((prev) => {
-               return { ...prev, show: false };
-             })
-           }
+           onClick={() => setShow(prev=>{return {...prev,show:false}})}
          >
            Regresar
          </button>

@@ -5,7 +5,6 @@ import useMyErrList from '../../../../../../customHooks/useMyErrList';
 import useMyQuery from '../../../../../../customHooks/useMyQuery';
 import Selector from './Components/Selector';
 import {requestInformation2} from '../../../../../../helpers/validations'
-import PopUp from '../../../../../../components/PopUp/PopUp';
 import postRequest from '../../../../../../helpers/postRequest';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
 import { useContext } from 'react';

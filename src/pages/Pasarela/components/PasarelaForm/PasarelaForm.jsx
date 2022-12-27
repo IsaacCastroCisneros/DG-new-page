@@ -1,9 +1,6 @@
 import React,{useState}  from 'react'
 import { useContext } from 'react';
 import LinkButton from '../../../../components/LinkButton/LinkButton';
-import Login from '../../../../components/Login/Login';
-import PopUp from '../../../../components/PopUp/PopUp';
-import StatusMsg from '../../../../components/StatusMsg/StatusMsg';
 import { appContext } from '../../../../context/AppContext';
 import CartItems from './components/CartItems/CartItems';
 import IziForm from './components/IziForm';
@@ -12,9 +9,8 @@ import Success from './components/Success';
 
 export default function PasarelaForm() 
 {
-  const[show,setShow]=useState(false)
+/*   const[show,setShow]=useState(false) */
   const[showSuccess,setShowSuccess]=useState(false)
-  const[showOkPopUp,setShowOkPopUp]=useState(false)
   const{user,cart}=useContext(appContext);
 
   const isCart = cart ? cart.length>0 : false
@@ -34,7 +30,7 @@ export default function PasarelaForm()
             <>
               {!showSuccess && (
                 <>
-                  {!user && <LoginForm setShow={setShow} setShowOkPopUp={setShowOkPopUp} />}
+                  {!user && <LoginForm />}
                   {user && <IziForm setShowSuccess={setShowSuccess} />}
                 </>
               )}

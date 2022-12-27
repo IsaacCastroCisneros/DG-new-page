@@ -5,7 +5,7 @@ import Login from '../../../../../components/Login/Login';
 import SignUp from '../../../../../components/SignUp/SignUp';
 import { appContext } from '../../../../../context/AppContext';
 
-export default function LoginForm({setShow}) 
+export default function LoginForm() 
 {
   const{setShowPopUp}=useContext(appContext)
 

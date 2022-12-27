@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import PopUp from '../../../../../components/PopUp/PopUp';
 import PriceLink from '../../../../../components/PriceLink/PriceLink';
 import { appContext } from '../../../../../context/AppContext';
 import { productContext } from '../../../Product';
@@ -11,7 +10,6 @@ export default function FormasBox(props)
 {
   const data =useContext(productContext)
   const {setShowPopUp}=useContext(appContext)
-  const[show,setShow]=useState(false)
 
   const
   {

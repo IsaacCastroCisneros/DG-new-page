@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function CVV({setShow}) 
+export default function CVV() 
 {
   return (
     <div className="w-[100%] flex justify-center">
@@ -11,7 +11,7 @@ export default function CVV({setShow})
         <div className="w-[100%] bg-[#293c7a] py-[.2rem] flex justify-end">
           <button
             className="text-[#fff] flex h-[2rem] w-[2rem] justify-center items-center rounded-[100%] right-0"
-            onClick={() => setShow(false)}
+           /*  onClick={() => setShow(false)} */
           >
             <FontAwesomeIcon icon={faXmark} />
           </button>
