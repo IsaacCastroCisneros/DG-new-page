@@ -41,12 +41,6 @@ export default function UserMenu()
 
   return (
     <>
-      <PopUp
-        show={show.show}
-        setShow={setShow}
-        popUp={<AreYouSure setShow={setShow} />}
-        closeButton={false}
-      />
       <ul className="absolute rounded-[.5rem] bg-[#fff] shadow-xl border-[1px] border-gray-300 right-0 bottom-0 translate-y-[105%]">
         <UserMenuOption
           label={"Mi Aula"}
@@ -75,7 +69,6 @@ export default function UserMenu()
         />
         {user?.tipo === "ADMI" && (
           <UserMenuOption
-            onClick={clossingSession}
             icon={faWrench}
             label={"Administrador"}
             path={"https://aula.desarrolloglobal.pe/admin/"}

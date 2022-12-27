@@ -58,8 +58,8 @@ export default function Cuentas()
             Cuenta {okMsg.msg} Copiada con exito!! 
           </span>
         )}
-        {cuentas.map((cue) => {
-          return <CuentaBox setOkMsg={setOkMsg} {...cue} />;
+        {cuentas.map((cue,pos) => {
+          return <CuentaBox key={pos} setOkMsg={setOkMsg} {...cue} />;
         })}
       </div>
     </div>

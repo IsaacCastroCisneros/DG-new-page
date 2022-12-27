@@ -39,11 +39,11 @@ function gettingUrl(type,tag,id,limit)
     {
         case 'diplomas':
         {
-            return `${url}diplomas/${tag}?offset=0&${limit}`  
+            return `${url}diplomas/grabado/${tag}?offset=0&${limit}`  
         }
         case 'cursos':
         {
-            return `${url}cursos/${tag}?offset=0&${limit}`  
+            return `${url}cursos/grabado/${tag}?offset=0&${limit}`  
         }
         case 'geo':
         {
@@ -51,7 +51,7 @@ function gettingUrl(type,tag,id,limit)
         }
         case 'diplomados':
         {
-            return `${url}diplomados/${tag}?offset=0&${limit}`
+            return `${url}diplomados/grabado/${tag}?offset=0&${limit}`
         }
   
         default: return ''

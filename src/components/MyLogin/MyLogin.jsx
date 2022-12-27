@@ -2,8 +2,16 @@ import React from 'react'
 import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
 
-export default function MyLogin({submitting,errList,setFormData}) 
+export default function MyLogin(props) 
 {
+  const 
+  {
+    submitting,
+    errList,
+    setFormData,
+    formData
+  }=props
+
   return (
     <>
       <h1 className="text-[24px] block mb-[1.5rem]">Bienvenido 🙂</h1>
@@ -12,6 +20,7 @@ export default function MyLogin({submitting,errList,setFormData})
       <form onSubmit={submitting} className="flex flex-col gap-[1rem]">
         <FormInput
           placeHolder={"Correo Electronico"}
+          value={formData?.email}
           type={"simple"}
           errLabel={errList?.email}
           onChange={(e) =>
@@ -22,6 +31,7 @@ export default function MyLogin({submitting,errList,setFormData})
         />
         <FormInput
           placeHolder={"Contraseña"}
+          value={formData?.password}
           type={"simple"}
           errLabel={errList?.password}
           inputType={"password"}

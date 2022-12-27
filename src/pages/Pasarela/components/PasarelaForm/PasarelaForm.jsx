@@ -21,23 +21,6 @@ export default function PasarelaForm()
 
   return (
     <>
-      <PopUp
-        show={show.show}
-        setShow={setShow}
-        closeButton={false}
-        popUp={show.popUp}
-      />
-      <PopUp
-       closeButton={false}
-       show={showOkPopUp.show}
-       popUp={
-        <StatusMsg
-          setShow={setShowOkPopUp}
-          status={"success"}
-          okMsg={"Te haz registrado con exito!!"}
-        />
-       }
-       />
       <div className="flex shadow-xl text-[#000] 926px:flex-col-reverse">
         <section className="flex-1 py-[2rem] px-[1.5rem] flex flex-col justify-between">
           <h1 className="font-bold text-[1.2rem] text-blue-500 mb-[1.5rem]">

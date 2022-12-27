@@ -6,6 +6,7 @@ import postRequest from '../../helpers/postRequest'
 import { login } from '../../helpers/validations'
 import MyForm from '../MyForm/MyForm'
 import MyLogin from '../MyLogin/MyLogin'
+import { formCleaner } from '../../helpers/formCleaner'
 
 export default function Login({setShow}) 
 {
@@ -34,6 +35,7 @@ export default function Login({setShow})
         setUser(res)
         setShowStatus({show:false})
         setShow(prev=>{return {...prev,show:false}} )
+        setFormData(prev=>formCleaner(prev))
       })
   
   }
@@ -42,12 +44,12 @@ export default function Login({setShow})
     <>
       <MyForm
         showStatus={showStatus}
-        setShow={setShow}
         form={
           <MyLogin
             submitting={submitting}
             errList={errList}
             setFormData={setFormData}
+            formData={formData}
           />
         }
       />

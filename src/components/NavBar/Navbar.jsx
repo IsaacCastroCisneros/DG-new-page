@@ -8,37 +8,17 @@ import Cart from './components/Cart/Cart'
 import img from '/img/logo-DG-nuevo.webp'
 import { useContext } from 'react'
 import { appContext } from '../../context/AppContext'
-import PopUp from '../PopUp/PopUp'
 import Login from '../Login/Login'
 import UserButton from './components/UserButton/UserButton'
 import SignUp from '../SignUp/SignUp'
-import StatusMsg from '../StatusMsg/StatusMsg'
+
 
 export default function Navbar() 
 {
-  const[show,setShow]=useState(false)
-  const[showOkPopUp,setShowOkPopUp]=useState({show:false})
-  const{setShowMobMenu,user,showMobMenu}=useContext(appContext)
+  const{setShowMobMenu,user,setShowPopUp}=useContext(appContext)
 
   return (
     <>
-      <PopUp
-        show={show.show}
-        setShow={setShow}
-        popUp={show.popUp}
-        closeButton={false}
-      />
-      <PopUp
-       closeButton={false}
-       show={showOkPopUp.show}
-       popUp={
-        <StatusMsg
-          setShow={setShowOkPopUp}
-          status={"success"}
-          okMsg={"Te haz registrado con exito!!"}
-        />
-       }
-       />
       <header className="flex">
         <nav className="flex custom-container justify-between items-center mobNav:!px-[.7rem]">
           <ul className="flex gap-[3rem] font-medium text-myBlack items-stretch min-h-[4rem]">
@@ -52,7 +32,6 @@ export default function Navbar()
             <NavOption label={"cursos"} path={"/cursos"} />
             <NavOption label={"diplomas"} path={"/diplomas"} />
             <NavOption label={"diplomados"} path={"/diplomados"} />
-            {/*  <NavOption label={"packs"} path={"/"} /> */}
           </ul>
           <div className="flex gap-[1rem] items-center">
             <div className="flex gap-[1.3rem] mobNav:hidden">
@@ -61,7 +40,7 @@ export default function Navbar()
                 <Button
                   label="iniciar sesion"
                   onClick={() =>
-                    setShow({ show: true, popUp: <Login setShow={setShow}/> })
+                    setShowPopUp(prev=>{return{...prev,show: true, popUp: <Login setShow={setShowPopUp}/>}})
                   }
                 />
               )}
@@ -81,7 +60,9 @@ export default function Navbar()
                       "!bg-[transparent] !border-[3px] !border-myPurple !box-border",
                     span: "!text-myPurple",
                   }}
-                  onClick={() => setShow({show:true,popUp:<SignUp setShow={setShow} setShowOkPopUp={setShowOkPopUp} />})}
+                  onClick={() => 
+                    setShowPopUp(prev=>{return{...prev,show: true, popUp: <SignUp setShow={setShowPopUp}/>}})
+                  }
                 />
               )}
             </div>

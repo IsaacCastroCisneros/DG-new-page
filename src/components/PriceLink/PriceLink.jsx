@@ -52,9 +52,12 @@ export default function PriceLink(props)
           <>
             <button
               onClick={() =>
-                setShowPopUp({
-                  show: true,
-                  popUp: <HeroForm isPopUp={true} closeButton={true} />,
+                setShowPopUp((prev) => {
+                  return {
+                    ...prev,
+                    show: true,
+                    popUp: <HeroForm isPopUp={true} {...productData}/>,
+                  };
                 })
               }
               to={path}
@@ -215,8 +218,8 @@ function MyAddToCart(props)
         isIn ? "!bg-myPurple !text-[#fff]" : ""
       } ${styles.button}`}
       onClick={isIn ? removeFromCart : addingToCart}
-      onMouseEnter={isIn ? () => setShowRemove(true) : ""}
-      onMouseLeave={isIn ? () => setShowRemove(false) : ""}
+      onMouseEnter={isIn ? () => setShowRemove(true) : ()=>null}
+      onMouseLeave={isIn ? () => setShowRemove(false) : ()=>null}
     >
       <span className={`text-[2rem] previewMob:text-[1.5rem] relative ${styles.span}`}>
         <FontAwesomeIcon icon={conTarjeta ? faCreditCard : faShoppingCart} />

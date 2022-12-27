@@ -6,12 +6,14 @@ import postRequest from '../../helpers/postRequest'
 import { signUp } from '../../helpers/validations'
 import MyForm from '../MyForm/MyForm'
 import MySignUp from '../MySignUp/MySignUp'
+import StatusMsg from '../StatusMsg/StatusMsg'
+import { formCleaner } from '../../helpers/formCleaner'
 
-export default function SignUp({setShow,setShowOkPopUp}) 
+export default function SignUp({setShow}) 
 {
     const[formData,setFormData]=useState({})
     const[showStatus,setShowStatus]=useState({show:false})
-    const{setUser}=useContext(appContext)
+    const{setUser,setShowPopUp}=useContext(appContext)
 
     const[errList]=useMyErrList(formData,signUp)
 
@@ -46,23 +48,38 @@ export default function SignUp({setShow,setShowOkPopUp})
                 setUser(res)
                 setShowStatus({show:false})
                 setShow(prev=>{return {...prev,show:false}})
-                setShowOkPopUp({show:true})
+                setTimeout(()=>
+                {
+                  setShowPopUp((prev) => {
+                    return {
+                      ...prev,
+                      show: true,
+                      popUp: (
+                        <StatusMsg
+                          setShow={setShowPopUp}
+                          status={"success"}
+                          okMsg={"Te haz registrado con exito!!"}
+                        />
+                      ),
+                    };
+                  });
+                  setFormData(prev=>formCleaner(prev))
+                },250)
               })
         })
-
     }
 
     return (
       <>
         <MyForm
           showStatus={showStatus}
-          setShow={setShow}
           hiddenEarly={"signUp:hidden"}
           form={
             <MySignUp
               submitting={submitting}
               errList={errList}
               setFormData={setFormData}
+              formData={formData}
             />
           }
         />

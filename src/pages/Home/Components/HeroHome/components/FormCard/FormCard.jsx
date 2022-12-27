@@ -8,10 +8,15 @@ import {requestInformation2} from '../../../../../../helpers/validations'
 import PopUp from '../../../../../../components/PopUp/PopUp';
 import postRequest from '../../../../../../helpers/postRequest';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
+import { useContext } from 'react';
+import { appContext } from '../../../../../../context/AppContext';
+import { formCleaner } from '../../../../../../helpers/formCleaner';
 
 
 export default function FormCard() 
 {
+  const{setShowPopUp}=useContext(appContext)
+
   const{data:cursos}=useMyQuery({type:'cursos'})
   const{data:diplomas}=useMyQuery({type:'diplomas'})
   const{data:diplomados}=useMyQuery({type:'diplomados'})
@@ -19,7 +24,6 @@ export default function FormCard()
   const {data:ciudad}=useMyQuery({type:'geo'})
 
   const[formData,setFormData]=useState({program:'no-value'})
-  const[showPopUp,setShowPopUp]=useState({show:false,status:'success'})
 
   const[errList]=useMyErrList(formData,requestInformation2)
 
@@ -29,41 +33,60 @@ export default function FormCard()
   {
     e.preventDefault();
 
-    if(errList!=='ok'||formData.program==='no-value')
-    {
-      return setShowPopUp({show:true,status:'failed'})
+    if (errList !== "ok" || formData.program === "no-value") {
+      return setShowPopUp((prev) => {
+        return {
+          ...prev,
+          show: true,
+          popUp: <StatusMsg setShow={setShowPopUp} status={"failed"} />,
+        };
+      });
     }
 
-    const form = new FormData()
-    form.append('nombres',formData.name)
-    form.append('correo',formData.email)
-    form.append('telefono',formData.phone)
-    form.append(`${formData.program.tipo}`,formData.program.titulo)
-    form.append(`id_${formData.program.tipo}`,formData.program.id)
-    form.append(`ciudad`,ciudad)
-    form.append(`contenido`,`Hola deseo informacion del ${formData.program.tipo} ${formData.program.titulo}`)
-    form.append(`pagina`,"https://www.desarrolloglobal.pe" + location.pathname)
+    const form = new FormData();
+    form.append("nombres", formData.name);
+    form.append("correo", formData.email);
+    form.append("telefono", formData.phone);
+    form.append(`${formData.program.tipo}`, formData.program.titulo);
+    form.append(`id_${formData.program.tipo}`, formData.program.id);
+    form.append(`ciudad`, ciudad);
+    form.append(
+      `contenido`,
+      `Hola deseo informacion del ${formData.program.tipo} ${formData.program.titulo}`
+    );
+    form.append(
+      `pagina`,
+      "https://www.desarrolloglobal.pe" + location.pathname
+    );
 
-    postRequest({type:formData.program.tipo,data:form,request:'setProspecto'})
-    .then(res=>
-      {
-        console.log(res)
-        if(res)
-        {
-          return setShowPopUp({show:true,status:'success'})
-        }
-        setShowPopUp({show:true,status:'failed'})
-      })
+    postRequest({
+      type: formData.program.tipo,
+      data: form,
+      request: "setProspecto",
+    }).then((res) => {
+      if (res) {
+        setFormData(prev=>formCleaner(prev))
+        return setShowPopUp((prev) => {
+          return {
+            ...prev,
+            show: true,
+            popUp: <StatusMsg setShow={setShowPopUp} status={"success"} />,
+          };
+        });
+      }
+      
+      setShowPopUp((prev) => {
+        return {
+          ...prev,
+          show: false,
+          popUp: <StatusMsg setShow={setShowPopUp} status={"failed"} />,
+        };
+      });
+    });
   }
 
   return (
     <>
-      <PopUp 
-       setShow={setShowPopUp}
-       show={showPopUp.show}
-       popUp={<StatusMsg setShow={setShowPopUp} status={showPopUp.status}/> }
-       closeButton={false}
-       />
       <div
         className=" bg-[#fff] px-[2rem] pt-[1rem] pb-[2rem] w-[410px] h-[494px] flex flex-col justify-between rounded-[.6rem] phone:w-[auto] phone:h-[auto] "
         onSubmit={submitting}
@@ -76,20 +99,19 @@ export default function FormCard()
         >
           <FormInput
             placeHolder={"Ingresa Nombre"}
+            value={formData.name}
             type={"simple"}
             onChange={(e) =>
               setFormData((prev) => {
                 return { ...prev, name: e.target.value };
               })
             }
-            onKeyPress={(e) => {
-              if (e.code.includes("Key")) return;
-              e.preventDefault();
-            }}
+            onlyText={true}
             errLabel={errList?.name}
           />
           <FormInput
             placeHolder={"Tu Email"}
+            value={formData.email}
             type={"simple"}
             onChange={(e) => {
               if (e.target.value.length > 50) {
@@ -106,6 +128,7 @@ export default function FormCard()
           />
           <FormInput
             placeHolder={"Ingresa Celular"}
+            value={formData.phone}
             type={"simple"}
             onChange={(e) => {
               if (e.target.value.length > 9) {
@@ -118,21 +141,19 @@ export default function FormCard()
                 return { ...prev, phone: e.target.value };
               });
             }}
-            onKeyPress={(e) => {
-              if (e.code.length === 7) return;
-              e.preventDefault();
-            }}
+            onlyNum={true}
             errLabel={errList?.phone}
           />
           <Selector
             cursos={cursos}
+            value={formData.programs}
             diplomas={diplomas}
             diplomados={diplomados}
             errLabel={errList?.program}
             onChange={(e) =>
               {
                 setFormData((prev) => {
-                  return { ...prev, program:programs.find(pro=>pro.id===e.target.value)||'no-value' };
+                  return { ...prev, program:programs.find(pro=>pro.id===e.target.value)||'' };
                 })
               }
             }

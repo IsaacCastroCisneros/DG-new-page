@@ -2,9 +2,17 @@ import React from 'react'
 import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
 
-export default function MySignUp({submitting,errList,setFormData}) 
+export default function MySignUp(props) 
 {
-    return (
+   const
+   {
+    submitting,
+    errList,
+    setFormData,
+    formData
+   }=props
+    
+   return (
       <>
         <h1 className="text-[24px] block mb-[1.5rem]">Bienvenido 🙂</h1>
         <strong className="text-[24px]">Soy Nuevo Usuario</strong>
@@ -16,13 +24,11 @@ export default function MySignUp({submitting,errList,setFormData})
           <div className="grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-[1rem]">
             <FormInput
               placeHolder={"Nombres"}
+              value={formData?.userName}
               type={"simple"}
               errLabel={errList?.userName}
               okBorder={true}
-              onKeyPress={(e) => {
-                if (e.code.includes("Key")) return;
-                e.preventDefault();
-              }}
+              onlyText={true}
               onChange={(e) =>
                 setFormData((prev) => {
                   return { ...prev, userName: e.target.value };
@@ -31,13 +37,11 @@ export default function MySignUp({submitting,errList,setFormData})
             />
             <FormInput
               placeHolder={"Apellidos"}
+              value={formData?.userLastName}
               type={"simple"}
               errLabel={errList?.userLastName}
               okBorder={true}
-              onKeyPress={(e) => {
-                if (e.code.includes("Key")) return;
-                e.preventDefault();
-              }}
+              onlyText={true}
               onChange={(e) =>
                 setFormData((prev) => {
                   return { ...prev, userLastName: e.target.value };
@@ -46,6 +50,7 @@ export default function MySignUp({submitting,errList,setFormData})
             />
             <FormInput
               placeHolder={"E-mail"}
+              value={formData?.userEmail}
               type={"simple"}
               errLabel={errList?.userEmail}
               okBorder={true}
@@ -57,13 +62,11 @@ export default function MySignUp({submitting,errList,setFormData})
             />
             <FormInput
               placeHolder={"DNI"}
+              value={formData?.userDni}
               type={"simple"}
               errLabel={errList?.userDni}
               okBorder={true}
-              onKeyPress={(e) => {
-                if (e.code.length === 7) return;
-                e.preventDefault();
-              }}
+              onlyNum={true}
               onChange={(e) =>
                 {
                   if (e.target.value.length > 8) {
@@ -80,11 +83,13 @@ export default function MySignUp({submitting,errList,setFormData})
             />
             <FormInput
               placeHolder={"Telefono"}
+              value={formData?.userPhone}
               type={"simple"}
               errLabel={errList?.userPhone}
               okBorder={true}
+              onlyNum={true}
               onKeyPress={(e) => {
-                if (e.code.length === 7) return;
+                if (e.code.length === 7||e.code.includes('Digit')) return;
                 e.preventDefault();
               }}
               onChange={(e) =>
@@ -104,6 +109,7 @@ export default function MySignUp({submitting,errList,setFormData})
             />
              <FormInput
               placeHolder={"Contraseña"}
+              value={formData?.userPassword}
               type={"simple"}
               errLabel={errList?.userPassword}
               okBorder={true}
@@ -116,6 +122,7 @@ export default function MySignUp({submitting,errList,setFormData})
             />
             <FormInput
               placeHolder={"Repetir Contraseña"}
+              value={formData?.userPasswordRetry}
               type={"simple"}
               errLabel={errList?.userPasswordRetry}
               inputType={"password"}

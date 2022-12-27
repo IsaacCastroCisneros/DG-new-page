@@ -23,7 +23,7 @@ export default function RiteCardPrice(props)
       <div className="flex flex-col gap-[.6rem] mt-[1rem] mb-[1rem]">
         <PriceLink type={"cart"} productData={props} conTarjeta={true} />
         <PriceLink type={"cart"} productData={props} isIn={isIn} />
-        <PriceLink type={"mas"} isPopUp={true} />
+        <PriceLink type={"mas"} isPopUp={true} productData={props} />
         <PriceLink type={"chat"} productData={props} />
       </div>
       <RiteBeneficios sesiones={sesiones} tipo={tipo} cursos={cursos} />

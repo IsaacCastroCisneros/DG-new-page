@@ -7,7 +7,6 @@ export default function MyForm(props)
 {
   const
   {
-    setShow, 
     showStatus,
     form,
     hiddenEarly=''
@@ -22,13 +21,6 @@ export default function MyForm(props)
           label={showStatus.label}
         />
       )}
-      <CloseButton
-        closeFunc={() =>
-          setShow((prev) => {
-            return { ...prev, show: false };
-          })
-        }
-      />
       <div className="w-[100%] flex items-stretch bg-[#fff] rounded-[.5rem] overflow-hidden">
         <section className={`flex-1 bg-myPurple py-[4rem] px-[2.5rem] rounded-[.5rem] 826px:hidden ${hiddenEarly}`}>
           <div className="flex justify-start mb-[2rem]">

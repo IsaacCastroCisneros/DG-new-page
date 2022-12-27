@@ -11,8 +11,7 @@ import HeroProduct from './components/HeroProduct/HeroProduct';
 import Inversion from './components/Inversion/Inversion';
 import RiteCardPrice from './components/RiteCardPrice/RiteCardPrice';
 import Section from './components/Section/Section';
-import Footer from '../../components/Footer/Footer'
-import PopUp from '../../components/PopUp/PopUp';
+import Footer from '../../components/Footer/Footer';
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import MyHelmetProduct from '../../components/Helmet/MyHelmetProduct';
@@ -21,7 +20,7 @@ export const productContext = React.createContext()
 
 export default function Product({type}) 
 {
-  const{showPopUp,setShowPopUp,cart}=useContext(appContext)
+  const{cart}=useContext(appContext)
   const{id:tag}=useParams();
   const{data,isFetching}=useMyQuery({type,tag});
   
@@ -38,13 +37,6 @@ export default function Product({type})
     isIn
   }
 
-  useEffect(()=>
-  {
-    const body= document.querySelector('body')
-
-    body?.setAttribute('style','overflow:auto');
-  },[])
-
   return (
     <productContext.Provider value={contextValues}>
       <MyHelmetProduct
@@ -56,12 +48,6 @@ export default function Product({type})
       {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
       {!isFetching && (
         <>
-          <PopUp 
-           show={showPopUp.show} 
-           setShow={setShowPopUp} 
-           popUp={showPopUp.popUp}
-           closeButton={false}
-           />
           <HeroProduct {...data} />
           <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
             <section className="flex-[3] max-w-[832.91px]">

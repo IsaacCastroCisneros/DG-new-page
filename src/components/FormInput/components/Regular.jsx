@@ -10,7 +10,8 @@ export default function Regular(props)
       icon,
       onChange,
       errLabel = undefined,
-      onKeyPress,
+      onKeyFunc,
+      value
     } = props;
 
   return (
@@ -21,9 +22,10 @@ export default function Regular(props)
       <div className="flex-1">
         <input
           type="text"
+          value={value}
           placeholder={placeHolder}
           className="outline-none block text-myBlack placeholder:text-placeHolder placeholder:font-medium placeholder:text-[.8rem] w-[100%]"
-          onKeyPress={onKeyPress}
+          onKeyPress={onKeyFunc}
           onChange={onChange}
         />
       </div>

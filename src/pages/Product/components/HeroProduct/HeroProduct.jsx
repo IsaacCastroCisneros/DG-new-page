@@ -4,9 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook } from '@fortawesome/free-solid-svg-icons'
 import HeroForm from './components/HeroForm/HeroForm'
 import HeroBar from './components/HeroBar/HeroBar'
+import { useContext } from 'react'
+import { productContext } from '../../Product'
 
 export default function HeroProduct(props) 
 {
+  const producDataContext = useContext(productContext);
+
   const
   {
     imagen,
@@ -27,7 +31,7 @@ export default function HeroProduct(props)
           icon={<FontAwesomeIcon icon={faBook}/>}
           {...props}
         />
-        <HeroForm/>
+        <HeroForm {...producDataContext} />
         <HeroBar {...props}/>
       </div> 
     </div>

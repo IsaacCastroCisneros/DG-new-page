@@ -19,16 +19,16 @@ export default function Selector(props)
           className="block w-[100%] border-[1px] border-gray-300 rounded-[.2rem] px-[.7rem] py-[.8rem] focus:border-myPurple focus:outline-none"
           onChange={onChange}
         >
-          <option value="no-value">Elegir Programa</option>
-          <option value="no-value">CURSOS:</option>
+          <option value="">Elegir Programa</option>
+          <option value="">CURSOS:</option>
           {cursos?.map((cur) => {
             return <option value={cur.id}>{cur.titulo}</option>;
           })}
-          <option value="no-value">DIPLOMAS:</option>
+          <option value="">DIPLOMAS:</option>
           {diplomas?.map((dip) => {
             return <option value={dip.id}>{dip.titulo}</option>;
           })}
-          <option value="no-value">DIPLOMADOS:</option>
+          <option value="">DIPLOMADOS:</option>
           {diplomados?.map((diplo) => {
             return <option value={diplo.id}>{diplo.titulo}</option>;
           })}

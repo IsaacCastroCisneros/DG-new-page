@@ -1,32 +1,27 @@
 import React from 'react'
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../../../../../../components/Button/Button';
 import FormInput from '../../../../../../components/FormInput/FormInput';
 import { useContext } from 'react';
-import { productContext } from '../../../../Product';
 import { useLocation } from "react-router-dom";
 import useMyQuery from '../../../../../../customHooks/useMyQuery';
 import postRequest from '../../../../../../helpers/postRequest';
-import PopUp from '../../../../../../components/PopUp/PopUp';
-import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
 import useMyErrList from '../../../../../../customHooks/useMyErrList';
 import { requestInformation } from '../../../../../../helpers/validations';
 import { faCheckCircle,faXmarkCircle } from '@fortawesome/free-regular-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { appContext } from '../../../../../../context/AppContext';
 import MyMsg from '../../../../../../components/MyMsg/MyMsg';
-import CloseButton from '../../../../../../components/CloseButton/CloseButton';
+import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
+import { formCleaner } from '../../../../../../helpers/formCleaner';
 
-export default function HeroForm({isPopUp=false,closeButton=false}) 
+export default function HeroForm(props) 
 {
-  const {tipo,titulo,id} = useContext(productContext);
+  const{setShowPopUp}=useContext(appContext)
+  const[showStatus,setShowStatus]=useState(false)
+  const {tipo,titulo,id,isPopUp=false}=props;
 
-  const{setShowPopUp:setShowThisPopUp}=useContext(appContext)
-
-  const {data:ciudad}=useMyQuery({type:'geo'})
+  const{data:ciudad}=useMyQuery({type:'geo'})
   const[formData,setFormData]=useState({})
-  const[showPopUp,setShowPopUp]=useState({show:false,status:'success'})
 
   const[errList]=useMyErrList(formData,requestInformation)
   
@@ -38,7 +33,18 @@ export default function HeroForm({isPopUp=false,closeButton=false})
 
     if(errList!=='ok')
     {
-      return setShowPopUp({show:true,status:'failed'})
+      if(isPopUp)
+      {
+        return setShowStatus('failed')
+      }
+      return setShowPopUp((prev) => {
+        return {
+          ...prev,
+          show: true,
+          popUp: <StatusMsg setShow={setShowPopUp} status={"failed"} />,
+          closeButton: false,
+        };
+      });
     }
 
     const form = new FormData()
@@ -56,34 +62,48 @@ export default function HeroForm({isPopUp=false,closeButton=false})
       {
         if(res)
         {
-          return setShowPopUp({show:true,status:'success'})
+          setFormData(prev=>formCleaner(prev))
+          if(isPopUp)
+          {
+            return setShowStatus("success");
+          }
+          return setShowPopUp((prev) => {
+            return {
+              ...prev,
+              show: true,
+              popUp: <StatusMsg setShow={setShowPopUp} status={"success"} />,
+              closeButton: false,
+            };
+          });
         }
-        setShowPopUp({show:true,status:'failed'})
+
+        if(isPopUp)
+        {
+          return setShowStatus("failed");
+        }
+
+        setShowPopUp((prev) => {
+            return {
+              ...prev,
+              show: true,
+              popUp: <StatusMsg setShow={setShowPopUp} status={"failed"} />,
+              closeButton: false,
+            };
+          });
       })
   }
 
   return (
     <>
-      {!isPopUp && (
-        <PopUp
-          setShow={setShowPopUp}
-          show={showPopUp.show}
-          popUp={<StatusMsg setShow={setShowPopUp} status={showPopUp.status} />}
-          closeButton={false}
-        />
-      )}
       <div className="bg-myPurple relative px-[3rem] heroProduct:px-[2.5rem] py-[1.5rem] rounded-[.5rem] heroProduct:translate-y-[2rem]">
-        {closeButton && (
-          <CloseButton closeFunc={()=>setShowThisPopUp(prev=>{return {...prev,show:false}})} />
-        )}
-        {isPopUp && showPopUp.show && showPopUp.status === "success" && (
+        {isPopUp && showStatus === "success" && (
           <MyMsg
             icon={faCheckCircle}
             styles={"!bg-green-500"}
             label={"Se enviaron los datos"}
           />
         )}
-        {isPopUp && showPopUp.show && showPopUp.status === "failed" && (
+        {isPopUp && showStatus === "failed" && (
           <MyMsg
             icon={faXmarkCircle}
             styles={"!bg-red-500"}
@@ -100,20 +120,19 @@ export default function HeroForm({isPopUp=false,closeButton=false})
           <div className="flex flex-col gap-[.8rem] w-[100%] mb-[1rem]">
             <FormInput
               icon={"/img/icons/user.png"}
+              value={formData.name}
               placeHolder={"Ingresar Primer Nombre"}
               onChange={(e) =>
                 setFormData((prev) => {
                   return { ...prev, name: e.target.value };
                 })
               }
-              onKeyPress={(e) => {
-                if (e.code.includes("Key")) return;
-                e.preventDefault();
-              }}
+              onlyText={true}
               errLabel={errList?.name}
             />
             <FormInput
               icon={"/img/icons/carta.png"}
+              value={formData.email}
               placeHolder={"Ingresar Correo Electrónico"}
               onChange={(e) => {
                 if (e.target.value.length > 50) {
@@ -130,6 +149,7 @@ export default function HeroForm({isPopUp=false,closeButton=false})
             />
             <FormInput
               icon={"/img/icons/tel.png"}
+              value={formData.phone}
               placeHolder={"Ingresar Celular"}
               onChange={(e) => {
                 if (e.target.value.length > 9) {
@@ -142,10 +162,7 @@ export default function HeroForm({isPopUp=false,closeButton=false})
                   return { ...prev, phone: e.target.value };
                 });
               }}
-              onKeyPress={(e) => {
-                if (e.code.length === 7) return;
-                e.preventDefault();
-              }}
+              onlyNum={true}
               errLabel={errList?.phone}
             />
           </div>
@@ -162,7 +179,6 @@ export default function HeroForm({isPopUp=false,closeButton=false})
                 "!bg-myRed !px-0 w-[100%] py-[.7rem] heroProduct:!px-[.7rem]",
               span: "!text-[18px] !font-medium heroProduct:!text-[15px]",
             }}
-            onClick={() => setShowPopUp(true)}
           />
         </form>
       </div>

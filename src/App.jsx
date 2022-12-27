@@ -8,6 +8,7 @@ import MobMenu from './components/NavBar/components/MobMenu/MobMenu'
 import Layer from './components/NavBar/components/Layer/Layer'
 import Pasarela from './pages/Pasarela/Pasarela'
 import Programas from './pages/Programas/Programas'
+import NewPopUp from './components/PopUp/NewPopUp'
 
 function App() 
 {
@@ -17,6 +18,8 @@ function App()
       <>
         <Navbar/>
         <Notification/>
+        {/* <PopUp /> */}
+        <NewPopUp/>
         <Layer/>
         <MobMenu/>
         <Outlet/>
