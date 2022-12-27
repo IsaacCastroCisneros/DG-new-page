@@ -120,7 +120,6 @@ function Cart(props)
     total_sesiones,
     tipo,
     cursos,
-    sesiones:curSesiones ,
     isLinkLike,
     conTarjeta=false,
   } = props;
@@ -133,17 +132,6 @@ function Cart(props)
     cart,
     setShowNoti,
    }=useContext(appContext)
-
-   function isSesiones()
-   {
-      if(tipo!=='curso')
-      {
-        let sesiones=[]
-        cursos?.forEach(cur=>sesiones=[...sesiones,...cur.sesiones])
-        return sesiones
-      }
-      return curSesiones
-   }
 
   const product = {
       id,
