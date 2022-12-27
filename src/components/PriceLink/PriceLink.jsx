@@ -117,6 +117,7 @@ function Cart(props)
     precio, 
     titulo,
     imagen,
+    total_sesiones,
     tipo,
     cursos,
     sesiones:curSesiones ,
@@ -150,7 +151,7 @@ function Cart(props)
       price:precio?.final,
       normalPrice:precio?.normal,
       imagen,
-      sesiones:isSesiones(),
+      sesiones:total_sesiones,
       cursos,
       tipo
   };

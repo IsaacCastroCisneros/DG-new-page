@@ -1,10 +1,7 @@
 import React from 'react'
-import Button from '../../../../../../components/Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCalendar,faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import {faVideoCamera} from '@fortawesome/free-solid-svg-icons'
-import Row from './components/Row'
-import Precio from './components/Precio'
 import titleShorter from '../../../../../../helpers/titleShorter'
 import LinkButton from '../../../../../../components/LinkButton/LinkButton'
 import PriceLink from '../../../../../../components/PriceLink/PriceLink'
@@ -23,7 +20,7 @@ export default function Card(props)
 
   return (
     <>
-      <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col">
+      <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col text-[#1f1f20]">
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />
         </section>

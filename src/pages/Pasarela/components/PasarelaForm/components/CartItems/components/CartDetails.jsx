@@ -18,9 +18,8 @@ export default function CartDetails({cartItems})
 
   const sesiones = cartItems?.reduce((resul,current)=>
   {
-    return resul + current.sesiones.length
+    return resul + current.sesiones
   },0)
-
 
   return (
     <div className="mt-[1rem]">
@@ -57,8 +56,7 @@ export default function CartDetails({cartItems})
         <li className="flex justify-between items-center mt-[1rem]">
           <strong className="text-[1.2rem]">Total a Pagar:</strong>
           <strong className="text-red-500 text-[1.5rem]">S/.{Number(total).toFixed(2)}</strong>
-        </li>
-        
+        </li> 
       </ul>
     </div>
   );
