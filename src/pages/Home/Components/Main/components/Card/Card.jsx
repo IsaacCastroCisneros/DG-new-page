@@ -53,14 +53,14 @@ export default function Card(props)
               styles={{
                 button:
                   "!py-[.8rem] !text-[#fff] !flex !items-center gap-[1rem]",
-                span: "!text-[16px] !text-left",
+                span: "!text-[20px] !text-left !font-medium",
               }}
               icon={{ icon: faCheckCircle, size: "xl" }}
             />
             <PriceLink
               type="cart"
               productData={props}
-              label={`Comprar ${tipo}`}
+              label={<p>Comprar <span className='capitalize'>{tipo}</span></p> }
             />
           </div>
         </section>

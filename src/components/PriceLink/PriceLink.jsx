@@ -7,7 +7,6 @@ import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import HeroForm from '../../pages/Product/components/HeroProduct/components/HeroForm/HeroForm';
 import { useState } from 'react';
-import { useEffect } from 'react';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
@@ -150,6 +149,7 @@ function Cart(props)
     if(isSame!==undefined)
     {
       setShowNoti({show:true,status:'same'})
+      navigate('/pasarela-pago')
       return
     }
     
@@ -199,7 +199,7 @@ function MyAddToCart(props)
   
   const[showRemove,setShowRemove]=useState(false)
 
-  const isIn = cart.some(item=>item.id===id)
+  const isIn = cart.some(item=>item.id===id)&&!conTarjeta
 
   function removeFromCart()
   {
