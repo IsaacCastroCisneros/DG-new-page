@@ -47,7 +47,7 @@ export default function Menu(props)
           Total:
           <p className="text-red-500 flex">
             <span>S/.</span>
-            <span className='block max-w-[63px] whitespace-nowrap overflow-hidden text-ellipsis'title={tot.toFixed(2)} >{tot.toFixed(2)}</span>
+            <span className='block mobNav:max-w-[63px] whitespace-nowrap overflow-hidden text-ellipsis'title={tot.toFixed(2)} >{tot.toFixed(2)}</span>
           </p>
         </strong>
         <button
