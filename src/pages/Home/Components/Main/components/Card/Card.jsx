@@ -25,7 +25,7 @@ export default function Card(props)
           <img src={imagen} className="w-[100%]" alt="" />
         </section>
         <section className="flex flex-col relative flex-1 justify-between">
-          <CardHeader titleShorter={titleShorter} titulo={titulo} />
+          <CardHeader titulo={titulo} tipo={tipo} />
           <CardPrice precio={precio} />
           <div className="py-[1rem] px-[1.5rem] flex items-stretch justify-between">
             <ul>
@@ -70,12 +70,12 @@ export default function Card(props)
 }
 
 
-function CardHeader({titleShorter, titulo}) 
+function CardHeader({titulo,tipo}) 
 {
   return (
     <div className="pt-[1rem] pb-[3.5rem] px-[1.5rem]">
       <strong className="text-red-500 text-[18px]">
-        Curso Virtual Grabado
+        <span className='capitalize'>{tipo}</span> Virtual Grabado
       </strong>
       <h1 className="text-rigth text-[29px] text-[#1f1f20] leading-[2rem]">
         {titleShorter(titulo, 40)}

@@ -4,6 +4,7 @@ import {useQuery} from 'react-query'
 
 export default function useMyQuery({type,tag='',id='',limit=''}) 
 {
+  if(type==='')return {data:''}
   const url = gettingUrl(type,tag,id,limit)
 
   let{data,isFetching}=useQuery(['query',url],query,

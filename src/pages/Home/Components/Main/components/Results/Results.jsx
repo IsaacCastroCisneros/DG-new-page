@@ -9,7 +9,18 @@ import LinkButton from '../../../../../../components/LinkButton/LinkButton'
 export default function Results() 
 {
   const[type,setType]=useState('cursos')
-  const{data,isFetching}= useMyQuery({type,limit:'limit=6'})
+  let{data,isFetching}= useMyQuery({type,limit:'limit=6'})
+  
+  const all=['cursos','diplomas','diplomados']
+
+  const{data:cursos}= useMyQuery({type:all[0]})
+  const{data:diplomas}= useMyQuery({type:all[1]})
+  const{data:diplomados}= useMyQuery({type:all[2]})
+
+  if(type==='todos')
+  {
+    data=[...cursos,...diplomas,...diplomados]
+  }
 
   return (
     <>
@@ -47,13 +58,15 @@ export default function Results()
           })}
         </div>
       )}
-      <div className="flex justify-center">
-        <LinkButton
-          label={`Ver Mas ${type}`}
-          path={`/${type}`}
-          styles={{ button: "!max-w-[20rem]" }}
-        />
-      </div>
+      {type !== "todos" && (
+        <div className="flex justify-center">
+          <LinkButton
+            label={`Ver Mas ${type}`}
+            path={`/${type}`}
+            styles={{ button: "!max-w-[20rem]" }}
+          />
+        </div>
+      )}
     </>
   );
 }
@@ -76,7 +89,6 @@ function ButtonType(props)
         isSelected ? "!bg-myBlack" : ""
       } transition-all duration-200`}
       onClick={() => {
-        if(label==='todos')return
         setType(label)
       } }
     >
