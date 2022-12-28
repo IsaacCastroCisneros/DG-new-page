@@ -6,6 +6,8 @@ import CartItems from './components/CartItems/CartItems';
 import IziForm from './components/IziForm';
 import LoginForm from './components/LoginForm';
 import Success from './components/Success';
+import { faGraduationCap,faMedal } from '@fortawesome/free-solid-svg-icons';
+import {faBook} from '@fortawesome/free-solid-svg-icons'
 
 export default function PasarelaForm() 
 {
@@ -18,14 +20,16 @@ export default function PasarelaForm()
   return (
     <>
       <div className="flex shadow-xl text-[#000] 926px:flex-col-reverse">
-        <section className="flex-1 py-[2rem] px-[1.5rem] flex flex-col justify-between">
-          <h1 className="font-bold text-[1.2rem] text-blue-500 mb-[1.5rem]">
-            Resumen de compra:
-          </h1>
-          <CartItems />
-        </section>
+        {isCart && (
+          <section className="flex-1 py-[2rem] px-[1.5rem] flex flex-col justify-between">
+            <h1 className="font-bold text-[1.2rem] text-blue-500 mb-[1.5rem]">
+              Resumen de compra:
+            </h1>
+            <CartItems />
+          </section>
+        )}
         <section className="flex-[2.5] bg-[#fff] px-[4rem] py-[3rem] 926px:px-[1.5rem] 926px:py-[2rem] relative">
-          {!isCart &&!showSuccess &&<EmptyCart/>}
+          {!isCart && !showSuccess && <EmptyCart />}
           {isCart && (
             <>
               {!showSuccess && (
@@ -36,7 +40,7 @@ export default function PasarelaForm()
               )}
             </>
           )}
-          {showSuccess&&!isCart&&<Success />}
+          {showSuccess && !isCart && <Success />}
         </section>
       </div>
     </>
@@ -46,15 +50,39 @@ export default function PasarelaForm()
 function EmptyCart()
 {
   return (
-    <div className='h-[100%] flex flex-col justify-center'>
+    <div className="h-[100%] flex flex-col justify-center items-center">
       <h1 className="text-[#000] text-center text-[1.5rem] block mb-[2rem]">
         Debe ingresar programas al carrito!!
       </h1>
-      <LinkButton
-       label={"Volver"}
-       path={'/'}
-       styles={{button:'!w-[100%]'}}
-       />
+      <div className="flex flex-col gap-[.5rem] items-center w-[15rem] max-w-[100%]">
+        <LinkButton
+          label={"Ver cursos"}
+          styles={{
+            button:
+              "w-[100%] !py-[.7rem] !font-bold !flex !items-center !gap-[1rem] !text-[#fff] !justify-center",
+          }}
+          path={"/cursos"}
+          icon={{ icon: faBook }}
+        />
+        <LinkButton
+          label={"Ver Diplomas"}
+          styles={{
+            button:
+              "w-[100%] !py-[.7rem] !font-bold !flex !items-center !gap-[1rem] !text-[#fff] !justify-center",
+          }}
+          path={"/diplomas"}
+          icon={{icon:faGraduationCap}}
+        />
+        <LinkButton
+          label={"Ver Diplomados"}
+          styles={{
+            button:
+              "w-[100%] !py-[.7rem] !font-bold !flex !items-center !gap-[1rem] !text-[#fff] !justify-center",
+          }}
+          icon={{icon:faMedal}}
+          path={"/diplomados"}
+        />
+      </div>
     </div>
   );
 }

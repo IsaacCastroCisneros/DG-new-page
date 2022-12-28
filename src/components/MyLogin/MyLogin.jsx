@@ -15,7 +15,7 @@ export default function MyLogin(props)
   return (
     <>
       <h1 className="text-[24px] block mb-[1.5rem]">Bienvenido 🙂</h1>
-      <strong className="text-[24px]">Iniciar Sesión</strong>
+      <strong className="text-[24px] block pr-[8rem]">Iniciar Sesión</strong>
       <p className="mb-[1.5rem]">Ingresa tu email y contraseña</p>
       <form onSubmit={submitting} className="flex flex-col gap-[1rem]">
         <FormInput

@@ -20,7 +20,7 @@ export default function MySignUp(props)
           Registrate para poder acceder al aula virtual de Centro de
           Capacitación y Desarrollo Global.
         </p>
-        <form onSubmit={submitting} className="flex flex-col gap-[1rem]">
+        <form onSubmit={submitting}>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-[1rem]">
             <FormInput
               placeHolder={"Nombres"}

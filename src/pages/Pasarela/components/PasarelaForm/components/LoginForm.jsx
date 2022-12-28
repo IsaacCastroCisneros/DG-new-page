@@ -1,6 +1,7 @@
 import React from 'react'
 import { useContext } from 'react';
 import Button from '../../../../../components/Button/Button';
+import LinkButton from '../../../../../components/LinkButton/LinkButton';
 import Login from '../../../../../components/Login/Login';
 import SignUp from '../../../../../components/SignUp/SignUp';
 import { appContext } from '../../../../../context/AppContext';
@@ -27,12 +28,12 @@ export default function LoginForm()
       <div className='flex flex-col gap-[1rem]'>
         <Button
           label={"Ingresa aqui"}
-          styles={{ button: "!w-[100%] !py-[.7rem]" }}
+          styles={{ button: "!w-[100%] !py-[.7rem] !font-bold" }}
           onClick={() => setShowPopUp({ show: true,popUp:<Login setShow={setShowPopUp}/> })}
         />
         <Button
           label={"Registrate aqui"}
-          styles={{ button: "!w-[100%] !py-[.7rem]" }}
+          styles={{ button: "!w-[100%] !py-[.7rem] !font-bold" }}
           onClick={() => setShowPopUp({ show: true,popUp:<SignUp setShow={setShowPopUp}/> })}
         />
       </div>

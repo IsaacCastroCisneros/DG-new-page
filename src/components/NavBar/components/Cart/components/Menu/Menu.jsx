@@ -43,11 +43,11 @@ export default function Menu(props)
         })}
       </section>
       <section className="border-gray-300 border-t-[1px] flex justify-between pt-[1rem] items-center">
-        <strong className="flex gap-[.5rem] text-[2rem] mobNav:text-[1.4rem]">
+        <strong className="flex gap-[.5rem] text-[2rem] mobNav:text-[1.1rem]">
           Total:
-          <p className="text-red-500">
+          <p className="text-red-500 flex">
             <span>S/.</span>
-            <span>{tot.toFixed(2)}</span>
+            <span className='block max-w-[63px] whitespace-nowrap overflow-hidden text-ellipsis'title={tot.toFixed(2)} >{tot.toFixed(2)}</span>
           </p>
         </strong>
         <button
@@ -58,7 +58,7 @@ export default function Menu(props)
         >
           <Link
             to={"/pasarela-pago"}
-            className="block uppercase px-[1rem] py-[.6rem] bg-green-500 font-bold text-[#fff] rounded-[.5rem]"
+            className="block uppercase px-[1rem] py-[.6rem] bg-green-500 font-bold text-[#fff] rounded-[.5rem] mobNav:text-[.8rem] mobNav:text-[]"
           >
             comprar
           </Link>

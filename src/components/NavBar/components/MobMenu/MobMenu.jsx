@@ -9,7 +9,6 @@ import Button from '../../../Button/Button';
 import LinkButton from '../../../LinkButton/LinkButton';
 import Login from '../../../Login/Login';
 import SignUp from '../../../SignUp/SignUp';
-import StatusMsg from '../../../StatusMsg/StatusMsg';
 
 export default function MobMenu() 
 {

@@ -42,24 +42,41 @@ export default function Cart({mob=false})
           onClick={() => setShowCart((prev) => !prev)}
           className="cartButton inline-block"
         >
-          <p className='flex gap-[1rem] relative w-fit'>
+          <p className="flex gap-[1rem] relative w-fit">
             {cart.length > 0 && (
-              <span className="flex items-center justify-center h-[1.7rem] w-[1.7rem] bg-red-500 text-[#fff] absolute rounded-[100%] font-bold right-[-.8rem] top-[-.4rem]"
-              style={mob?{width:'1.4rem',height:'1.4rem',fontSize:'.8rem'}:{}}
+              <span
+                className="flex items-center justify-center h-[1.7rem] w-[1.7rem] bg-red-500 text-[#fff] absolute rounded-[100%] font-bold right-[-.8rem] top-[-.4rem]"
+                style={
+                  mob
+                    ? { width: "1.4rem", height: "1.4rem", fontSize: ".8rem" }
+                    : {}
+                }
               >
                 {cart.length}
               </span>
             )}
-            {mob&&<span className='font-bold'>Carrito</span>}
-            <FontAwesomeIcon size={mob?'xl':'2xl'}  icon={faCartShopping} />
+            {mob && <span className="font-bold">Carrito</span>}
+            <FontAwesomeIcon size={mob ? "xl" : "2xl"} icon={faCartShopping} />
           </p>
         </button>
-        {
-         !mob&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart}  setShowCart={setShowCart} />
-        }
-        {
-          mob&&showCart&&<Menu cart={cart} mob={mob} tot={tot} showCart={showCart}  setShowCart={setShowCart} />
-        }
+        {!mob && (
+          <Menu
+            cart={cart}
+            mob={mob}
+            tot={tot}
+            showCart={showCart}
+            setShowCart={setShowCart}
+          />
+        )}
+        {mob && showCart && (
+          <Menu
+            cart={cart}
+            mob={mob}
+            tot={tot}
+            showCart={showCart}
+            setShowCart={setShowCart}
+          />
+        )}
       </div>
     </cartContext.Provider>
   );

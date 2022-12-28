@@ -6,7 +6,7 @@ export default function StatusMsg({setShow,status,okMsg=false})
 {
   
   return (
-    <div className='bg-[#fff] flex flex-col items-center w-[30rem] p-[1.8rem] rounded-[.5rem]'>
+    <div className='bg-[#fff] flex flex-col items-center max-w-[30rem] p-[1.8rem] rounded-[.5rem]'>
       {
         status==='success'&&
         <Success setShow={setShow} okMsg={okMsg} />
