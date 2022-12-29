@@ -92,3 +92,24 @@ h1,h2,h3,h4
 {
   background-color: #192677;
 }
+
+.whatAnimation
+{
+  animation: what 800ms ease-in-out infinite;
+}
+
+@keyframes what 
+{
+   0%
+   {
+      transform: scale(75%);
+   }
+   50%
+   {
+      transform: scale(100%);
+   }  
+   100%
+   {
+      transform:scale(75%);
+   }
+}

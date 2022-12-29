@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/Footer';
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import MyHelmetProduct from '../../components/Helmet/MyHelmetProduct';
+import WhatsButton from './components/WhatsButton/WhatsButton';
 
 export const productContext = React.createContext()
 
@@ -45,6 +46,7 @@ export default function Product({type})
           imagen={data?.imagen}
           seo={data?.seo}
         />
+      <WhatsButton {...data} />
       {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
       {!isFetching && (
         <>
