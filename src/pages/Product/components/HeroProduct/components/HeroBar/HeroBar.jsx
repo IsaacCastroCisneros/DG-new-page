@@ -29,7 +29,7 @@ export default function HeroBar(props)
         />
         <HeroBarBox
           title={"CERTIFICACIÓN"}
-          data={`200 horas`}
+          data={`Digital`}
           img={"/img/icons/dip2.png"}
         />
       </div>
