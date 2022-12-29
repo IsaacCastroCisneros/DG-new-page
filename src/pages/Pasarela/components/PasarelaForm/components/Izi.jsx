@@ -11,7 +11,7 @@ export default function Izi({payType,load})
   const[show,setShow]=useState(false)
   const{setShowPopUp}=useContext(appContext)
 
-  const isLoad= load ? '' : '!opacity-0 !pointer-events-none'
+  const isLoad= !load ? '' : '!opacity-0 !pointer-events-none'
   const hidden =  payType==='card' ? '' : '!opacity-0 !pointers-events-none !hidden'
 
   return (

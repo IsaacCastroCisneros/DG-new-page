@@ -18,16 +18,17 @@ export default function IziForm({setShowSuccess})
 
   useEffect(()=>
   {
+    setLoad(true)
     setTimeout(()=>
     {
-       setLoad(true)
+       setLoad(false)
     },5000)
-  },[])
+  },[cart])
 
   useEffect(()=>
   {
     izi()
-  },[payType])
+  },[cart])
 
   function izi()
   {
@@ -105,7 +106,7 @@ export default function IziForm({setShowSuccess})
         </span>
         <LoadFormMsg />
       </div>
-      {!load && (
+      {load && (
         <div className="w-[100%] top-[15rem] absolute flex justify-center left-0 926px:top-[20rem]">
           <Spinner />
         </div>

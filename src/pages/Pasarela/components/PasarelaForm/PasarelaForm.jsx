@@ -11,8 +11,7 @@ import {faBook} from '@fortawesome/free-solid-svg-icons'
 
 export default function PasarelaForm() 
 {
-/*   const[show,setShow]=useState(false) */
-  const[showSuccess,setShowSuccess]=useState(false)
+  const[showSuccess,setShowSuccess]=useState(false);
   const{user,cart}=useContext(appContext);
 
   const isCart = cart ? cart.length>0 : false
@@ -34,8 +33,8 @@ export default function PasarelaForm()
             <>
               {!showSuccess && (
                 <>
-                  {!user && <LoginForm />}
-                  {user && <IziForm setShowSuccess={setShowSuccess} />}
+                  {!user && <LoginForm/>}
+                  {user && <IziForm setShowSuccess={setShowSuccess}/>}
                 </>
               )}
             </>
