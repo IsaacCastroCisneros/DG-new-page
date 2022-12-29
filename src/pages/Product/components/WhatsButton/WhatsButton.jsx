@@ -1,4 +1,5 @@
 import React from 'react'
+import titleShorter from '../../../../helpers/titleShorter'
 
 export default function WhatsButton({titulo,asesores}) 
 {
@@ -15,7 +16,7 @@ export default function WhatsButton({titulo,asesores})
            </p>
        </span>
        <p className='transition-all duration-200 absolute top-0 left-[.5rem] text-myBlack text-[.8rem] translate-y-[-100%] min-w-[12rem] max-w-[12.5rem] bg-[#fff] border-[1px] border-gray-400 p-[.6rem] rounded-[.3rem] shadow-xl elige:text-[.7rem] elige:min-w-[10rem]'>
-         {msg}<br/><strong className='elige:max-w-[10rem] block elige:whitespace-nowrap elige:overflow-hidden elige:text-ellipsis'>{titulo}</strong>
+         {msg}<br/><strong className='elige:max-w-[10rem] block elige:whitespace-nowrap elige:overflow-hidden elige:text-ellipsis'>{titleShorter(titulo)}</strong>
        </p>
        <img src="/img/what.webp" className='w-[100%]' alt="" />
     </a>
