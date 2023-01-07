@@ -6,7 +6,6 @@ import useMyQuery from '../../../../customHooks/useMyQuery';
 
 export default function ContenidoTem(props) 
 {
-
   const
   {
      sesiones,
@@ -54,17 +53,12 @@ function CursoTem(props)
 
   const
   {
-    id,
     icono,
     titulo,
     sesiones
   }=props
 
   const icon = show ? "/img/minus.png" : "/img/plus.png"
-
-/*   const{data:curso,isFetching}=useMyQuery({type:'cursos',tag:id}) */
-
-  console.log(props)
 
   return (
     <div className="bg-[#fafafa] px-[2.3rem] product:px-[1.8rem] py-[1rem] shadow-lg">

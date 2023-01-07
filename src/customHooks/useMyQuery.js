@@ -18,7 +18,7 @@ export default function useMyQuery({type,tag='',id='',limit=''})
     return res
   }
 
-  if(tag==='')
+  if(tag===''&&type!=='popUps')
   {
     if(data!==undefined)
     {
@@ -53,6 +53,10 @@ function gettingUrl(type,tag,id,limit)
         case 'diplomados':
         {
             return `${url}diplomados/grabado/${tag}?offset=0&${limit}`
+        }
+        case 'popUps':
+        {
+            return `https://aula.desarrolloglobal.pe/v03/api/modal/grabado`
         }
   
         default: return ''

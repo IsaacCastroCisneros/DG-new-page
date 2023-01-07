@@ -40,6 +40,7 @@ export default function AppContext({children})
       
     },[])
   
+    const heeey= ''
   return (
     <appContext.Provider 
      value=
@@ -56,7 +57,8 @@ export default function AppContext({children})
             showMobMenu,
             setShowMobMenu,
             setUser,
-            user
+            user,
+            heeey
         }
      }
      >

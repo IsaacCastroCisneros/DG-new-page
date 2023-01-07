@@ -6,14 +6,28 @@ import MasDe10 from './Components/MasDe10/MasDe10';
 import NuestrosBeneficios from './Components/NuestrosBeneficios/NuestrosBeneficios';
 import ProgramaElaborado from './Components/ProgramaElaborado/ProgramaElaborado';
 import MyHelmet from '../../components/Helmet/MyHelmet';
-
+import { useContext } from 'react';
+import { appContext } from '../../context/AppContext';
+import useMyQuery from '../../customHooks/useMyQuery';
+import PopUpHome from './Components/PopUpHome/PopUpHome';
 
 export default function Home() 
 {
+  const{setShowPopUp}=useContext(appContext)
+  const{data}=useMyQuery({type:'popUps'})
+
   useEffect(()=>
   {
     window.scrollTo(0, 0);
   })
+
+  useEffect(()=>
+  {
+    /* if(data)
+    {
+      setShowPopUp(prev=>{return{...prev,popUp:<PopUpHome popUps={data}/>,show:true}})
+    } */
+  },[data])
   
   return (
     <>
@@ -34,3 +48,6 @@ export default function Home()
     </>
   );
 }
+
+
+

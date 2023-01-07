@@ -7,25 +7,23 @@ import Card from '../Home/Components/Main/components/Card/Card';
 import ProgramaElaborado from '../Home/Components/ProgramaElaborado/ProgramaElaborado';
 import HeroPrograma from './components/HeroPrograma';
 import MyHelmet from '../../components/Helmet/MyHelmet';
+import theRandomizer from '../../helpers/theRandomizer';
+import { useState } from 'react';
 
 export default function Programas({type}) 
 {
-  const{data,isFetching}=useMyQuery({type})
+  const { data, isFetching } = useMyQuery({ type });
 
-  useEffect(()=>
-  {
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
-  const {title,content} = typeHelmet(type)
-
+  const { title, content } = typeHelmet(type);
+  
   return (
     <>
-      <MyHelmet
-        title={title}
-        content={content}
-      />
-      <HeroPrograma type={type} />
+      <MyHelmet title={title} content={content}/>
+      <HeroPrograma type={type}/>
       <main className="custom-container2 relative z-[99] pb-[3.5rem]">
         <h1 className="block text-center text-myBlack text-[2.5rem] mt-[4.5rem] phone:font-normal phone:text-[2.4rem] phone:mt-[2rem] mb-[4rem]">
           Elige el Programa de tu Interés y Certificate

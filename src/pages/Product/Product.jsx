@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import Spinner from '../../components/Spinner/Spinner';
 import useMyQuery from '../../customHooks/useMyQuery';
@@ -62,7 +61,7 @@ export default function Product({type})
             </section>
             <aside className="flex-[1]">
               <span className="text-[16px] text-center text-[#fd0000] hidden heroProduct:block">
-                FECHA DE INICIO: {data.inicio}
+                FECHA DE INICIO: AHORA MISMO
               </span>
               <RiteCardPrice {...data} />
             </aside>

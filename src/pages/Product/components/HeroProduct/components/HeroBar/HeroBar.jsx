@@ -5,7 +5,7 @@ export default function HeroBar(props)
   const
   {
     sesiones,
-    tipo_clase,
+    certificados,
     total_sesiones
   }=props
 
@@ -29,7 +29,7 @@ export default function HeroBar(props)
         />
         <HeroBarBox
           title={"CERTIFICACIÓN"}
-          data={`Digital`}
+          data={`${certificados} Horas`}
           img={"/img/icons/dip2.png"}
         />
       </div>

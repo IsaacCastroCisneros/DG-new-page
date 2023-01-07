@@ -16,12 +16,14 @@ export default function LinkButton(props)
 
   const{button='',span=''} = styles || {}
 
+  const buttonLink = `bg-gradient-to-b hover:to-[#7e60fc] hover:from-[#3c11f0] transition-all duration-200 from-[#3c11f0] to-myPurple rounded-[.3rem] px-[2.1rem] block py-[.2rem] ${button}`
+
   return (
     <>
       {!toOutside && (
         <Link
           to={path}
-          className={`bg-myPurple rounded-[.3rem] px-[2.1rem] block py-[.2rem] ${button}`}
+          className={buttonLink}
           target={target}
         >
           {icon.icon && <FontAwesomeIcon size={icon.size} icon={icon.icon} />}
@@ -35,7 +37,7 @@ export default function LinkButton(props)
       {toOutside && (
         <a
           href={path}
-          className={`bg-myPurple rounded-[.3rem] px-[2.1rem] block py-[.2rem] ${button}`}
+          className={buttonLink}
           target={target}
         >
           <span
