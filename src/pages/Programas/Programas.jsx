@@ -25,7 +25,7 @@ export default function Programas({type})
       <MyHelmet title={title} content={content}/>
       <HeroPrograma type={type}/>
       <main className="custom-container2 relative z-[99] pb-[3.5rem]">
-        <h1 className="block text-center text-myBlack text-[2.5rem] mt-[4.5rem] phone:font-normal phone:text-[2.4rem] phone:mt-[2rem] mb-[4rem]">
+        <h1 className="block text-center text-myBlack text-[2.5rem] mt-[4.5rem] phone:font-normal phone:mt-[2rem] mb-[4rem] phone:!text-[1.5rem] phone:font-medium">
           Elige el Programa de tu Interés y Certificate
         </h1>
         {isFetching && <Spinner />}
@@ -42,7 +42,7 @@ export default function Programas({type})
     </>
   );
 }
-
+/* fdf */
 function typeHelmet(type)
 {
   switch(type)
