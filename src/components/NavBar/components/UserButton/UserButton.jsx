@@ -24,8 +24,8 @@ export default function UserButton(props)
   })
 
   return (
-    <div className='relative user-menu z-[999999]'>
-      <button className="flex items-center gap-[.6rem] justify-between"
+    <div className={`relative user-menu z-[999999]`}>
+      <button className={`flex items-center gap-[.6rem] justify-between ${show ? 'bg-gray-100':'bg-gray-50'} px-[.8rem] border-[2px] py-[.5rem] border-gray-200 rounded-[.5rem]  hover:bg-gray-100`}
        onClick={()=>setShow(prev=> !prev)}
        >
         <div className="h-[2.2rem] rounded-[100%] overflow-hidden mobNav:hidden">
@@ -36,12 +36,10 @@ export default function UserButton(props)
           <strong className="text-blue-600 max-w-[5.5rem] whitespace-nowrap overflow-hidden text-ellipsis">
             {nombre}
           </strong>
-          <FontAwesomeIcon icon={faChevronDown} />
+          <FontAwesomeIcon className={`transition-all duration-200 rotate-[${show?'180deg':'0deg'}]`} icon={faChevronDown} />
         </p>
       </button>
-      {
-        show&&<UserMenu/>
-      }
+      <UserMenu show={show}/>
     </div>
   );
 }

@@ -13,7 +13,7 @@ import PopUpHome from './Components/PopUpHome/PopUpHome';
 
 export default function Home() 
 {
-  const{setShowPopUp}=useContext(appContext)
+/*   const{setShowPopUp}=useContext(appContext) */
   const{data}=useMyQuery({type:'popUps'})
 
  /*  useEffect(()=>

@@ -11,13 +11,22 @@ import React,{useState,useContext} from 'react'
 import { appContext } from '../../../../../../context/AppContext';
 import postRequest from '../../../../../../helpers/postRequest';
 
-export default function UserMenu()
+export default function UserMenu({show})
 {
   const{setShowPopUp,user}=useContext(appContext)
 
+  const isShow = show ? {h:'214.96px',b:'1px',p:'auto'} : {h:0,o:0,b:'0'}
+
   return (
     <>
-      <ul className="absolute rounded-[.5rem] bg-[#fff] shadow-xl border-[1px] border-gray-300 right-0 bottom-0 translate-y-[105%]">
+      <ul className="absolute transition-[height] duration-200 rounded-[.5rem] bg-[#fff] shadow-xl border-[1px] border-gray-300 right-0 bottom-0 translate-y-[105%] overflow-hidden"
+        style={
+          {
+            height:isShow.h,
+            borderWidth:isShow.b,
+            pointerEvents:isShow.p
+          }}
+       >
         <UserMenuOption
           label={"Mi Aula"}
           icon={faLaptop}

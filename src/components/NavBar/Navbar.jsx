@@ -11,15 +11,36 @@ import { appContext } from '../../context/AppContext'
 import Login from '../Login/Login'
 import UserButton from './components/UserButton/UserButton'
 import SignUp from '../SignUp/SignUp'
-
+import { useEffect } from 'react'
 
 export default function Navbar() 
 {
   const{setShowMobMenu,user,setShowPopUp}=useContext(appContext)
+  const[hideNavBar,setHideNavBar]=useState({isHide:false,prevY:200})
+
+  useEffect(()=>
+  {
+    function myScrollStuff()
+    {
+      const y = window.scrollY
+      if(y>hideNavBar.prevY)
+      {
+        setHideNavBar({isHide:true,prevY:y})
+        return
+      }
+      setHideNavBar(prev=>{return {...prev,isHide:false}} )
+    }
+
+    window.addEventListener('scroll',myScrollStuff)
+   /*  return ()=> window.removeEventListener('scroll',myScrollStuff) */
+  })
 
   return (
     <>
-      <header className="flex">
+      <div className='h-[63.98px]'></div>
+      <header className="flex fixed z-[999999999999] bg-[#fff] w-[100%] top-0 transition-all duration-[100ms] ease-in-out shadow-xl"
+       style={{transform:hideNavBar.isHide? 'translateY(-100%)':'translateY(0)'}}
+       >
         <nav className="flex custom-container justify-between items-center mobNav:!px-[.7rem]">
           <ul className="flex gap-[3rem] font-medium text-myBlack items-stretch min-h-[4rem]">
             <Link
@@ -84,12 +105,23 @@ export default function Navbar()
 
 function NavOption({label,path}) 
 {
+  const[showUnderLine,setShowUnderLine]=useState(false)
+
   return (
-    <li className="mobNav:hidden">
-      <NavLink to={path} className="text-myGrey2 relative hover:text-[#000] capitalize flex items-center h-[100%] border-b-[3px] border-[transparent] ">
+    <li className="mobNav:hidden relative"
+      onMouseEnter={()=>setShowUnderLine(true)}
+      onMouseLeave={()=>setShowUnderLine(false)}
+     >
+      <NavLink to={path} className="text-myGrey2 hover:text-[#000] capitalize flex items-center h-[100%] border-b-[4.3px] border-[transparent] ">
         <span>{label}</span>
-        <div className='absolute bottom-0 w-[100%] h-[2px]'></div>
       </NavLink>
+      <div className='absolute w-[100%] bottom-0 flex justify-center text-center'
+       >
+        <span
+         className={`transition-all duration-200 h-[4.3px] bg-myPurple`}
+         style={{width:showUnderLine?'100%':'0%'}}
+         ></span>
+       </div>
     </li>
   );
 }

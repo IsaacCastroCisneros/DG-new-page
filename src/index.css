@@ -64,6 +64,7 @@ h1,h2,h3,h4
 .active
 {
   border-color:#6440FB;
+  color: #000;
 }
 
 .kr-installment-number,.kr-first-installment-delay
