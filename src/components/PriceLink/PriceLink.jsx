@@ -6,9 +6,11 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import HeroForm from '../../pages/Product/components/HeroProduct/components/HeroForm/HeroForm';
+import {myGradient} from '../../MyStyles/MyStyles'
 import { useState } from 'react';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
+
 
 const priceLinkContext = React.createContext() 
 
@@ -61,7 +63,7 @@ export default function PriceLink(props)
                 })
               }
               to={path}
-              className={myStyles}
+              className={`${myStyles} ${myGradient}`}
             >
               {type === "mas" && <Mas />}
             </button>
@@ -82,12 +84,11 @@ export default function PriceLink(props)
     );
 }
 
-
 function Mas()
 {
   return (
     <>
-      <span className="text-[2rem] previewMob:text-[1.5rem]">
+      <span className={`text-[2rem] previewMob:text-[1.5rem]`}>
         <FontAwesomeIcon icon={faShare} />
       </span>
       <span className="font-medium">Mas Información</span>
@@ -95,11 +96,11 @@ function Mas()
   );
 }
 
-function Chat({asesores,name,productData})
+function Chat({asesores,name})
 {
   return (
     <>
-      <a className={myStyles + " !text-[#2cb742] !border-[#2cb742]"} 
+      <a className={myStyles + " !border-[#2cb742] bg-gradient-to-t !text-[#fff] to-green-400 from-green-700 hover:from-green-600 hover:to-green-400"} 
         target={'_blank'}
         href={`https://api.whatsapp.com/send?phone=51${asesores ? asesores[0]?.telefono:''}&text=Hola solicito informacion del programa: ${name}`}>
         <span className="text-[2rem] previewMob:text-[1.5rem]">
@@ -175,7 +176,7 @@ function Cart(props)
       )}
       {isLinkLike && (
         <button
-          className="text-[#0088e3] font-bold mt-[1rem] hover:underline"
+          className={`text-[#0088e3] font-bold mt-[1rem] hover:underline`}
           onClick={addingToCart}
         >
           <span className="font-bold">Pagar Con Tarjeta</span>
@@ -212,11 +213,11 @@ function MyAddToCart(props)
     setShowNoti({show:true,status:'ok',msgOk:'Removido con exito!'})
   }
 
+/*   const myGradient = `!bg-gradient-to-b !from-myPurple !to-[#3c11f0] !text-[#fff] hover:!from-myPurple hover:!to-[#000]` */
+
   return (
     <button
-      className={`border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px] ${
-        isIn ? "!bg-myPurple !text-[#fff]" : ""
-      } ${styles.button}`}
+      className={`border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] text-[#fff] border-myPurple text-[20px] previewMob:text-[15px] ${styles.button} ${myGradient}`}
       onClick={isIn ? removeFromCart : addingToCart}
       onMouseEnter={isIn ? () => setShowRemove(true) : ()=>null}
       onMouseLeave={isIn ? () => setShowRemove(false) : ()=>null}

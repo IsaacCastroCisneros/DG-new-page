@@ -16,10 +16,10 @@ export default function Home()
   const{setShowPopUp}=useContext(appContext)
   const{data}=useMyQuery({type:'popUps'})
 
-  useEffect(()=>
+ /*  useEffect(()=>
   {
     window.scrollTo(0, 0);
-  })
+  }) */
 
   useEffect(()=>
   {

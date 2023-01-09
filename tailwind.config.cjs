@@ -12,6 +12,7 @@ module.exports = {
         myPurple:'#6440FB',
         myPurpleBg:'#140342',
         myGrey:'#F5F5F5',
+        myGrey2:'#3b3b3b',
         myRed:'#CC214F',
         myBlack:'#232323',
         myOpacity:'#14063F',

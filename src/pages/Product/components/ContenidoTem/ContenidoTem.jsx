@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown,faBars } from '@fortawesome/free-solid-svg-icons';
 import React from 'react'
 import { useState } from 'react';
-import useMyQuery from '../../../../customHooks/useMyQuery';
+import { myGradientNoHover } from '../../../../MyStyles/MyStyles';
 
 export default function ContenidoTem(props) 
 {
@@ -15,8 +15,8 @@ export default function ContenidoTem(props)
   }=props
 
   return (
-    <div className=' overflow-hidden rounded-[1rem] shadow-xl mb-[1.5rem]'>
-      <strong className='block px-[2.5rem] py-[1.3rem] bg-myPurple text-[#fff] text-[26px] product:text-[20px]'>Contenido Temático</strong>
+    <div className='overflow-hidden rounded-[1rem] shadow-xl mb-[1.5rem]'>
+      <strong className={`block px-[2.5rem] py-[1.3rem] ${myGradientNoHover} hover text-[26px] product:text-[20px]`}>Contenido Temático</strong>
       {
         tipo==='curso'&&
         <div className='pt-[1.5rem] pb-[1.2rem] px-[1rem] flex flex-col gap-[.5rem]' >
@@ -130,7 +130,12 @@ function Accordion({ sesion })
        className='bg-[#f5f5f5] w-[100%] text-left p-[1rem] flex justify-between' 
        onClick={() => setShow((prev) => !prev)}>
         <strong>
-          {sesion.titulo}: {sesion.sub_titulo}
+          <span className=' text-[#363535]'>
+          {sesion.titulo} 
+          </span>
+          <span className='text-myGrey2 font-medium'>
+          : {sesion.sub_titulo}
+          </span>
         </strong>
         <span className={`${show ? 'rotate-180' :''}`} >
            <FontAwesomeIcon icon={faChevronDown}/>

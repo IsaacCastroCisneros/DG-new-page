@@ -86,8 +86,9 @@ function NavOption({label,path})
 {
   return (
     <li className="mobNav:hidden">
-      <NavLink to={path} className="uppercase flex items-center h-[100%] border-b-[3px] border-[transparent] ">
+      <NavLink to={path} className="text-myGrey2 relative hover:text-[#000] capitalize flex items-center h-[100%] border-b-[3px] border-[transparent] ">
         <span>{label}</span>
+        <div className='absolute bottom-0 w-[100%] h-[2px]'></div>
       </NavLink>
     </li>
   );
