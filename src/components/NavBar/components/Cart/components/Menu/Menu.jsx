@@ -2,11 +2,13 @@ import React from 'react'
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { appContext } from '../../../../../../context/AppContext';
+import { navBarContext } from '../../../../Navbar';
 import CartItem from './component/CartItem';
 
 export default function Menu(props) 
 {
   const{setShowMobMenu}=useContext(appContext)
+  
   const 
   {
     cart,
@@ -15,6 +17,7 @@ export default function Menu(props)
     mob,
     setShowCart,
   }=props
+
 
   const showing = showCart ? {opacity:1,pointerEvents:'auto',top:'135%'} : {}
 

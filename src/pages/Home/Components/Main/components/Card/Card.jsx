@@ -20,7 +20,7 @@ export default function Card(props)
 
   return (
     <>
-      <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col text-[#1f1f20]">
+      <div className="rounded-[.5rem] overflow-hidden shadow-lg flex flex-col text-[#1f1f20] relative hover:rotate-[-1.5deg] transition-all duration-200">
         <section className="block">
           <img src={imagen} className="w-[100%]" alt="" />
         </section>

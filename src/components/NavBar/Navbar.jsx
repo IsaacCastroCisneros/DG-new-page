@@ -13,6 +13,8 @@ import UserButton from './components/UserButton/UserButton'
 import SignUp from '../SignUp/SignUp'
 import { useEffect } from 'react'
 
+export const navBarContext= React.createContext()
+
 export default function Navbar() 
 {
   const{setShowMobMenu,user,setShowPopUp}=useContext(appContext)
@@ -35,8 +37,13 @@ export default function Navbar()
    /*  return ()=> window.removeEventListener('scroll',myScrollStuff) */
   })
 
+  const contextValues=
+  {
+    hideNavBar
+  }
+
   return (
-    <>
+    <navBarContext.Provider value={contextValues}>
       <div className='h-[63.98px]'></div>
       <header className="flex fixed z-[999999999999] bg-[#fff] w-[100%] top-0 transition-all duration-[100ms] ease-in-out shadow-xl"
        style={{transform:hideNavBar.isHide? 'translateY(-100%)':'translateY(0)'}}
@@ -56,7 +63,7 @@ export default function Navbar()
           </ul>
           <div className="flex gap-[1rem] items-center">
             <div className="flex gap-[1.3rem] mobNav:hidden">
-              <Cart />
+              <Cart hideNavBar={hideNavBar} />
               {!user && (
                 <Button
                   label="iniciar sesion"
@@ -76,6 +83,7 @@ export default function Navbar()
               {!user && (
                 <Button
                   label="registrarse"
+                  isGradient={false}
                   styles={{
                     button:
                       "!bg-[transparent] !border-[3px] !border-myPurple !box-border",
@@ -99,7 +107,7 @@ export default function Navbar()
           </div>
         </nav>
       </header>
-    </>
+    </navBarContext.Provider>
   );
 }
 

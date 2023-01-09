@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { myGradient } from '../../MyStyles/MyStyles';
 
 export default function LinkButton(props) 
 {
@@ -16,7 +17,7 @@ export default function LinkButton(props)
 
   const{button='',span=''} = styles || {}
 
-  const buttonLink = `bg-gradient-to-b hover:to-[#7e60fc] hover:from-[#3c11f0] transition-all duration-200 from-[#3c11f0] to-myPurple rounded-[.3rem] px-[2.1rem] block py-[.2rem] ${button}`
+  const buttonLink = `${myGradient} transition-all duration-200 rounded-[.3rem] px-[2.1rem] block py-[.2rem] ${button}`
 
   return (
     <>

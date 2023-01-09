@@ -14,7 +14,7 @@ const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] prod
 
 const priceLinkContext = React.createContext() 
 
-export default function PriceLink(props) 
+export default function PriceLink(props)
 {
     const
     {

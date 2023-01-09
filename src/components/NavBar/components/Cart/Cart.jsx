@@ -7,7 +7,7 @@ import Menu from './components/Menu/Menu';
 
 export const cartContext=React.createContext(); 
 
-export default function Cart({mob=false}) 
+export default function Cart({mob=false,hideNavbar}) 
 {
   const{cart,setShowCart,showCart}=useContext(appContext);
 
@@ -65,6 +65,7 @@ export default function Cart({mob=false})
             mob={mob}
             tot={tot}
             showCart={showCart}
+            hideNavbar={hideNavbar}
             setShowCart={setShowCart}
           />
         )}
