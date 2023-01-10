@@ -71,6 +71,7 @@ export default function MobMenu()
             <LinkButton
               label="Aula Virtual"
               path={"https://aula.desarrolloglobal.pe/aula/#tab_tablero"}
+              styles={{button:'!justify-center'}}
               target={"_blank"}
               toOutside={true}
             />
@@ -78,6 +79,7 @@ export default function MobMenu()
           {!user && (
             <Button
               label="registrarse"
+              isGradient={false}
               styles={{
                 button:
                   "!bg-[transparent] !border-[3px] !border-myPurple !box-border",

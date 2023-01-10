@@ -28,7 +28,7 @@ export default function CartItem(props)
       <button className='absolute right-0 text-[1.5rem] top-0'
        onClick={()=>updatingCart(id)}
        >
-        <FontAwesomeIcon icon={faXmark}/>
+        <FontAwesomeIcon className=' text-gray-400 hover:text-gray-500' icon={faXmark}/>
        </button>
       <section className="flex-1">
         <img src={imagen} className="w-[100%]"/>

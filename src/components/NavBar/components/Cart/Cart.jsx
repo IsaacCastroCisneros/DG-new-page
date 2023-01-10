@@ -4,12 +4,15 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { appContext } from '../../../../context/AppContext';
 import { useContext } from 'react';
 import Menu from './components/Menu/Menu';
+import { useState } from 'react';
+import Button from '../../../Button/Button';
 
 export const cartContext=React.createContext(); 
 
-export default function Cart({mob=false,hideNavbar}) 
+export default function Cart({mob=false,hideNavBar}) 
 {
-  const{cart,setShowCart,showCart}=useContext(appContext);
+  const{cart}=useContext(appContext);
+  const[showCart,setShowCart]=useState(false)
 
   useEffect(()=>
   {
@@ -25,6 +28,17 @@ export default function Cart({mob=false,hideNavbar})
     return ()=> window.removeEventListener('click',removingMenu)
   })
 
+  useEffect(()=>
+  {
+     if(hideNavBar!==undefined)
+     {
+       if(hideNavBar.isHide===true)
+       {
+         setShowCart(false)
+       }
+     }
+  },[hideNavBar])
+
   const tot = cart.reduce((sum,current)=>
   {
     return sum + current.price
@@ -38,10 +52,11 @@ export default function Cart({mob=false,hideNavbar})
   return (
     <cartContext.Provider value={contextValues}>
       <div className="relative z-[999] text-[#000] flex flex-col justify-center max-w-[100%]">
-        <button
+        <Button
           onClick={() => setShowCart((prev) => !prev)}
-          className="cartButton inline-block"
-        >
+          isContentInside={true}
+          styles={{button:'cartButton !w-fit !px-[1rem] !py-[.5rem]'}}
+          >
           <p className="flex gap-[1rem] relative w-fit">
             {cart.length > 0 && (
               <span
@@ -58,14 +73,13 @@ export default function Cart({mob=false,hideNavbar})
             {mob && <span className="font-bold">Carrito</span>}
             <FontAwesomeIcon size={mob ? "xl" : "2xl"} icon={faCartShopping} />
           </p>
-        </button>
+        </Button>
         {!mob && (
           <Menu
             cart={cart}
             mob={mob}
             tot={tot}
             showCart={showCart}
-            hideNavbar={hideNavbar}
             setShowCart={setShowCart}
           />
         )}

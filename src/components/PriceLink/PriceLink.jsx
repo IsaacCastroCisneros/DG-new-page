@@ -11,7 +11,6 @@ import { useState } from 'react';
 
 const myStyles = `border-[3.5px] items-center px-[1.5rem] flex gap-[1.5rem] product:gap-[.7rem] py-[.3rem] rounded-[.5rem] border-myPurple text-myPurple text-[20px] previewMob:text-[15px]`
 
-
 const priceLinkContext = React.createContext() 
 
 export default function PriceLink(props)

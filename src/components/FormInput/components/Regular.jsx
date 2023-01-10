@@ -27,6 +27,7 @@ export default function Regular(props)
           className="outline-none block text-myBlack placeholder:text-placeHolder placeholder:font-medium placeholder:text-[.8rem] w-[100%]"
           onKeyPress={onKeyFunc}
           onChange={onChange}
+          autoComplete="on"
         />
       </div>
       {errLabel && (

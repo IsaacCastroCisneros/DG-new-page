@@ -25,6 +25,7 @@ export default function Simple(props)
           placeholder={placeHolder}
           onKeyPress={onKeyFunc}
           onChange={onChange}
+          autoComplete='on'
         />
         {errLabel && (
           <ErrFormMsg errLabel={errLabel} />

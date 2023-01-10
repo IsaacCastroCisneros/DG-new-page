@@ -9,7 +9,9 @@ export default function Button(props)
     styles,
     onClick,
     type,
-    isGradient=true
+    isGradient=true,
+    isContentInside=false,
+    children,
   }=props
 
   const{button='',span=''} = styles || {}
@@ -19,11 +21,22 @@ export default function Button(props)
      onClick={onClick}
      type={type}
      >
-      <span className={`capitalize text-[#fff] ${span}`}>
-        {
-          label
-        }
-      </span>
+      {
+        !isContentInside&&
+        <span className={`capitalize text-[#fff] ${span}`}>
+          {
+            label
+          }
+        </span>
+      }
+      {
+        isContentInside&&
+        <>
+          {
+            children
+          }
+        </>
+      }
     </button>
   );
 }

@@ -18,7 +18,6 @@ export default function Menu(props)
     setShowCart,
   }=props
 
-
   const showing = showCart ? {opacity:1,pointerEvents:'auto',top:'135%'} : {}
 
   if(mob)

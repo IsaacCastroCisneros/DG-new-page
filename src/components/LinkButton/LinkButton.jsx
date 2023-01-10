@@ -17,7 +17,7 @@ export default function LinkButton(props)
 
   const{button='',span=''} = styles || {}
 
-  const buttonLink = `${myGradient} transition-all duration-200 rounded-[.3rem] px-[2.1rem] block py-[.2rem] ${button}`
+  const buttonLink = `${myGradient} transition-all duration-200 rounded-[.3rem] px-[2.1rem] flex items-center py-[.2rem] ${button}`
 
   return (
     <>

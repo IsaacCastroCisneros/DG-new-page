@@ -60,6 +60,7 @@ export default function Card(props)
             <PriceLink
               type="cart"
               productData={props}
+              styles={{button:'!text-[20px]'}}
               label={<p>Comprar <span className='capitalize'>{tipo}</span></p> }
             />
           </div>

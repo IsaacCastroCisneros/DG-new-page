@@ -62,8 +62,8 @@ export default function Navbar()
             <NavOption label={"diplomados"} path={"/diplomados"} />
           </ul>
           <div className="flex gap-[1rem] items-center">
-            <div className="flex gap-[1.3rem] mobNav:hidden">
-              <Cart hideNavBar={hideNavBar} />
+            <div className="flex gap-[1.3rem] mobNav:hidden items-center">
+              <Cart hideNavBar={hideNavBar}/>
               {!user && (
                 <Button
                   label="iniciar sesion"

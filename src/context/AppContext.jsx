@@ -6,7 +6,7 @@ export const appContext = React.createContext()
 export default function AppContext({children}) 
 {
     const[cart,setCart]=useState([])
-    const[showCart,setShowCart]=useState(false)
+    /* const[showCart,setShowCart]=useState(false) */
     const[showNoti,setShowNoti]=useState({show:false,status:'ok',msgOk:undefined,msgFail:undefined})
     const[showPopUp,setShowPopUp]=useState({popUp:undefined,show:false})
     const[showMobMenu,setShowMobMenu]=useState(false)
@@ -48,8 +48,8 @@ export default function AppContext({children})
         {
             setCart,
             cart,
-            showCart,
-            setShowCart,
+            /* showCart,
+            setShowCart, */
             showNoti,
             setShowNoti,
             setShowPopUp,
