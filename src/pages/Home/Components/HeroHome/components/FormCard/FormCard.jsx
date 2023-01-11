@@ -84,10 +84,12 @@ export default function FormCard()
     });
   }
 
+  console.log(formData)
+
   return (
     <>
       <div
-        className=" bg-[#fff] px-[2rem] pt-[1rem] pb-[2rem] w-[410px] h-[494px] flex flex-col justify-between rounded-[.6rem] phone:w-[auto] phone:h-[auto] "
+        className=" bg-[#fff] px-[2rem] pt-[1rem] pb-[2rem] w-[410px] h-[494px] flex flex-col justify-between rounded-[.6rem] phone:w-[100%] phone:h-[auto] "
         onSubmit={submitting}
       >
         <h1 className="capitalize text-center text-myPurple font-bold text-[34px] block mb-[1rem] phone:text-[25px]">
@@ -145,7 +147,7 @@ export default function FormCard()
           />
           <Selector
             cursos={cursos}
-            value={formData.programs}
+            value={formData.program}
             diplomas={diplomas}
             diplomados={diplomados}
             errLabel={errList?.program}
