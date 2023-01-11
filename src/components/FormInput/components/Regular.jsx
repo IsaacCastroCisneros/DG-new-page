@@ -11,7 +11,8 @@ export default function Regular(props)
       onChange,
       errLabel = undefined,
       onKeyFunc,
-      value
+      value,
+      inputType='text'
     } = props;
 
   return (
@@ -21,7 +22,7 @@ export default function Regular(props)
       </div>
       <div className="flex-1">
         <input
-          type="text"
+          type={inputType}
           value={value}
           placeholder={placeHolder}
           className="outline-none block text-myBlack placeholder:text-placeHolder placeholder:font-medium placeholder:text-[.8rem] w-[100%]"
@@ -33,9 +34,9 @@ export default function Regular(props)
       {errLabel && (
        <ErrFormMsg errLabel={errLabel}/>
       )}
-      {!errLabel && (
+   {/*    {!errLabel && (
         <OkFormMsg/>
-      )}
+      )} */}
     </div>
   );
 }

@@ -19,6 +19,7 @@ export default function FormCard()
   const{data:cursos}=useMyQuery({type:'cursos'})
   const{data:diplomas}=useMyQuery({type:'diplomas'})
   const{data:diplomados}=useMyQuery({type:'diplomados'})
+  const[isLoading,setIsLoading]=useState(false)
 
   const {data:ciudad}=useMyQuery({type:'geo'})
 
@@ -58,11 +59,15 @@ export default function FormCard()
       "https://www.desarrolloglobal.pe" + location.pathname
     );
 
+    setIsLoading(true)
+
     postRequest({
       type: formData.program.tipo,
       data: form,
       request: "setProspecto",
     }).then((res) => {
+      
+      setIsLoading(false)
       if (res) {
         setFormData(prev=>formCleaner(prev))
         return setShowPopUp((prev) => {
@@ -83,8 +88,6 @@ export default function FormCard()
       });
     });
   }
-
-  console.log(formData)
 
   return (
     <>
@@ -131,6 +134,7 @@ export default function FormCard()
             placeHolder={"Ingresa Celular"}
             value={formData.phone}
             type={"simple"}
+            inputType={'number'}
             onChange={(e) => {
               if (e.target.value.length > 9) {
                 e.target.value = e.target.value.substr(
@@ -161,6 +165,7 @@ export default function FormCard()
           />
           <Button
             label="Solicitar Informacion"
+            isLoading={isLoading}
             type={'submit'}
             styles={{
               button: "!bg-myRed !py-[.7rem] !mt-[.3rem] phone:px-[1rem]",

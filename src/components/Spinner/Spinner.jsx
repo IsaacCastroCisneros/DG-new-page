@@ -1,10 +1,10 @@
 import React from 'react'
 import {MoonLoader} from 'react-spinners'
 
-export default function Spinner({size=100,style}) {
+export default function Spinner({size=100,style,color="rgb(96,165,250)"}) {
   return (
-    <div className={`flex justify-center text-blue-400 mb-[1rem] ${style}`}>
-        <MoonLoader size={size} color={"rgb(96,165,250)"} />
+    <div className={`flex justify-center items-center mb-[1rem] ${style}`}>
+        <MoonLoader size={size} color={color} />
     </div>
   )
 }

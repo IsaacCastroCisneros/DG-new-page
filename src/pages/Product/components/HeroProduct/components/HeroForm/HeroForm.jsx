@@ -14,10 +14,12 @@ import MyMsg from '../../../../../../components/MyMsg/MyMsg';
 import StatusMsg from '../../../../../../components/StatusMsg/StatusMsg';
 import { formCleaner } from '../../../../../../helpers/formCleaner';
 
+
 export default function HeroForm(props) 
 {
   const{setShowPopUp}=useContext(appContext)
   const[showStatus,setShowStatus]=useState(false)
+  const[isLoading,setIsLoading]=useState(false)
   const {tipo,titulo,id,isPopUp=false}=props;
 
   const{data:ciudad}=useMyQuery({type:'geo'})
@@ -57,9 +59,11 @@ export default function HeroForm(props)
     form.append(`contenido`,`Hola deseo informacion del ${tipo} ${titulo}`)
     form.append(`pagina`,"https://www.desarrolloglobal.pe" + location.pathname)
 
+    setIsLoading(true)
     postRequest({type:tipo,data:form,request:'setProspecto'})
     .then(res=>
       {
+        setIsLoading(false)
         if(res)
         {
           setFormData(prev=>formCleaner(prev))
@@ -150,6 +154,7 @@ export default function HeroForm(props)
             <FormInput
               icon={"/img/icons/tel.png"}
               value={formData.phone}
+              inputType={'number'}
               placeHolder={"Ingresar Celular"}
               onChange={(e) => {
                 if (e.target.value.length > 9) {
@@ -176,9 +181,10 @@ export default function HeroForm(props)
             label={"SOLICITAR INFORMACIÓN"}
             styles={{
               button:
-                "!bg-myRed !px-0 w-[100%] py-[.7rem] heroProduct:!px-[.7rem]",
+              "!bg-myRed !px-0 w-[100%] py-[.7rem] heroProduct:!px-[.7rem]",
               span: "!text-[18px] !font-medium heroProduct:!text-[15px]",
             }}
+            isLoading={isLoading}
           />
         </form>
       </div>

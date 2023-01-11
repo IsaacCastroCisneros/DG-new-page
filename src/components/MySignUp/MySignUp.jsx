@@ -64,6 +64,7 @@ export default function MySignUp(props)
               placeHolder={"DNI"}
               value={formData?.userDni}
               type={"simple"}
+              inputType={"number"}
               errLabel={errList?.userDni}
               okBorder={true}
               onlyNum={true}
@@ -84,6 +85,7 @@ export default function MySignUp(props)
             <FormInput
               placeHolder={"Telefono"}
               value={formData?.userPhone}
+              inputType={"number"}
               type={"simple"}
               errLabel={errList?.userPhone}
               okBorder={true}

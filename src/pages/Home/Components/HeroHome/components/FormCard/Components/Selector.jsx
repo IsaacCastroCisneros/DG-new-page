@@ -55,13 +55,12 @@ export default function Selector(props)
           checkedOne={value.id}
         />
         <div className="relative">
-          <select className={`${myStyles} mob:hidden`} onChange={onChange}>
+          <select className={`${myStyles} ${errLabel ?'':'!border-green-400'} mob:hidden`} onChange={onChange}>
             {selectorContent()}
           </select>
           {errLabel && <ErrFormMsg errLabel={errLabel} />}
-          {!errLabel && <OkFormMsg styles={"!top-0 !right-[.4rem]"} />}
           <div
-            className={`${myStyles} hidden mob:flex justify-between hover:cursor-pointer`}
+            className={`${myStyles} ${errLabel ?'':'!border-green-400'} hidden mob:flex justify-between hover:cursor-pointer`}
             title={value.titulo}
             onClick={() => setShow(true)}
           >

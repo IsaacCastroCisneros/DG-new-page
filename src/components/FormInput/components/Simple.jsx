@@ -30,14 +30,14 @@ export default function Simple(props)
         {errLabel && (
           <ErrFormMsg errLabel={errLabel} />
         )}
-        {!errLabel&&!okBorder&&(
+        {/* {!errLabel&&!okBorder&&(
           <OkFormMsg 
            styles=
            {
             '!top-0 !right-[.4rem]'
            }
            />
-        )}
+        )} */}
       </div>
     );
 }
