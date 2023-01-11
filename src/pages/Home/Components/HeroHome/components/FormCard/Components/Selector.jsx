@@ -17,7 +17,7 @@ export default function Selector(props)
       errLabel,
       value
     }=props
-    
+
     const[show,setShow]=useState(false)
 
     const myStyles = 'block w-[100%] border-[1px] border-gray-300 rounded-[.2rem] px-[.7rem] py-[.8rem] focus:border-myPurple focus:outline-none'
@@ -52,6 +52,7 @@ export default function Selector(props)
           diplomas={diplomas}
           diplomados={diplomados}
           onChange={onChange}
+          checkedOne={value.id}
         />
         <div className="relative">
           <select className={`${myStyles} mob:hidden`} onChange={onChange}>
@@ -67,7 +68,7 @@ export default function Selector(props)
            <p className='inline-flex items-center w-[95%] select-none'>
              <span className='w-[100%] whitespace-nowrap overflow-hidden text-ellipsis block'>
               {
-                value==='no-value'||value===''&&
+                (value==='no-value'||value==='')&&
                 <>
                   Elegir Programa
                 </>

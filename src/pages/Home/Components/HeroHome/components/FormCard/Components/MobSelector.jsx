@@ -11,7 +11,8 @@ export default function MobSelector(props)
     cursos,
     diplomas,
     diplomados,
-    onChange
+    onChange,
+    checkedOne
   }=props
 
   return (
@@ -20,7 +21,7 @@ export default function MobSelector(props)
         <>
           <div className="fixed w-[100%] h-[100%] bg-[#000] opacity-[.8] z-[9999999999] left-0 top-0"
            ></div>
-          <div className="myContainer flex justify-center items-center fixed z-[99999999999] w-[100%] h-[100%] left-0 top-0"
+          <div className="myContainer flex justify-center items-center fixed z-[99999999999] w-[100%] h-[100%] left-0 top-0 px-[1rem]"
            onClick={(e)=>
             {
               if(e.target.matches('.myContainer')||e.target.matches('.myRadio'))
@@ -36,7 +37,7 @@ export default function MobSelector(props)
                 cursos?.map(c=>
                     {
                         return(
-                            <MobSelectorOption label={c.titulo} value={c.id}/>
+                            <MobSelectorOption label={c.titulo} value={c.id}  checkedOne={checkedOne}/>
                         )
                     })
                }
@@ -45,7 +46,7 @@ export default function MobSelector(props)
                 diplomas?.map(d=>
                     {
                         return(
-                            <MobSelectorOption label={d.titulo} value={d.id}/>
+                            <MobSelectorOption label={d.titulo} value={d.id}  checkedOne={checkedOne}/>
                         )
                     })
                }
@@ -54,7 +55,7 @@ export default function MobSelector(props)
                 diplomados?.map(mado=>
                     {
                         return(
-                            <MobSelectorOption label={mado.titulo} value={mado.id}/>
+                            <MobSelectorOption label={mado.titulo} value={mado.id}  checkedOne={checkedOne}/>
                         )
                     })
                }
@@ -67,12 +68,13 @@ export default function MobSelector(props)
   );
 }
 
-function MobSelectorOption({label,value})
+function MobSelectorOption({label,value,checkedOne})
 {
+    const isChecked=value===checkedOne
     return(
       <div className={`${myStyles} flex items-center justify-between gap-[1rem]`}>
         <label>{label}</label>
-        <input type="radio" className='scale-[150%] myRadio' value={value} name='ass'/>
+        <input type="radio" className='scale-[150%] myRadio' checked={isChecked} value={value} name='ass'/>
       </div>
     )
 }
