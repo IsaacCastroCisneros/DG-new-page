@@ -9,7 +9,8 @@ export default function MyLogin(props)
     submitting,
     errList,
     setFormData,
-    formData
+    formData,
+    isLoading
   }=props
 
   return (
@@ -43,6 +44,7 @@ export default function MyLogin(props)
         />
         <Button
           label={"Iniciar Sesion"}
+          isLoading={isLoading}
           styles={{
             button: "w-[100%] mt-[1.5rem] py-[.6rem]",
           }}

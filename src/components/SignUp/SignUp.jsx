@@ -13,6 +13,7 @@ export default function SignUp({setShow})
 {
     const[formData,setFormData]=useState({})
     const[showStatus,setShowStatus]=useState({show:false})
+    const[isLoading,setIsLoading]=useState(false)
     const{setUser,setShowPopUp}=useContext(appContext)
 
     const[errList]=useMyErrList(formData,signUp)
@@ -31,9 +32,12 @@ export default function SignUp({setShow})
         form.append('dni',formData.userDni)
         form.append('celular',formData.userPhone)
 
+        setIsLoading(true)
+
         postRequest({type:'signUp',data:form})
         .then(res=>
         {
+            setIsLoading(false)
             if(res===false)return setShowStatus({show:true,label:"El email o contraseña ya esta registrado"})
 
             const form = new FormData()
@@ -78,6 +82,7 @@ export default function SignUp({setShow})
             <MySignUp
               submitting={submitting}
               errList={errList}
+              isLoading={isLoading}
               setFormData={setFormData}
               formData={formData}
             />

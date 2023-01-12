@@ -4,12 +4,14 @@ import Button from '../Button/Button';
 
 export default function MySignUp(props) 
 {
+
    const
    {
     submitting,
     errList,
     setFormData,
-    formData
+    formData,
+    isLoading
    }=props
     
    return (
@@ -138,6 +140,7 @@ export default function MySignUp(props)
           </div>
           <Button
             label={"Registrarse"}
+            isLoading={isLoading}
             styles={{
               button: "w-[100%] mt-[1.5rem] py-[.6rem]",
             }}

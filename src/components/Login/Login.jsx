@@ -12,6 +12,7 @@ export default function Login({setShow})
 {
   const[formData,setFormData]=useState({})
   const[showStatus,setShowStatus]=useState({show:false})
+  const[isLoading,setIsLoading]=useState(false)
   const{setUser}=useContext(appContext)
 
   const[errList]=useMyErrList(formData,login)
@@ -26,9 +27,12 @@ export default function Login({setShow})
     form.append('correo',formData.email)
     form.append('clave',formData.password)
 
+    setIsLoading(true)
+
     postRequest({type:'login',data:form})
     .then(res=>
       {
+        setIsLoading(false)
         if(res===false)return setShowStatus({show:true,label:"Email o contraseña incorrectos"})
         localStorage.setItem('userDG',JSON.stringify(res))
         document.cookie = `token=${res.token};domain=.desarrolloglobal.pe`;
@@ -50,6 +54,7 @@ export default function Login({setShow})
             errList={errList}
             setFormData={setFormData}
             formData={formData}
+            isLoading={isLoading}
           />
         }
       />

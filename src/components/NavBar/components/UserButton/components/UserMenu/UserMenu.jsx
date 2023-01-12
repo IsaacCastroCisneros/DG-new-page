@@ -10,23 +10,32 @@ import {
 import React,{useState,useContext} from 'react'
 import { appContext } from '../../../../../../context/AppContext';
 import postRequest from '../../../../../../helpers/postRequest';
+import Button from '../../../../../Button/Button';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 export default function UserMenu({show})
 {
   const{setShowPopUp,user}=useContext(appContext)
+  const menu = useRef()
 
-  const isShow = show ? {h:'214.96px',b:'1px',p:'auto'} : {h:0,o:0,b:'0'}
+  const isShow = show ? {h:lel(),b:'1px',p:'auto'} : {h:0,o:0,b:'0'}
+
+  function lel()
+  {
+    return menu.current.offsetHeight
+  }
 
   return (
-    <>
-      <ul className="absolute transition-[height] duration-200 rounded-[.5rem] bg-[#fff] shadow-xl border-[1px] border-gray-300 right-0 bottom-0 translate-y-[105%] overflow-hidden"
-        style={
-          {
-            height:isShow.h,
-            borderWidth:isShow.b,
-            pointerEvents:isShow.p
-          }}
-       >
+    <div
+      className='absolute transition-[height] duration-200 right-0 bottom-0 translate-y-[105%] overflow-hidden'
+      style={
+        {
+          height:isShow.h,
+          pointerEvents:isShow.p
+        }}
+     >
+      <ul ref={menu} className="rounded-[.5rem] bg-[#fff] shadow-xl border-[1px] border-gray-300 overflow-hidden">
         <UserMenuOption
           label={"Mi Aula"}
           icon={faLaptop}
@@ -65,29 +74,32 @@ export default function UserMenu({show})
           label={"cerrar sesion"}
         />
       </ul>
-    </>
+    </div>
   );
 }
 
 function AreYouSure({setShow})
 {
   const{setUser,user}=useContext(appContext)
+  const[isLoading,setIsLoading]=useState(false)
 
   function clossingSession()
   {
     const form = new FormData();
     form.append('token',user.token)
     
+    setIsLoading(true)
+
     postRequest({ type: "logout", data: form }).then((res) => {
-      if (res) {
+      if (res) 
+      {
+        setIsLoading(false)
         setUser(undefined);
         localStorage.removeItem("userDG");
-        setShow({show:false,isConfirm:false})  
+        setShow(prev=>{return {...prev,show:false,isConfirm:false} })  
         return;
       }
     });
-
-    setShow(prev=>{return {...prev,show:false}})
   }
 
    return (
@@ -96,12 +108,11 @@ function AreYouSure({setShow})
          ¿Estas seguro de salir?
        </h1>
        <div className="flex">
-         <button
-           className="bg-myPurple text-[#fff] font-bold px-[1rem] flex-1 py-[.6rem]"
+         <Button
+           label={"ACEPTAR"}
            onClick={clossingSession}
-         >
-           ACEPTAR
-         </button>
+           isLoading={isLoading}
+          />
          <button
            className="flex-1 hover:text-blue-500 hover:underline"
            onClick={() => setShow(prev=>{return {...prev,show:false}})}
