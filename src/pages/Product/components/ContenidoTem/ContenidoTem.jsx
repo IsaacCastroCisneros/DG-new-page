@@ -4,7 +4,6 @@ import React from 'react'
 import { useState } from 'react';
 import { myGradientNoHover } from '../../../../MyStyles/MyStyles';
 import { useRef } from 'react';
-import { useEffect } from 'react';
 
 export default function ContenidoTem(props) 
 {
@@ -21,16 +20,7 @@ export default function ContenidoTem(props)
       <strong className={`block px-[2.5rem] py-[1.3rem] ${myGradientNoHover} hover text-[26px] product:text-[20px]`}>Contenido Temático</strong>
       {
         tipo==='curso'&&
-        <div className='pt-[1.5rem] pb-[1.2rem] px-[1rem] flex flex-col gap-[.5rem]' >
-          {
-            sesiones?.map(sesion=>
-                {
-                    return (
-                      <Accordion key={id} sesion={sesion} />
-                    );
-                })
-          }
-        </div>
+        <AccordionList sesiones={sesiones}/>
       }
       {
         tipo!=='curso'&&
@@ -45,6 +35,19 @@ export default function ContenidoTem(props)
           }
         </div>
       }
+    </div>
+  );
+}
+
+function AccordionList({sesiones})
+{
+  const[show,setShow]=useState({show:false,isSelected:0})
+
+  return (
+    <div className='pt-[1.5rem] pb-[1.2rem] px-[1rem] flex flex-col gap-[.5rem]' >    
+      {sesiones?.map((sesion) => {
+        return <Accordion key={sesion.id} sesion={sesion} show={show} setShow={setShow} />;
+      })}
     </div>
   );
 }
@@ -122,46 +125,43 @@ function AccordionTem(props)
 }
 
 
-function Accordion({ sesion }) 
+function Accordion({ sesion,setShow,show }) 
 {
-  const [show, setShow] = useState(false);
   const divH = useRef()
 
-  let currentH = 0;
-
-  useEffect(()=>
+  function getH()
   {
-/*     divH.current.offsetHeght */
-  })
+    return divH.current.offsetHeight
+  }
+
+  let isShow = sesion.id===show.isSelected
 
   return (
-    <div className='overflow-hiddent transition-all duration-[100ms]' 
-     style={{height:`auto`}}
-     >
+    <div
+      className="overflow-hidden transition-all duration-[150ms]"
+      style={{height: `${55.98+(show.show&&isShow ? getH():0)}px`}}
+    >
       <button
-       className='bg-[#f5f5f5] w-[100%] text-left p-[1rem] flex justify-between' 
-       onClick={() => setShow((prev) => !prev)}>
+        className="bg-[#f5f5f5] w-[100%] text-left p-[1rem] flex justify-between"
+        onClick={() => setShow(prev=>{return{show:prev.isSelected===sesion.id ? !prev.show:true ,isSelected:sesion.id}})}
+      >
         <strong>
-          <span className=' text-[#363535]'>
-          {sesion.titulo} 
-          </span>
-          <span className='text-myGrey2 font-medium'>
-          : {sesion.sub_titulo}
+          <span className=" text-[#363535]">{sesion.titulo}</span>
+          <span className="text-myGrey2 font-medium">
+            : {sesion.sub_titulo}
           </span>
         </strong>
-        <span className={`${show ? 'rotate-180' :''}`} >
-           <FontAwesomeIcon icon={faChevronDown}/>
+        <span className={`${show.show&&isShow ? "rotate-180" : ""} transition-all duration-150`}>
+          <FontAwesomeIcon icon={faChevronDown} />
         </span>
       </button>
-      {show && (
-        <div
-          className="session-list bg-[#fafafa] py-[1.3rem] px-[3rem]"
-          ref={divH}
-          dangerouslySetInnerHTML={{
-            __html: sesion.descripcion,
-          }}
-        ></div>
-      )}
+      <div
+        className="session-list bg-[#fafafa] py-[1.3rem] px-[3rem]"
+        ref={divH}
+        dangerouslySetInnerHTML={{
+          __html: sesion.descripcion,
+        }}
+      ></div>
     </div>
   );
 }
