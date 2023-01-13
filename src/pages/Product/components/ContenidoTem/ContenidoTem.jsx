@@ -101,7 +101,7 @@ function AccordionTem(props)
       sub_titulo,
       titulo
     }=props
-
+  /* fdf */
     return (
       <div className='py-[1rem] border-b-[1px] border-gray-300'>
         <button className="flex justify-between w-[100%] hover:text-[#1839a4]">
