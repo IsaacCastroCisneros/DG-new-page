@@ -1,6 +1,8 @@
 import React from 'react'
 import { myGradient } from '../../MyStyles/MyStyles';
+import { myGradientRed } from '../../MyStyles/MyStyles';
 import Spinner from '../Spinner/Spinner'
+
 
 export default function Button(props) 
 {
@@ -11,6 +13,7 @@ export default function Button(props)
     onClick,
     type,
     isGradient=true,
+    gradientType='purple',
     isContentInside=false,
     children,
     isLoading
@@ -18,11 +21,29 @@ export default function Button(props)
 
   const{button='',span=''} = styles || {}
 
+  function getGradient(type)
+  {
+    if(isGradient)
+    {
+      console.log(type)
+      switch(type)
+      {
+        case 'purple':
+          {
+            return myGradient
+          }
+        case 'red':
+          {
+            return myGradientRed
+          }
+      }
+    }
+    return ''
+  }
+
   return (
     <button
-      className={`${
-        isGradient ? myGradient : ""
-      } rounded-[.3rem] px-[2.1rem] py-[.2rem] ${button} relative`}
+      className={`${getGradient(gradientType)} rounded-[.3rem] px-[2.1rem] py-[.2rem] ${button} relative`}
       onClick={onClick}
       type={type}
     >

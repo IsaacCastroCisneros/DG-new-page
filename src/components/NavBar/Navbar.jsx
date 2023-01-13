@@ -44,10 +44,13 @@ export default function Navbar()
 
   return (
     <navBarContext.Provider value={contextValues}>
-      <div className='h-[63.98px]'></div>
-      <header className="flex fixed z-[999999999999] bg-[#fff] w-[100%] top-0 transition-all duration-[100ms] ease-in-out shadow-xl"
-       style={{transform:hideNavBar.isHide? 'translateY(-100%)':'translateY(0)'}}
-       >
+      <div className="h-[63.98px]"></div>
+      <header
+        className="flex fixed z-[999] bg-[#fff] w-[100%] top-0 transition-all duration-[100ms] ease-in-out shadow-xl"
+        style={{
+          transform: hideNavBar.isHide ? "translateY(-100%)" : "translateY(0)",
+        }}
+      >
         <nav className="flex custom-container justify-between items-center mobNav:!px-[.7rem]">
           <ul className="flex gap-[3rem] font-medium text-myBlack items-stretch min-h-[4rem]">
             <Link
@@ -62,13 +65,21 @@ export default function Navbar()
             <NavOption label={"diplomados"} path={"/diplomados"} />
           </ul>
           <div className="flex gap-[1rem] items-center">
-              <Cart hideNavBar={hideNavBar}/>
+            <div className="mobNav:hidden">
+              <Cart hideNavBar={hideNavBar} />
+            </div>
             <div className="flex gap-[1.3rem] mobNav:hidden">
               {!user && (
                 <Button
                   label="iniciar sesion"
                   onClick={() =>
-                    setShowPopUp(prev=>{return{...prev,show: true, popUp: <Login setShow={setShowPopUp}/>}})
+                    setShowPopUp((prev) => {
+                      return {
+                        ...prev,
+                        show: true,
+                        popUp: <Login setShow={setShowPopUp} />,
+                      };
+                    })
                   }
                 />
               )}
@@ -89,8 +100,14 @@ export default function Navbar()
                       "!bg-[transparent] !border-[3px] !border-myPurple !box-border",
                     span: "!text-myPurple",
                   }}
-                  onClick={() => 
-                    setShowPopUp(prev=>{return{...prev,show: true, popUp: <SignUp setShow={setShowPopUp}/>}})
+                  onClick={() =>
+                    setShowPopUp((prev) => {
+                      return {
+                        ...prev,
+                        show: true,
+                        popUp: <SignUp setShow={setShowPopUp} />,
+                      };
+                    })
                   }
                 />
               )}

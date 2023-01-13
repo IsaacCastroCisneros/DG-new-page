@@ -3,6 +3,8 @@ import { faChevronDown,faBars } from '@fortawesome/free-solid-svg-icons';
 import React from 'react'
 import { useState } from 'react';
 import { myGradientNoHover } from '../../../../MyStyles/MyStyles';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 export default function ContenidoTem(props) 
 {
@@ -123,9 +125,19 @@ function AccordionTem(props)
 function Accordion({ sesion }) 
 {
   const [show, setShow] = useState(false);
+  const divH = useRef()
+
+  let currentH = 0;
+
+  useEffect(()=>
+  {
+/*     divH.current.offsetHeght */
+  })
 
   return (
-    <div>
+    <div className='overflow-hiddent transition-all duration-[100ms]' 
+     style={{height:`auto`}}
+     >
       <button
        className='bg-[#f5f5f5] w-[100%] text-left p-[1rem] flex justify-between' 
        onClick={() => setShow((prev) => !prev)}>
@@ -144,6 +156,7 @@ function Accordion({ sesion })
       {show && (
         <div
           className="session-list bg-[#fafafa] py-[1.3rem] px-[3rem]"
+          ref={divH}
           dangerouslySetInnerHTML={{
             __html: sesion.descripcion,
           }}

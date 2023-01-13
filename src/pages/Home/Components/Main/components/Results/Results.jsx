@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMedal,faBook, faGraduationCap,faMousePointer } from '@fortawesome/free-solid-svg-icons'
 import Spinner from '../../../../../../components/Spinner/Spinner'
 import LinkButton from '../../../../../../components/LinkButton/LinkButton'
+import ErrorMsg from '../../../../../../components/ErrorMsg/ErrorMsg'
 
 export default function Results() 
 {
@@ -50,22 +51,29 @@ export default function Results()
           icon={<FontAwesomeIcon icon={faGraduationCap} />}
         />
       </div>
-      {isFetching && <Spinner />}
-      {!isFetching && (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(17.3rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0] mb-[5rem]">
-          {data?.map((card) => {
-            return <Card key={card.id} type={type} {...card} />;
-          })}
-        </div>
+      {data?.err && (
+        <ErrorMsg />
       )}
-      {type !== "todos" && (
-        <div className="flex justify-center">
-          <LinkButton
-            label={`Ver Mas ${type}`}
-            path={`/${type}`}
-            styles={{ button: "!max-w-[20rem]" }}
-          />
-        </div>
+      {data?.err === undefined && (
+        <>
+          {isFetching && <Spinner />}
+          {!isFetching && (
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(17.3rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0] mb-[5rem]">
+              {data?.map((card) => {
+                return <Card key={card.id} type={type} {...card} />;
+              })}
+            </div>
+          )}
+          {type !== "todos" && (
+            <div className="flex justify-center">
+              <LinkButton
+                label={`Ver Mas ${type}`}
+                path={`/${type}`}
+                styles={{ button: "!max-w-[20rem]" }}
+              />
+            </div>
+          )}
+        </>
       )}
     </>
   );
@@ -103,4 +111,5 @@ function ButtonType(props)
     </button>
   );
 }
-  
+
+    

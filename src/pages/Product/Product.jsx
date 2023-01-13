@@ -15,6 +15,7 @@ import { useContext } from 'react';
 import { appContext } from '../../context/AppContext';
 import MyHelmetProduct from '../../components/Helmet/MyHelmetProduct';
 import WhatsButton from './components/WhatsButton/WhatsButton';
+import ErrorMsg from '../../components/ErrorMsg/ErrorMsg';
 
 export const productContext = React.createContext()
 
@@ -39,36 +40,45 @@ export default function Product({type})
 
   return (
     <productContext.Provider value={contextValues}>
-      <MyHelmetProduct
-          titulo={data?.titulo}
-          descripcion={data?.descripcion}
-          imagen={data?.imagen}
-          seo={data?.seo}
-        />
-      <WhatsButton {...data} />
-      {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
-      {!isFetching && (
+      {
+        data?.err&&
+        <ErrorMsg/>
+      }
+      {
+        data?.err===undefined&&
         <>
-          <HeroProduct {...data} />
-          <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
-            <section className="flex-[3] max-w-[832.91px]">
-              {/* <PorQueParticipar tipo={data.tipo} /> */}
-              <ContenidoTem {...data} />
-              <Section title={"Beneficios"} body={<Beneficios />} />
-              <Section title={"Certificado"} body={<Certificado />} />
-              <Section title={"Inversión"} body={<Inversion {...data} />} />
-              <Formas data={data} />
-            </section>
-            <aside className="flex-[1]">
-              <span className="text-[16px] text-center text-[#fd0000] hidden heroProduct:block">
-                FECHA DE INICIO: AHORA MISMO
-              </span>
-              <RiteCardPrice {...data} />
-            </aside>
-          </main>
-          <Footer />
+          <MyHelmetProduct
+            titulo={data?.titulo}
+            descripcion={data?.descripcion}
+            imagen={data?.imagen}
+            seo={data?.seo}
+          />
+          {isFetching && <Spinner size={200} style={"mt-[4rem]"} />}
+          {!isFetching && (
+            <>
+              <WhatsButton {...data} />
+              <HeroProduct {...data} />
+              <main className="custom-container3 !px-[1rem] flex pt-[5rem] gap-[1rem] text-[#000] product:flex-col-reverse heroProduct:pt-[4rem]">
+                <section className="flex-[3] max-w-[832.91px]">
+                  {/* <PorQueParticipar tipo={data.tipo} /> */}
+                  <ContenidoTem {...data} />
+                  <Section title={"Beneficios"} body={<Beneficios />} />
+                  <Section title={"Certificado"} body={<Certificado />} />
+                  <Section title={"Inversión"} body={<Inversion {...data} />} />
+                  <Formas data={data} />
+                </section>
+                <aside className="flex-[1]">
+                  <span className="text-[16px] text-center text-[#fd0000] hidden heroProduct:block">
+                    FECHA DE INICIO: AHORA MISMO
+                  </span>
+                  <RiteCardPrice {...data} />
+                </aside>
+              </main>
+              <Footer />
+            </>
+          )}
         </>
-      )}
+      }
     </productContext.Provider>
   );
 }

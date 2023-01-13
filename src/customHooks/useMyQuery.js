@@ -12,21 +12,31 @@ export default function useMyQuery({type,tag='',id='',limit=''})
     keepPreviousData:true
   })
 
+  
   async function query({queryKey})
   {
-    const res = await axios.get(queryKey[1]);
-    return res
+    try
+    {
+      const res = await axios.get(queryKey[1]);
+      return res
+    }
+    catch(err)
+    {
+      return {data:{err:true}}
+    }
   }
 
   if(tag===''&&type!=='popUps')
   {
-    if(data!==undefined)
+    if(data!==undefined&&data?.data?.err===undefined)
     {
       const {grabado}=data.data
-  
+      
       return {data:grabado,isFetching}
     }
   }
+  
+  console.log(data)
 
   return {data:data?.data,isFetching}
 }

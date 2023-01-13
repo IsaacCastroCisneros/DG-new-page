@@ -99,7 +99,7 @@ export default function HeroForm(props)
 
   return (
     <>
-      <div className="bg-[#7e60f7] relative px-[3rem] heroProduct:px-[2.5rem] py-[1.5rem] rounded-[.5rem] heroProduct:translate-y-[2rem]">
+      <div className="bg-myPurple relative px-[3rem] heroProduct:px-[2.5rem] py-[1.5rem] rounded-[.5rem] heroProduct:translate-y-[2rem]">
         {isPopUp && showStatus === "success" && (
           <MyMsg
             icon={faCheckCircle}
@@ -184,6 +184,7 @@ export default function HeroForm(props)
               "!bg-myRed !px-0 w-[100%] py-[.7rem] heroProduct:!px-[.7rem]",
               span: "!text-[18px] !font-medium heroProduct:!text-[15px]",
             }}
+            gradientType={'red'}
             isLoading={isLoading}
           />
         </form>
