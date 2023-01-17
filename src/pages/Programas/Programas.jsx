@@ -1,14 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react';
 import Footer from '../../components/Footer/Footer';
-import Spinner from '../../components/Spinner/Spinner';
 import useMyQuery from '../../customHooks/useMyQuery';
-import Card from '../Home/Components/Main/components/Card/Card';
 import ProgramaElaborado from '../Home/Components/ProgramaElaborado/ProgramaElaborado';
 import HeroPrograma from './components/HeroPrograma';
 import MyHelmet from '../../components/Helmet/MyHelmet';
-import theRandomizer from '../../helpers/theRandomizer';
-import { useState } from 'react';
+import MyProgramsResults from './components/MyProgramResults/MyProgramsResults';
 import ErrorMsg from '../../components/ErrorMsg/ErrorMsg';
 
 export default function Programas({type}) 
@@ -29,21 +26,10 @@ export default function Programas({type})
         <h1 className="block text-center text-myBlack text-[2.5rem] mt-[4.5rem] phone:font-normal phone:mt-[2rem] mb-[4rem] phone:!text-[1.5rem] phone:font-medium">
           Elige el Programa de tu Interés y Certificate
         </h1>
+        {data?.err && <ErrorMsg />}
         {
-          data?.err&&<ErrorMsg/>
+         data?.err===undefined&&<MyProgramsResults data={data} isFetching={isFetching} type={type} />
         }
-        {data?.err === undefined && (
-          <>
-            {isFetching && <Spinner />}
-            {!isFetching && (
-              <div className="grid grid-cols-[repeat(auto-fill,minmax(18rem,1fr))] gap-[2.5rem] px-[3rem] phone:px-[0]">
-                {data?.map((card) => {
-                  return <Card key={card.id} type={type} {...card} />;
-                })}
-              </div>
-            )}
-          </>
-        )}
       </main>
       <ProgramaElaborado />
       <Footer />
