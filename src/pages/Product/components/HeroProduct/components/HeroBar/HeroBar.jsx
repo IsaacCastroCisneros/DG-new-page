@@ -32,6 +32,7 @@ export default function HeroBar(props)
           data={`${certificados} Horas` }
           img={"/img/icons/dip2.png"}
         />
+        {/* lel */}
       </div>
     </div>
   );
