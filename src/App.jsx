@@ -33,17 +33,24 @@ function App()
         <Route index element={<Home />} />
         <Route path="/cursos">
           <Route index element={<Programas type={"cursos"} />} />
-          <Route path=":id" element={<Product type={"cursos"} />} />
+          <Route path=":id">
+            <Route path=":id" element={<Product type={"cursos"} />} />
+          </Route>
         </Route>
         <Route path="/diplomas">
           <Route index element={<Programas type={"diplomas"} />} />
-          <Route path=":id" element={<Product type={"diplomas"} />} />
+          <Route path=":id">
+            <Route path=":id" element={<Product type={"diplomas"} />} />
+          </Route>
         </Route>
         <Route path="/diplomados">
           <Route index element={<Programas type={"diplomados"} />} />
-          <Route path=":id" element={<Product type={"diplomados"} />} />
+          <Route path=":id">
+            <Route path=":id" element={<Product type={"diplomados"} />} />
+          </Route>
         </Route>
         <Route path="/pasarela-pago" element={<Pasarela />} />
+        <Route path='*' element={<div className='text-center font-bold px-[1rem] py-[4rem]'>Looks like theres nothing here</div>} />
       </Route>
     </Routes>
   );

@@ -23,6 +23,11 @@ export default function Product({type})
 {
   const{cart}=useContext(appContext)
   const{id:tag}=useParams();
+ 
+/*   const theTag= id.split('-')
+  const tag = theTag[theTag.length-1] */
+
+
   const{data,isFetching}=useMyQuery({type,tag});
   
   let isIn = undefined;

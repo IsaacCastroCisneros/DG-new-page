@@ -15,7 +15,8 @@ export default function Card(props)
     tipo,
     precio,
     total_sesiones,
-    id
+    id,
+    etiqueta
   }=props
 
   return (
@@ -48,7 +49,7 @@ export default function Card(props)
           </div>
           <div className="px-[1.5rem] pb-[1rem] flex flex-col gap-[.4rem]">
             <LinkButton
-              path={`/${tipo}s/${id}`}
+              path={`/${tipo}s/${etiqueta}/${id}`}
               label={"ver detalles"}
               styles={{
                 button:
